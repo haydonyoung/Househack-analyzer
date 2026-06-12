@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>House-Hack Deal Analyzer</title>
+<title>Househack — Deal Analyzer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2048%2048'%3E%3Crect%20x='9'%20y='7'%20width='30'%20height='36'%20fill='%23f4efe4'%20stroke='%2321402f'%20stroke-width='3'/%3E%3Crect%20x='9'%20y='10'%20width='30'%20height='4'%20fill='%2321402f'/%3E%3Crect%20x='14'%20y='18'%20width='7'%20height='6'%20fill='none'%20stroke='%2321402f'%20stroke-width='2'/%3E%3Crect%20x='27'%20y='18'%20width='7'%20height='6'%20fill='%23d8b25e'%20stroke='%239a6f1f'%20stroke-width='2'/%3E%3Crect%20x='14'%20y='27'%20width='7'%20height='6'%20fill='none'%20stroke='%2321402f'%20stroke-width='2'/%3E%3Crect%20x='27'%20y='27'%20width='7'%20height='6'%20fill='none'%20stroke='%2321402f'%20stroke-width='2'/%3E%3Crect%20x='21'%20y='34'%20width='6'%20height='9'%20fill='%2321402f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@600&display=swap" rel="stylesheet">
 <style>
@@ -12,13 +13,33 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--paper);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;line-height:1.4;padding:24px 14px;font-size:13px}
   .wrap{max-width:960px;margin:0 auto}
-  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:27px;letter-spacing:-.01em}
+  .brand{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .lockup{display:flex;align-items:center;gap:11px}
+  .lockup svg{flex:0 0 auto}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:27px;letter-spacing:-.01em;line-height:1;margin:0}
+  .wsub{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.34em;font-size:10.5px;color:var(--gold);font-weight:600;margin-top:3px}
+  .hero{width:194px;max-width:44vw;line-height:0}
   .tag{color:var(--muted);font-size:12px;margin:3px 0 16px}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 18px 16px;margin-bottom:16px}
-  .group{padding:14px 0;border-bottom:1px dashed var(--line)}
+  .group{padding:10px 0;border-bottom:none}
   .group:last-of-type{border-bottom:none}
-  .subhead{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;color:var(--green2);font-weight:600;margin:0 0 11px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-  .subhead .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--green);color:#f4efe4;font-size:10px;margin-right:7px}
+  .subhead{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;color:#f4efe4;font-weight:600;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--green);padding:9px 12px;border-radius:8px}
+  .subhead:hover{background:var(--green2)}
+  .subhead .seg{border-color:#f4efe4}
+  .subhead .seg button.on{background:#d8b25e;color:#21402f}
+  .group.collapsed .subhead{margin-bottom:0}
+  .xall{display:flex;justify-content:flex-end;margin:10px 0 2px}
+  .xall button{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.08em;font-size:10.5px;font-weight:600;padding:5px 12px;border-radius:6px;border:1.4px solid var(--green2);background:transparent;color:var(--green2);cursor:pointer}
+  .xall button:hover{background:var(--green);color:#f4efe4}
+  .subhead .num{display:inline-flex;margin-right:7px;line-height:0}
+  .subhead{cursor:pointer;user-select:none}
+  .shl{display:inline-flex;align-items:center}
+  .shr{display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+  .gsum{font-family:'Archivo';text-transform:none;letter-spacing:0;font-size:11px;color:#cfe0d2;font-weight:500;text-align:right}
+  .chev{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border:1.7px solid #d8b25e;border-radius:50%;color:#d8b25e;font-size:14px;line-height:1;flex:0 0 auto;transition:transform .15s}
+  .group.collapsed .grid,.group.collapsed .help{display:none}
+  .group.collapsed .chev{transform:rotate(90deg)}
+  .group.collapsed{padding:7px 0}
   .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 16px}
   .f{display:flex;flex-direction:column;gap:3px}
   .f.wide{grid-column:span 2}
@@ -54,25 +75,100 @@
   .subr{background:var(--shade);font-weight:700}
   .tot{background:var(--opt);font-family:'Fraunces',serif;font-weight:600}
   td.be{background:#f6e9e1}
+  tr.muted td{color:var(--muted)}
+  .tagmuted{font-size:9.5px;color:var(--muted);font-weight:600;font-style:italic;white-space:nowrap}
   .pos{color:var(--green2);font-weight:700}.neg{color:var(--rust);font-weight:700}
   .refbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 -2px}
   .refbar .lbl{font-size:10.5px;color:var(--muted)}
   .refresh{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-weight:600;padding:7px 16px;border-radius:6px;border:1px solid var(--green);cursor:pointer;background:var(--green);color:#f4efe4}
   .refresh:active{transform:translateY(1px)}
   .note{font-size:10.5px;color:var(--muted);margin:4px 0 16px;line-height:1.45}
-  @media print{body{padding:0;background:#fff}.panel,.tag,.btns,.refbar{display:none!important}.sheet{border:none;border-radius:0;padding:6px 10px}.wrap{max-width:100%}table,.verdict{break-inside:avoid}h2{break-after:avoid}}
+  .main{display:block}
+  .sumcard{display:none}
+  .sgood{color:#9fd8b1;font-weight:700}.sbad{color:#f2a98e;font-weight:700}
+  #sumBar{position:fixed;left:10px;right:10px;bottom:10px;z-index:40;background:var(--green);color:#f4efe4;border-radius:10px;padding:9px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 4px 14px rgba(27,33,28,.28);cursor:pointer;border:1.5px solid #d8b25e}
+  #sumBar .sb{display:flex;flex-direction:column;min-width:0}
+  #sumBar .sbl{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.12em;font-size:8.5px;color:#d8b25e}
+  #sumBar .sbv{font-family:'Fraunces',serif;font-size:14px;line-height:1.15;white-space:nowrap}
+  @media(max-width:979px){body{padding-bottom:76px}}
+  @media(min-width:980px){
+    #sumBar{display:none}
+    .main{display:grid;grid-template-columns:1fr 252px;gap:16px;align-items:start}
+    .sumcard{display:block;position:sticky;top:14px;background:var(--green);color:#f4efe4;border-radius:10px;padding:14px 16px;border:1.5px solid #d8b25e}
+    .sumcard .lbl{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.2em;font-size:9.5px;color:#d8b25e;margin-bottom:6px}
+    .sumcard .row{display:flex;justify-content:space-between;align-items:baseline;margin:7px 0;gap:10px}
+    .sumcard .k{font-size:10.5px;color:#cfe0d2}
+    .sumcard .v{font-family:'Fraunces',serif;font-size:15px;white-space:nowrap}
+    .sumcard .big{font-size:21px}
+    .sumcard a{display:inline-block;margin-top:8px;color:#d8b25e;font-size:11px;text-decoration:none;border-bottom:1px solid #d8b25e}
+  }
+  #printDoc{display:none}
+  .legal{margin:24px 0 0;font-size:10.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);padding-top:14px}
+  .legal b{color:var(--ink)}
+  .skyline{margin-top:18px;line-height:0}
+  .printtip{font-size:10px;color:var(--muted);align-self:center;max-width:340px;line-height:1.4}
+  .printmsg{font-size:11px;color:var(--rust);background:#f6e9e1;border:1px solid #e3c4b4;border-radius:6px;padding:8px 11px;margin-top:10px;line-height:1.5}
+  @media print{
+    @page{size:letter;margin:0.45in}
+    body{background:#fff;padding:0;font-size:10.5px}
+    .wrap{max-width:100%}
+    .wrap > :not(#printDoc){display:none!important}
+    #printDoc{display:block!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#1b211c}
+    #printDoc table{width:100%;border-collapse:collapse;font-size:9.1px;margin:0 0 5px}
+    #printDoc th,#printDoc td{padding:2.5px 5px;border-bottom:1px solid #d8cfba;text-align:right}
+    #printDoc th:first-child,#printDoc td:first-child{text-align:left}
+    #printDoc thead th{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.04em;font-size:8.5px;color:#fff;background:#2f5a40;font-weight:600}
+    #printDoc thead th:first-child{background:#21402f}
+    #printDoc tbody tr:nth-child(even){background:#f2eddd}
+    #printDoc td.m{text-align:left;font-weight:500}
+    #printDoc .subr{background:#efe9d6;font-weight:700}
+    #printDoc .tot{background:#f3ead0;font-family:'Fraunces',serif;font-weight:600}
+    #printDoc td.be{background:#f6e9e1}
+    #printDoc tr.muted td{color:#8d8672}
+    #printDoc .tagmuted{font-size:8px}
+    #printDoc .note{font-size:8.4px;color:#6d6655;margin:2px 0 5px;line-height:1.4}
+    #printDoc .pos{color:#2f5a40;font-weight:700}#printDoc .neg{color:#9c4a2b;font-weight:700}
+    .pmast{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#21402f;color:#f4efe4;border-radius:8px;padding:11px 14px}
+    .pl{display:flex;align-items:center;gap:10px}
+    .pname{font-family:'Fraunces',serif;font-size:19px;line-height:1}
+    .psub{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.3em;font-size:8px;color:#d8b25e;margin-top:3px}
+    .pr{text-align:right}
+    .paddr{font-family:'Fraunces',serif;font-size:13.5px}
+    .pdate{font-size:9.5px;color:#cfe0d2;margin-top:3px}
+    .pgold{height:3px;background:#9a6f1f;margin:8px 0;border-radius:2px}
+    .pverdict{font-family:'Fraunces',serif;font-size:18px;color:#21402f;line-height:1.2}
+    .pvsub{font-size:9.4px;color:#444036;margin:3px 0 8px;line-height:1.45}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 10px}
+    .pstat{border:1.4px solid #21402f;border-radius:6px;padding:5px 8px}
+    .pstat .l{font-size:7.8px;text-transform:uppercase;letter-spacing:.07em;color:#6d6655;font-weight:600}
+    .pstat .v{font-family:'Fraunces',serif;font-size:13.5px;color:#21402f;margin-top:1px}
+    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:3px;margin:10px 0 6px;font-weight:600}
+    #printDoc h3 .hsub{color:#9a6f1f;letter-spacing:0;text-transform:none;font-family:'Archivo';font-size:9px;font-weight:600}
+    .pbreak{break-before:page;page-break-before:always}
+    .pfoot{font-size:8px;color:#6d6655;margin-top:5px;border-top:1px solid #d8cfba;padding-top:4px}
+    #printDoc table,#printDoc tr{break-inside:avoid}
+    #printDoc h3{break-after:avoid}
+  }
   @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.f.wide{grid-column:span 2}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>House-Hack Deal Analyzer</h1>
-  <div class="tag">Fill in the groups below — everything recalculates live. <b>Print / Save PDF</b> exports the one-pager. All math runs in your browser; nothing is sent anywhere.</div>
+  <header class="brand">
+    <div class="lockup">
+      <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="9" y="7" width="30" height="36" fill="#fbf8f1" stroke="#21402f" stroke-width="2.6"/><rect x="9" y="10" width="30" height="4" fill="#21402f"/><rect x="14" y="18" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="27" y="18" width="7" height="6" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1.8"/><rect x="14" y="27" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="27" y="27" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="21" y="34" width="6" height="9" fill="#21402f"/></svg>
+      <div><h1>Househack</h1><div class="wsub">Deal Analyzer</div></div>
+    </div>
+    <div class="hero" id="heroArt" aria-hidden="true"></div>
+  </header>
+  <div class="tag">Fill in the groups below — everything recalculates live, and you can tap any section header to collapse or expand it. <b>Print / Save PDF</b> exports a polished two-page deal memo. All math runs in your browser; nothing is sent anywhere.</div>
 
+  <div class="main">
   <div class="panel">
+    <div class="xall"><button id="xallBtn" data-act="xall">Expand all ▾</button></div>
     <!-- 1 PROPERTY -->
     <div class="group">
-      <div class="subhead"><span><span class="num">1</span>Property &amp; Price</span></div>
+      <div class="subhead"><span class="shl"><span class="num">1</span>Property &amp; Price</span><span class="shr"><span class="gsum" id="sum1"></span><span class="chev">▾</span></span></div>
       <div class="grid">
         <div class="f wide"><label>Property address / label</label><input id="addr" type="text" placeholder="e.g. 350 Fifth Avenue, New York, NY 10118"></div>
         <div class="f"><label>List / asking price $</label><input id="list" type="number" placeholder="e.g. 1000000"></div>
@@ -85,8 +181,8 @@
     <!-- 2 RENT / INCOME  (owner/investment toggle lives here) -->
     <div class="group">
       <div class="subhead">
-        <span><span class="num">2</span>Rent / Income</span>
-        <span class="seg"><button id="segOwner" class="on" onclick="setFinancing('owner')">Owner-occupant</button><button id="segInv" onclick="setFinancing('investment')">Investment</button></span>
+        <span class="shl"><span class="num">2</span>Rent / Income</span>
+        <span class="shr"><span class="seg"><button id="segOwner" class="on" data-act="fin" data-arg="owner">Owner-occupant</button><button id="segInv" data-act="fin" data-arg="investment">Investment</button></span><span class="gsum" id="sum2"></span><span class="chev">▾</span></span>
       </div>
       <div class="grid">
         <div class="f"><label># of units (incl. your unit)</label><input id="units" type="number" value="3" min="1" step="1"></div>
@@ -97,7 +193,7 @@
 
     <!-- 3 FINANCING -->
     <div class="group">
-      <div class="subhead"><span><span class="num">3</span>Financing</span></div>
+      <div class="subhead"><span class="shl"><span class="num">3</span>Financing</span><span class="shr"><span class="gsum" id="sum3"></span><span class="chev">▾</span></span></div>
       <div class="grid">
         <div class="f"><label>Interest rate %</label><input id="rate" type="number" value="6.5" step="0.05"></div>
         <div class="f"><label>Down payment A</label><div class="dual"><input id="dpA" type="number" value="20"><select id="dpA_u"><option value="pct">%</option><option value="usd">$</option></select></div></div>
@@ -112,7 +208,7 @@
 
     <!-- 4 OPERATING EXPENSES -->
     <div class="group">
-      <div class="subhead"><span><span class="num">4</span>Operating Expenses</span></div>
+      <div class="subhead"><span class="shl"><span class="num">4</span>Operating Expenses</span><span class="shr"><span class="gsum" id="sum4"></span><span class="chev">▾</span></span></div>
       <div class="grid">
         <div class="f"><label>Property taxes $/yr</label><input id="tax" type="number" value="13500"></div>
         <div class="f"><label>Insurance $/yr</label><input id="ins" type="number" value="2400"></div>
@@ -126,7 +222,7 @@
 
     <!-- 5 GROWTH & EXIT -->
     <div class="group">
-      <div class="subhead"><span><span class="num">5</span>Growth &amp; Exit</span></div>
+      <div class="subhead"><span class="shl"><span class="num">5</span>Growth &amp; Exit</span><span class="shr"><span class="gsum" id="sum5"></span><span class="chev">▾</span></span></div>
       <div class="grid">
         <div class="f"><label>Appreciation %/yr</label><input id="appr" type="number" value="4.5" step="0.25"></div>
         <div class="f"><label>Selling cost (at exit)</label><div class="dual"><input id="sellcost" type="number" value="7"><select id="sellcost_u"><option value="pct">% sale</option><option value="usd">$</option></select></div></div>
@@ -134,15 +230,85 @@
     </div>
 
     <div class="btns">
-      <button class="alt" onclick="window.print()">Print / Save PDF</button>
+      <button class="alt" data-act="print">Print / Save PDF</button>
+      <span class="printtip">Tip: in the print dialog, turn on “Background graphics” to get the full-color memo.</span>
     </div>
+    <div id="printMsg" class="printmsg" style="display:none"></div>
+  </div>
+
+  <aside class="sumcard" id="sumSide" aria-live="polite"></aside>
   </div>
 
   <div class="sheet" id="out"></div>
+
+  <footer class="legal">
+    <b>Disclaimer.</b> The Househack Deal Analyzer is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The “recommended offer,” break-even figures, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
+  </footer>
+
+  <footer class="skyline" aria-hidden="true">
+    <svg viewBox="0 0 900 84" width="100%" preserveAspectRatio="xMidYMax meet">
+      <g fill="#21402f">
+        <polygon points="4,56 44,30 84,56"/><rect x="12" y="56" width="64" height="28"/><rect x="60" y="36" width="9" height="14"/>
+        <rect x="92" y="30" width="84" height="5"/><rect x="96" y="35" width="76" height="49"/><rect x="124" y="22" width="16" height="8"/>
+        <polygon points="186,58 222,34 258,58"/><rect x="192" y="58" width="60" height="26"/><rect x="238" y="40" width="8" height="14"/>
+        <rect x="266" y="26" width="62" height="5"/><rect x="270" y="31" width="54" height="53"/><rect x="288" y="76" width="18" height="8"/>
+        <polygon points="336,56 364,36 392,56"/><polygon points="392,56 420,36 448,56"/><rect x="342" y="56" width="100" height="28"/><rect x="388" y="40" width="8" height="12"/>
+        <rect x="456" y="28" width="96" height="5"/><rect x="460" y="33" width="88" height="51"/><rect x="494" y="20" width="18" height="8"/>
+        <polygon points="560,60 590,40 620,60"/><rect x="566" y="60" width="48" height="24"/><rect x="600" y="46" width="7" height="11"/>
+        <rect x="628" y="32" width="58" height="5"/><rect x="632" y="37" width="50" height="47"/><rect x="648" y="77" width="16" height="7"/>
+        <polygon points="694,56 730,32 766,56"/><rect x="700" y="56" width="60" height="28"/><rect x="744" y="38" width="8" height="13"/>
+        <rect x="774" y="30" width="126" height="5"/><rect x="778" y="35" width="122" height="49"/><rect x="820" y="22" width="18" height="8"/>
+      </g>
+      <g fill="#d8b25e">
+        <rect x="40" y="64" width="8" height="8"/>
+        <rect x="106" y="44" width="8" height="8"/><rect x="130" y="44" width="8" height="8"/><rect x="154" y="44" width="8" height="8"/><rect x="106" y="60" width="8" height="8"/><rect x="154" y="60" width="8" height="8"/>
+        <rect x="214" y="64" width="8" height="8"/>
+        <rect x="280" y="40" width="8" height="8"/><rect x="304" y="40" width="8" height="8"/><rect x="280" y="56" width="8" height="8"/>
+        <rect x="358" y="63" width="8" height="8"/><rect x="414" y="63" width="8" height="8"/>
+        <rect x="470" y="42" width="8" height="8"/><rect x="496" y="42" width="8" height="8"/><rect x="522" y="42" width="8" height="8"/><rect x="470" y="58" width="8" height="8"/><rect x="522" y="58" width="8" height="8"/>
+        <rect x="584" y="66" width="8" height="8"/>
+        <rect x="642" y="46" width="8" height="8"/><rect x="664" y="46" width="8" height="8"/>
+        <rect x="722" y="63" width="8" height="8"/>
+        <rect x="790" y="44" width="8" height="8"/><rect x="816" y="44" width="8" height="8"/><rect x="842" y="44" width="8" height="8"/><rect x="868" y="44" width="8" height="8"/><rect x="790" y="60" width="8" height="8"/><rect x="868" y="60" width="8" height="8"/>
+      </g>
+    </svg>
+  </footer>
+
+  <div id="sumBar" role="button" tabindex="0" data-act="jump"></div>
+
+  <div id="printDoc"></div>
 </div>
 
 <script>
 const $=id=>document.getElementById(id);
+const BUILDING=`<svg viewBox="0 0 150 96" width="100%" aria-hidden="true"><rect x="32" y="14" width="86" height="76" fill="#fbf8f1" stroke="#21402f" stroke-width="2.5"/><rect x="32" y="20" width="86" height="6" fill="#21402f"/><rect x="42" y="32" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="67" y="32" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="92" y="32" width="16" height="12" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1.6"/><rect x="42" y="52" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="67" y="52" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="92" y="52" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="42" y="70" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="92" y="70" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="63" y="64" width="24" height="4" fill="#21402f"/><rect x="67" y="68" width="16" height="22" fill="#21402f"/><text x="75" y="84" text-anchor="middle" font-size="12" font-weight="600" fill="#f4efe4" font-family="Fraunces,Georgia,serif">$</text><rect x="59" y="90" width="32" height="4" fill="#fbf8f1" stroke="#21402f" stroke-width="2"/></svg>`;
+const HERO=`<svg viewBox="0 0 200 96" width="100%" aria-hidden="true"><line x1="2" y1="92" x2="198" y2="92" stroke="#21402f" stroke-width="2"/><rect x="18" y="64" width="4" height="28" fill="#9a6f1f"/><rect x="4" y="46" width="34" height="20" rx="3" fill="#fbf8f1" stroke="#21402f" stroke-width="2"/><text x="21" y="60" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="0.5" fill="#21402f" font-family="Archivo,system-ui,sans-serif">SOLD</text><text x="38" y="45" text-anchor="middle" font-size="9" fill="#9a6f1f">★</text><rect x="172" y="74" width="5" height="18" fill="#9a6f1f"/><circle cx="174" cy="58" r="13" fill="#21402f"/><circle cx="165" cy="67" r="10" fill="#21402f"/><circle cx="183" cy="67" r="10" fill="#21402f"/><rect x="54" y="14" width="86" height="76" fill="#fbf8f1" stroke="#21402f" stroke-width="2.5"/><rect x="54" y="20" width="86" height="6" fill="#21402f"/><rect x="64" y="32" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="89" y="32" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="114" y="32" width="16" height="12" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1.6"/><rect x="64" y="52" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="89" y="52" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="114" y="52" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="64" y="70" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="114" y="70" width="16" height="12" fill="#f4efe4" stroke="#21402f" stroke-width="1.6"/><rect x="85" y="64" width="24" height="4" fill="#21402f"/><rect x="89" y="68" width="16" height="22" fill="#21402f"/><text x="97" y="84" text-anchor="middle" font-size="12" font-weight="600" fill="#f4efe4" font-family="Fraunces,Georgia,serif">$</text><rect x="81" y="90" width="32" height="4" fill="#fbf8f1" stroke="#21402f" stroke-width="2"/></svg>`;
+const MARKP=`<svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true"><rect x="9" y="7" width="30" height="36" fill="none" stroke="#f4efe4" stroke-width="2.8"/><rect x="9" y="10" width="30" height="4" fill="#f4efe4"/><rect x="14" y="18" width="7" height="6" fill="none" stroke="#f4efe4" stroke-width="1.8"/><rect x="27" y="18" width="7" height="6" fill="#d8b25e"/><rect x="14" y="27" width="7" height="6" fill="none" stroke="#f4efe4" stroke-width="1.8"/><rect x="27" y="27" width="7" height="6" fill="none" stroke="#f4efe4" stroke-width="1.8"/><rect x="21" y="34" width="6" height="9" fill="#d8b25e"/></svg>`;
+const GABLE=n=>`<svg viewBox="0 0 26 28" width="22" height="24" aria-hidden="true"><path d="M4 9.5 L13 2.5 L22 9.5" fill="none" stroke="#d8b25e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="18" r="8.5" fill="#f4efe4"/><text x="13" y="21.8" text-anchor="middle" font-size="10.5" font-weight="600" fill="#21402f" font-family="Archivo,system-ui,sans-serif">${n}</text></svg>`;
+function doPrint(){
+  const msg=$('printMsg');
+  const note=t=>{msg.textContent=t;msg.style.display='block';};
+  msg.style.display='none';
+  let warned=false;
+  if(window.self!==window.top){
+    note('Printing is blocked inside embedded previews (like a chat or file viewer). Open the app in its own browser tab — e.g. your live site URL — then tap Print again.');
+    warned=true;
+  } else if(/CriOS/.test(navigator.userAgent)){
+    note('If no print dialog appears: Chrome on iPhone/iPad ignores this button. Tap the Share icon and choose Print, or open this page in Safari.');
+    warned=true;
+  }
+  try{ window.print(); }
+  catch(e){ if(!warned) note('Your browser blocked the print dialog. Use the browser menu → Print instead.'); }
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act]');if(!t)return;
+  const a=t.dataset.act;
+  if(a==='print')doPrint();
+  else if(a==='run')run();
+  else if(a==='fin')setFinancing(t.dataset.arg);
+  else if(a==='jump'){e.preventDefault();const o=document.getElementById('out');if(o)o.scrollIntoView({behavior:'smooth'});}
+  else if(a==='xall'){const any=document.querySelector('.panel .group.collapsed');document.querySelectorAll('.panel .group').forEach(g=>g.classList.toggle('collapsed',!any));xallLabel();}
+});
 const num=id=>parseFloat($(id).value)||0;
 const uOf=id=>{const e=$(id+'_u');return e?e.value:'pct';};
 const usd=v=>(v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString();
@@ -198,7 +364,16 @@ function run(){
   const list=num('list'),N=clampUnits();
   if(!list || list<=0){
     $('p3').readOnly=!locked();
-    $('out').innerHTML=`<div class="verdict"><div class="lbl">Get started</div><p style="font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-bottom:4px">Enter a list / asking price to run the analysis.</p><p style="font-size:12px">Fill in the <b>List / asking price</b> in section 1 and the recommended offer, scenarios, appreciation &amp; exit returns will appear here.</p></div>`;
+    $('out').innerHTML=`<div class="verdict"><div class="lbl">Get started</div><p style="font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-bottom:4px">Enter a list / asking price to run the analysis.</p><p style="font-size:12px">Fill in the <b>List / asking price</b> in section 1 and the recommended offer, scenarios, appreciation &amp; exit returns will appear here.</p><div style="max-width:210px;margin:12px auto 0">${BUILDING}</div></div>`;
+    $('printDoc').innerHTML=`<div class="pverdict">Enter a list / asking price on screen, then print to generate the deal memo.</div>`;
+    $('sum1').textContent='awaiting list price';
+    let rentsB=[];for(let i=0;i<N;i++){const el=$('r_'+i);rentsB.push(el?(parseFloat(el.value)||0):0);}
+    $('sum2').textContent=`${N} unit${N>1?'s':''} · ${usd(rentsB.reduce((a,b)=>a+b,0))}/mo gross`;
+    $('sum3').textContent=`${tnum(num('rate'))}% · ${dpLabel('dpA')} / ${dpLabel('dpB')}`;
+    $('sum4').textContent=`${usd(num('tax'))} tax · ${tnum(num('vac'))}% vac`;
+    $('sum5').textContent=`${tnum(num('appr'))}%/yr appr`;
+    $('sumSide').innerHTML=`<div class="lbl">Live deal summary</div><div class="row"><span class="k">Enter a list price to see the deal here.</span></div>`;
+    $('sumBar').innerHTML=`<div class="sb"><span class="sbl">Get started</span><span class="sbv">Enter a list price above</span></div>`;
     return;
   }
   const tax=num('tax'),ins=num('ins'),util=num('util'),reno=num('reno');
@@ -264,8 +439,7 @@ function run(){
   }
 
   const mA=M(optimal,dpAf0), mB=M(optimal,dpBf0);
-  const fc=`<h2>Monthly Fixed Cost — Before a Dollar of Rent</h2>
-    <table><thead><tr><th>Component (at ${usd(optimal)} ★)</th><th>${dpLabel('dpA')}</th><th>${dpLabel('dpB')}</th></tr></thead><tbody>
+  const fcTable=`<table><thead><tr><th>Component (at ${usd(optimal)} ★)</th><th>${dpLabel('dpA')}</th><th>${dpLabel('dpB')}</th></tr></thead><tbody>
     <tr><td class="m">Principal &amp; interest</td><td>${usd(mA.pi)}</td><td>${usd(mB.pi)}</td></tr>
     <tr><td class="m">PMI</td><td>${usd(mA.pmi)}</td><td>${usd(mB.pmi)}</td></tr>
     <tr><td class="m">Property taxes</td><td>${usd(tax/12)}</td><td>${usd(tax/12)}</td></tr>
@@ -275,6 +449,7 @@ function run(){
     <tr><td class="m">Reserves — vacancy/repairs/capex/mgmt</td><td>${usd(res2)}</td><td>${usd(res2)}</td></tr>
     <tr class="tot"><td class="m">Total monthly outlay before rent</td><td>${usd(mA.totBeforeRent)}</td><td>${usd(mB.totBeforeRent)}</td></tr>
     </tbody></table>`;
+  const fc=`<h2>Monthly Fixed Cost — Before a Dollar of Rent</h2>`+fcTable;
   const repDesc=uOf('rep')==='usd'?usd(num('rep'))+'/yr repairs':tnum(num('rep'))+'% repairs';
   const pmDesc=num('pm')?(uOf('pm')==='usd'?usd(num('pm'))+'/yr mgmt':tnum(num('pm'))+'% mgmt'):'self-managed';
   let resNote=`<div class="note"><b>How reserves &amp; vacancy are figured:</b> set aside monthly on rental income — vacancy ${tnum(num('vac'))}% + ${repDesc} + ${tnum(num('cap'))}% capex + ${pmDesc}. The <b>${usd(res2)}/mo</b> above is on the ${owner?N-1:N} rented unit(s)`;
@@ -284,15 +459,16 @@ function run(){
   } else { resNote+=` (all units rented).</div>`; }
 
   const loan0=optimal*(1-dpAf0);
-  let app=`<h2>Appreciation &amp; Equity <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">from ${usd(optimal)}, ${dpLabel('dpA')}, ${tnum(num('appr'))}%/yr</span></h2>
-    <table><thead><tr><th></th><th>Value</th><th>Loan balance</th><th>Equity</th><th>Cash-out @75%</th><th>HELOC @80%</th></tr></thead><tbody>`;
+  let appTable=`<table><thead><tr><th></th><th>Value</th><th>Loan balance</th><th>Equity</th><th>Cash-out @75%</th><th>HELOC @80%</th></tr></thead><tbody>`;
   [1,2,3,4,5].forEach(yr=>{const v=optimal*Math.pow(1+appr,yr),b=bal(loan0,rate,yr*12);
-    app+=`<tr><td class="m">Year ${yr}</td><td>${usd(v)}</td><td>${usd(b)}</td><td>${usd(v-b)}</td><td>${usd(Math.max(0,.75*v-b))}</td><td>${usd(Math.max(0,.80*v-b))}</td></tr>`;});
-  app+=`</tbody></table>`;
+    appTable+=`<tr><td class="m">Year ${yr}</td><td>${usd(v)}</td><td>${usd(b)}</td><td>${usd(v-b)}</td><td>${usd(Math.max(0,.75*v-b))}</td><td>${usd(Math.max(0,.80*v-b))}</td></tr>`;});
+  appTable+=`</tbody></table>`;
+  const app=`<h2>Appreciation &amp; Equity <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">from ${usd(optimal)}, ${dpLabel('dpA')}, ${tnum(num('appr'))}%/yr</span></h2>`+appTable;
 
   const sellPct=num('sellcost'), sellUsd=uOf('sellcost')==='usd';
   function saleTbl(id){
     const dpf=dpFrac(id,optimal), m=M(optimal,dpf), upfront=m.cash, l0=optimal*(1-dpf);
+    const noFeed=m.cfAll>=0;
     const yrs=[1,2,3,4,5];
     const C=yrs.map(yr=>{const mo=yr*12,val=optimal*Math.pow(1+appr,yr),balN=bal(l0,rate,mo),
       sc=sellUsd?sellPct:val*sellPct/100,net=val-sc-balN,cumCF=m.cfAll*mo,totPI=m.pi*mo,
@@ -309,18 +485,20 @@ function run(){
       ${row('= Net sale proceeds',c=>usd(c.net))}
       ${row('Cumulative cash flow (all rented)',c=>sg(c.cumCF))}
       ${row('Cash invested upfront',()=>usd(-upfront))}
-      ${row('Total cash in (upfront + monthly feed)',c=>usd(-c.totalIn))}
+      ${row(`Total cash in (upfront + monthly feed)${noFeed?' <span class="tagmuted">= upfront; nothing fed in</span>':''}`,c=>usd(-c.totalIn))}
       ${row('Mortgage P&amp;I paid over hold',c=>usd(c.totPI))}
       ${row('— of which interest',c=>usd(c.interest))}
       ${row('<b>Total profit on sale</b>',c=>sg(c.profit),true)}
       ${row('Total ROI — upfront cash only',c=>`<span class="${c.roi>=0?'pos':'neg'}">${pct(c.roi)}</span>`)}
-      ${row('<b>Total ROI — incl. monthly feed</b>',c=>`<span class="${c.roiTot>=0?'pos':'neg'}">${pct(c.roiTot)}</span>`)}
+      ${ noFeed
+        ? `<tr class="muted"><td class="m">Total ROI — incl. monthly feed <span class="tagmuted">= same; positive cash flow, nothing fed in</span></td>${C.map(c=>`<td>${pct(c.roiTot)}</td>`).join('')}</tr>`
+        : `<tr class="tot"><td class="m">Total ROI — incl. monthly feed</td>${C.map(c=>`<td><span class="${c.roiTot>=0?'pos':'neg'}">${pct(c.roiTot)}</span></td>`).join('')}</tr>` }
       ${row('Annualized return (on upfront)',c=>`<span class="${c.ann>=0?'pos':'neg'}">${pct(c.ann)}</span>`)}
       </tbody></table>`;
   }
-  const saleSection=`<h2>Return If Sold — at projected value <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">at ${usd(optimal)} ★, ${tnum(num('appr'))}%/yr, ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} selling cost</span></h2>`
-    + saleTbl('dpA') + saleTbl('dpB')
-    + `<div class="note">Sells at projected value, nets out selling cost &amp; remaining loan, adds cumulative cash flow, compares to cash invested. <b>Total cash in</b> = upfront (down + closing + reno) + any monthly cash you had to feed a negative-cash-flow property. <b>ROI — upfront only</b> divides profit by just the upfront cash (the leverage view); <b>ROI — incl. monthly feed</b> divides by all cash you actually committed (the conservative, true cash-on-cash view). They match when cash flow is positive and diverge when it’s negative. Annualized compounds the upfront-basis return. Rents held flat. Selling within ~1–2 yrs usually loses to transaction costs.</div>`;
+  const saleA=saleTbl('dpA'), saleB=saleTbl('dpB');
+  const saleNote=`<div class="note">Sells at projected value, nets out selling cost &amp; remaining loan, adds cumulative cash flow, compares to cash invested. <b>Total cash in</b> = upfront (down + closing + reno) + any monthly cash you had to feed a negative-cash-flow property. <b>ROI — upfront only</b> divides profit by just the upfront cash (the leverage view); <b>ROI — incl. monthly feed</b> divides by all cash you actually committed (the conservative, true cash-on-cash view). They match when cash flow is positive and diverge when it’s negative. Annualized compounds the upfront-basis return. Rents held flat. Selling within ~1–2 yrs usually loses to transaction costs.</div>`;
+  const saleSection=`<h2>Return If Sold — at projected value <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">at ${usd(optimal)} ★, ${tnum(num('appr'))}%/yr, ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} selling cost</span></h2>`+saleA+saleB+saleNote;
 
   const o=M(optimal,dpAf0);
   const modeLine = owner
@@ -337,12 +515,58 @@ function run(){
     cap <b>${pct(o.cap)}</b>, DSCR <b>${o.dscr.toFixed(2)}</b>, CoC <b>${pct(o.coc)}</b>.
     Quick screens: 1% rule ${o.onepct.toFixed(2)}% · GRM ${o.grm.toFixed(1)} · ${usd(o.ppu)}/unit.</p></div>`;
 
+  const scenA=scen('dpA'), scenB=scen('dpB');
   $('out').innerHTML = recBox + fc + resNote
-    + `<div class="refbar"><span class="lbl">Calculations update live as you type. If anything looks stale, tap refresh to recompute with the latest inputs.</span><button class="refresh" onclick="run()">↻ Refresh calculations</button></div>`
-    + `<h2>Scenarios at ${dpLabel('dpA')}</h2>` + scen('dpA')
-    + `<h2>Scenarios at ${dpLabel('dpB')}</h2>` + scen('dpB')
+    + `<div class="refbar"><span class="lbl">Calculations update live as you type. If anything looks stale, tap refresh to recompute with the latest inputs.</span><button class="refresh" data-act="run">↻ Refresh calculations</button></div>`
+    + `<h2>Scenarios at ${dpLabel('dpA')}</h2>` + scenA
+    + `<h2>Scenarios at ${dpLabel('dpB')}</h2>` + scenB
     + app + saleSection
     + `<div class="note">Only price changes across scenarios; all else held constant. Estimates only — verify taxes, insurance, the legality/CO of any extra unit, and loan terms with your lender, accountant &amp; township. Not financial advice.</div>`;
+
+  const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const stats=[];
+  if(owner) stats.push(['Live-in cash flow /mo',usd(-o.livein)]);
+  stats.push(['All-rented cash flow /mo',usd(o.cfAll)],['Cap rate',pct(o.cap)],['DSCR',o.dscr.toFixed(2)],['Cash-on-cash',pct(o.coc)],['Cash to close',usd(o.cash)]);
+  const pgrid=`<div class="pgrid">${stats.map(s=>`<div class="pstat"><div class="l">${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}</div>`;
+  let sb='<svg viewBox="0 0 760 174" width="100%" style="display:block;margin:2px 0 6px">';
+  sb+='<line x1="24" y1="118" x2="728" y2="118" stroke="#21402f" stroke-width="2"/><polygon points="744,118 727,111 727,125" fill="#21402f"/>';
+  [1,2,3,4,5].forEach((yr,i)=>{const cx=76+152*i,s=34+12*i,bh=Math.round(s*0.52),bx=cx-s/2,by=116-bh,apex=by-Math.round(s*0.42);
+    const v=optimal*Math.pow(1+appr,yr), eqy=v-bal(loan0,rate,yr*12);
+    sb+=`<polygon points="${bx-4},${by} ${cx},${apex} ${bx+s+4},${by}" fill="#21402f"/><rect x="${bx}" y="${by}" width="${s}" height="${bh}" fill="#fbf8f1" stroke="#21402f" stroke-width="2"/><rect x="${cx-4}" y="${by+5}" width="8" height="6" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1"/><circle cx="${cx}" cy="118" r="3.4" fill="#9a6f1f"/><text x="${cx}" y="139" text-anchor="middle" font-size="12" font-weight="600" fill="#2f5a40" font-family="Archivo,sans-serif">Year ${yr}</text><text x="${cx}" y="154" text-anchor="middle" font-size="11" fill="#1b211c" font-family="Archivo,sans-serif">${usd(v)}</text><text x="${cx}" y="167" text-anchor="middle" font-size="9.5" fill="#6d6655" font-family="Archivo,sans-serif">equity ${usd(eqy)}</text>`;});
+  sb+='</svg>';
+  $('printDoc').innerHTML=
+    `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">Househack</div><div class="psub">Deal analyzer</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ★ ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
+    <div class="pgold"></div>
+    <div class="pverdict">Offer up to ${usd(Math.round(recOffer/1000)*1000)} · walk away above ${usd(Math.round(ceilA/1000)*1000)}</div>
+    <div class="pvsub">${usd(Math.round(recOffer/1000)*1000)} clears a ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')}; ${usd(Math.round(ceilA/1000)*1000)} is the fully-rented break-even (DSCR 1.0).${list?` List price ${usd(list)}.`:''} ${modeLine}</div>
+    ${pgrid}
+    <h3>Monthly fixed cost — before a dollar of rent</h3>${fcTable}
+    <h3>Scenarios at ${dpLabel('dpA')}</h3>${scenA}
+    <h3>Scenarios at ${dpLabel('dpB')}</h3>${scenB}
+    <div class="pbreak"></div>
+    <h3>The five-year story <span class="hsub">at ${usd(optimal)} ★ · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
+    ${sb}
+    <h3>Appreciation &amp; equity</h3>${appTable}
+    <h3>Return if sold — at projected value</h3>${saleA}${saleB}<div class="note"><b>ROI — upfront only</b> = profit ÷ upfront cash (down + closing + reno). <b>ROI — incl. monthly feed</b> also counts cash fed into negative-cash-flow months — the two match whenever cash flow is positive. Rents held flat; annualized compounds the upfront basis. Selling within ~1–2 years usually loses to transaction costs.</div>
+    <div class="pfoot">Estimates only — verify taxes, insurance, unit legality/CO, and loan terms with your lender, accountant &amp; township. Not financial advice; use at your own risk. · Generated by the Househack deal analyzer.</div>`;
+
+  $('sum1').textContent=`${usd(list)} list · ★ ${usd(optimal)}`;
+  $('sum2').textContent=`${N} unit${N>1?'s':''} · ${usd(allMo)}/mo gross`;
+  $('sum3').textContent=`${tnum(num('rate'))}% · ${dpLabel('dpA')} / ${dpLabel('dpB')}`;
+  $('sum4').textContent=`${usd(tax)} tax · ${tnum(num('vac'))}% vac`;
+  $('sum5').textContent=`${tnum(num('appr'))}%/yr · ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} sell`;
+  const sgg=v=>`<span class="${v>=0?'sgood':'sbad'}">${usd(v)}</span>`;
+  $('sumSide').innerHTML=`<div class="lbl">Live deal summary</div>
+    <div class="row"><span class="k">★ Offer</span><span class="v big">${usd(optimal)}</span></div>
+    ${owner?`<div class="row"><span class="k">Live-in CF /mo</span><span class="v">${sgg(-o.livein)}</span></div>`:''}
+    <div class="row"><span class="k">All-rented CF /mo</span><span class="v">${sgg(o.cfAll)}</span></div>
+    <div class="row"><span class="k">DSCR</span><span class="v">${o.dscr.toFixed(2)}</span></div>
+    <div class="row"><span class="k">Cap rate</span><span class="v">${pct(o.cap)}</span></div>
+    <a href="#" data-act="jump">Jump to full report ↓</a>`;
+  $('sumBar').innerHTML=`<div class="sb"><span class="sbl">★ Offer</span><span class="sbv">${usd(optimal)}</span></div>
+    ${owner?`<div class="sb"><span class="sbl">Live-in</span><span class="sbv">${sgg(-o.livein)}</span></div>`:''}
+    <div class="sb"><span class="sbl">All-rented</span><span class="sbv">${sgg(o.cfAll)}</span></div>
+    <div class="sb"><span class="sbl">DSCR</span><span class="sbv">${o.dscr.toFixed(2)}</span></div>`;
 }
 
 document.querySelectorAll('.panel input, .panel select').forEach(el=>{
@@ -351,6 +575,12 @@ document.querySelectorAll('.panel input, .panel select').forEach(el=>{
 });
 $('units').addEventListener('input',()=>{captureRents();buildRentFields();run();});
 $('p3').addEventListener('input',run);
+function xallLabel(){const any=document.querySelector('.panel .group.collapsed');const b=$('xallBtn');if(b)b.textContent=any?'Expand all ▾':'Collapse all ◂';}
+$('heroArt').innerHTML=HERO;
+document.querySelectorAll('.subhead .num').forEach(el=>{el.innerHTML=GABLE(el.textContent.trim());});
+document.querySelectorAll('.panel .subhead').forEach(sh=>{sh.addEventListener('click',e=>{if(e.target.closest('.seg'))return;sh.parentElement.classList.toggle('collapsed');xallLabel();});});
+document.querySelectorAll('.panel .group').forEach((g,i)=>{if(i>0)g.classList.add('collapsed');});
+xallLabel();
 buildRentFields();
 run();
 </script>
