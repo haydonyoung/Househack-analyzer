@@ -65,7 +65,9 @@
   .verdict .lbl{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:#d8b25e;margin-bottom:5px}
   .verdict b{color:#fff}.verdict .hl{font-family:'Fraunces',serif;font-size:15px;color:#fff}
   .sheet h2{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.15em;font-size:12px;color:var(--green2);margin:20px 0 9px;border-bottom:1.5px solid var(--line);padding-bottom:5px}
-  table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:6px;table-layout:fixed}
+  th:first-child,td:first-child{width:38%}
+  th,td{overflow:hidden;text-overflow:ellipsis}
   th,td{padding:5px 8px;text-align:right;border-bottom:1px solid var(--line)}
   th:first-child,td:first-child{text-align:left}
   thead th{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.04em;font-size:10px;color:#fff;background:var(--green2);font-weight:600}
@@ -109,13 +111,14 @@
   .printtip{font-size:10px;color:var(--muted);align-self:center;max-width:340px;line-height:1.4}
   .printmsg{font-size:11px;color:var(--rust);background:#f6e9e1;border:1px solid #e3c4b4;border-radius:6px;padding:8px 11px;margin-top:10px;line-height:1.5}
   @media print{
-    @page{size:letter;margin:0.45in}
+    @page{size:letter;margin:0.5in}
     body{background:#fff;padding:0;font-size:10.5px}
     .wrap{max-width:100%}
     .wrap > :not(#printDoc){display:none!important}
     #printDoc{display:block!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#1b211c}
-    #printDoc table{width:100%;border-collapse:collapse;font-size:9.1px;margin:0 0 5px}
-    #printDoc th,#printDoc td{padding:2.5px 5px;border-bottom:1px solid #d8cfba;text-align:right}
+    #printDoc table{width:100%;border-collapse:collapse;font-size:9px;margin:0 0 4px;table-layout:fixed}
+    #printDoc th:first-child,#printDoc td:first-child{width:34%}
+    #printDoc th,#printDoc td{padding:2.3px 5px;border-bottom:1px solid #d8cfba;text-align:right}
     #printDoc th:first-child,#printDoc td:first-child{text-align:left}
     #printDoc thead th{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.04em;font-size:8.5px;color:#fff;background:#2f5a40;font-weight:600}
     #printDoc thead th:first-child{background:#21402f}
@@ -126,7 +129,7 @@
     #printDoc td.be{background:#f6e9e1}
     #printDoc tr.muted td{color:#8d8672}
     #printDoc .tagmuted{font-size:8px}
-    #printDoc .note{font-size:8.4px;color:#6d6655;margin:2px 0 5px;line-height:1.4}
+    #printDoc .note{font-size:8.1px;color:#6d6655;margin:1px 0 3px;line-height:1.4}
     #printDoc .pos{color:#2f5a40;font-weight:700}#printDoc .neg{color:#9c4a2b;font-weight:700}
     .pmast{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#21402f;color:#f4efe4;border-radius:8px;padding:11px 14px}
     .pl{display:flex;align-items:center;gap:10px}
@@ -142,10 +145,10 @@
     .pstat{border:1.4px solid #21402f;border-radius:6px;padding:5px 8px}
     .pstat .l{font-size:7.8px;text-transform:uppercase;letter-spacing:.07em;color:#6d6655;font-weight:600}
     .pstat .v{font-family:'Fraunces',serif;font-size:13.5px;color:#21402f;margin-top:1px}
-    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:3px;margin:10px 0 6px;font-weight:600}
+    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:3px;margin:8px 0 5px;font-weight:600}
     #printDoc h3 .hsub{color:#9a6f1f;letter-spacing:0;text-transform:none;font-family:'Archivo';font-size:9px;font-weight:600}
     .pbreak{break-before:page;page-break-before:always}
-    .pfoot{font-size:8px;color:#6d6655;margin-top:5px;border-top:1px solid #d8cfba;padding-top:4px}
+    .pfoot{font-size:7.6px;color:#6d6655;margin-top:3px;border-top:1px solid #d8cfba;padding-top:3px}
     #printDoc table,#printDoc tr{break-inside:avoid}
     #printDoc h3{break-after:avoid}
   }
