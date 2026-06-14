@@ -77,6 +77,9 @@
   .subr{background:var(--shade);font-weight:700}
   .tot{background:var(--opt);font-family:'Fraunces',serif;font-weight:600}
   td.be{background:#f6e9e1}
+  td.star{border-left:2.5px solid var(--gold);border-right:2.5px solid var(--gold)}
+  thead th.star{border-top:2.5px solid var(--gold);border-left:2.5px solid var(--gold);border-right:2.5px solid var(--gold)}
+  tbody tr:last-child td.star{border-bottom:2.5px solid var(--gold)}
   tr.muted td{color:var(--muted)}
   .tagmuted{font-size:9.5px;color:var(--muted);font-weight:600;font-style:italic;white-space:nowrap}
   .pos{color:var(--green2);font-weight:700}.neg{color:var(--rust);font-weight:700}
@@ -110,8 +113,36 @@
   .skyline{margin-top:18px;line-height:0}
   .printtip{font-size:10px;color:var(--muted);align-self:center;max-width:340px;line-height:1.4}
   .printmsg{font-size:11px;color:var(--rust);background:#f6e9e1;border:1px solid #e3c4b4;border-radius:6px;padding:8px 11px;margin-top:10px;line-height:1.5}
+  .lookups{font-size:10.5px;color:var(--muted);margin-top:9px;line-height:1.8}
+  .lookups a{color:var(--green2);text-decoration:none;border-bottom:1px dotted var(--green2);white-space:nowrap}
+  .lookups a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+  .sharemsg{font-size:11px;color:var(--green2);background:#eef3ec;border:1px solid #b9d0bd;border-radius:6px;padding:8px 11px;margin-top:10px;line-height:1.5;word-break:break-all}
+  .sharemsg a{color:var(--green2)}
+  .qcard{background:var(--green)}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(94px,1fr));gap:8px;margin-top:4px}
+  .qchip{background:rgba(255,255,255,.07);border:1px solid rgba(216,178,94,.35);border-radius:7px;padding:7px 9px;text-align:center}
+  .qchip.good{border-color:#9fd8b1;background:rgba(159,216,177,.12)}
+  .qchip.meh{border-color:rgba(242,169,142,.55)}
+  .qchip .qv{font-family:'Fraunces',serif;font-size:16px;color:#fff;line-height:1.05}
+  .qchip .ql{font-size:9px;text-transform:uppercase;letter-spacing:.04em;color:#d8b25e;margin-top:3px;font-weight:600}
+  .qchip .qb{font-size:8.5px;color:#cfe0d2;margin-top:2px}
+  .qnote{font-size:9.5px;color:#cfe0d2;margin-top:8px;font-style:italic}
+  .callout{background:#f3ead0;border:1px solid #d8b25e;border-radius:7px;padding:9px 12px;font-size:11.5px;color:#5a4a23;margin:2px 0 12px;line-height:1.45}
+  .callout b{color:#3a2f12}
+  .adv{margin:6px 0 16px;border:1px solid var(--line);border-radius:8px;background:#fcfaf4;overflow:hidden}
+  .adv summary{cursor:pointer;padding:10px 13px;font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:600;color:var(--green2);list-style:none}
+  .adv summary::-webkit-details-marker{display:none}
+  .adv summary:before{content:'▸ ';color:var(--gold)}
+  .adv[open] summary:before{content:'▾ '}
+  .adv summary .muted{text-transform:none;letter-spacing:0;font-family:'Archivo';font-weight:500;color:var(--muted)}
+  .adv .note{margin:0 13px}
+  .adv table{width:calc(100% - 26px);margin:0 13px 13px}
+  .qmini{margin-top:12px;border-top:1px solid rgba(216,178,94,.4);padding-top:9px}
+  .qmh{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.16em;font-size:8.5px;color:#d8b25e;margin-bottom:5px}
+  .qmr{display:flex;justify-content:space-between;font-size:10.5px;color:#cfe0d2;margin:3px 0}
+  .qmr span:last-child{font-family:'Fraunces',serif;color:#fff}
   @media print{
-    @page{size:letter;margin:0.5in}
+    @page{size:letter;margin:0.45in}
     body{background:#fff;padding:0;font-size:10.5px}
     .wrap{max-width:100%}
     .wrap > :not(#printDoc){display:none!important}
@@ -127,10 +158,18 @@
     #printDoc .subr{background:#efe9d6;font-weight:700}
     #printDoc .tot{background:#f3ead0;font-family:'Fraunces',serif;font-weight:600}
     #printDoc td.be{background:#f6e9e1}
+    #printDoc th.star{border-top:2px solid #9a6f1f;border-left:2px solid #9a6f1f;border-right:2px solid #9a6f1f}
+    #printDoc td.star{border-left:2px solid #9a6f1f;border-right:2px solid #9a6f1f}
+    #printDoc tbody tr:last-child td.star{border-bottom:2px solid #9a6f1f}
     #printDoc tr.muted td{color:#8d8672}
     #printDoc .tagmuted{font-size:8px}
     #printDoc .note{font-size:8.1px;color:#6d6655;margin:1px 0 3px;line-height:1.4}
     #printDoc .pos{color:#2f5a40;font-weight:700}#printDoc .neg{color:#9c4a2b;font-weight:700}
+    .qstrip{display:flex;flex-wrap:wrap;gap:3px 10px;margin:0 0 6px;padding:5px 8px;background:#f3ead0;border-radius:5px}
+    .qstrip .qs{font-size:8.4px;color:#5a4a23}
+    .qstrip .qs b{color:#21402f}
+    .padv{font-size:8.6px;color:#444036;margin:2px 0 5px;line-height:1.45}
+    .padv b{color:#21402f}
     .pmast{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#21402f;color:#f4efe4;border-radius:8px;padding:11px 14px}
     .pl{display:flex;align-items:center;gap:10px}
     .pname{font-family:'Fraunces',serif;font-size:19px;line-height:1}
@@ -140,12 +179,12 @@
     .pdate{font-size:9.5px;color:#cfe0d2;margin-top:3px}
     .pgold{height:3px;background:#9a6f1f;margin:8px 0;border-radius:2px}
     .pverdict{font-family:'Fraunces',serif;font-size:18px;color:#21402f;line-height:1.2}
-    .pvsub{font-size:9.4px;color:#444036;margin:3px 0 8px;line-height:1.45}
-    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 10px}
+    .pvsub{font-size:9.4px;color:#444036;margin:3px 0 6px;line-height:1.4}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 6px}
     .pstat{border:1.4px solid #21402f;border-radius:6px;padding:5px 8px}
     .pstat .l{font-size:7.8px;text-transform:uppercase;letter-spacing:.07em;color:#6d6655;font-weight:600}
     .pstat .v{font-family:'Fraunces',serif;font-size:13.5px;color:#21402f;margin-top:1px}
-    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:3px;margin:8px 0 5px;font-weight:600}
+    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:2px;margin:6px 0 4px;font-weight:600}
     #printDoc h3 .hsub{color:#9a6f1f;letter-spacing:0;text-transform:none;font-family:'Archivo';font-size:9px;font-weight:600}
     .pbreak{break-before:page;page-break-before:always}
     .pfoot{font-size:7.6px;color:#6d6655;margin-top:3px;border-top:1px solid #d8cfba;padding-top:3px}
@@ -178,7 +217,8 @@
         <div class="f"><label style="display:flex;justify-content:space-between;align-items:center">★ Offer price <span class="lock"><input type="checkbox" id="lockP3"> lock</span></label><input id="p3" type="number" placeholder="auto"></div>
         <div class="f"><label>Scenario range ± %</label><input id="spread" type="number" placeholder="3" step="0.5"></div>
       </div>
-      <div class="help"><b>Scenario range ±%</b> sets how wide the comparison columns spread around list price (e.g. 3 → list −3%, list, your ★ offer, list +3%, plus the break-even). <b>★ Offer</b> auto-fills with the recommended offer; tick <b>lock</b> to type your own price, untick it to snap back to the recommendation.</div>
+      <div class="lookups" id="lookups"></div>
+      <div class="help"><b>Scenario range ±%</b> sets how wide the comparison columns spread around list price (e.g. 3 → list −3%, list, your ★ offer, list +3%, plus the break-even). <b>★ Offer</b> auto-fills with the target offer (the most you can pay and still keep your DSCR cushion); tick <b>lock</b> to type your own price, untick it to snap back.</div>
     </div>
 
     <!-- 2 RENT / INCOME  (owner/investment toggle lives here) -->
@@ -203,10 +243,10 @@
         <div class="f"><label>Down payment B</label><div class="dual"><input id="dpB" type="number" value="5"><select id="dpB_u"><option value="pct">%</option><option value="usd">$</option></select></div></div>
         <div class="f"><label>PMI % (if &lt;20% down)</label><input id="pmi" type="number" value="0.7" step="0.05"></div>
         <div class="f"><label>Closing %</label><input id="close" type="number" value="2.5" step="0.1"></div>
-        <div class="f"><label>Cosmetics / reno $</label><input id="reno" type="number" value="15000"></div>
+        <div class="f"><label>Reno cash — out of pocket $</label><input id="reno" type="number" value="15000"></div>
         <div class="f"><label>Target min DSCR</label><input id="tgt" type="number" value="1.05" step="0.01"></div>
       </div>
-      <div class="help">Toggle (in Rent/Income) sets typical lender defaults: <b>Owner-occupant</b> → low down (20%/5%), DSCR 1.05 cushion, you live in one unit. <b>Investment</b> → 25%/20% down, DSCR 1.25, +0.625% rate, no PMI, all units rented. All editable.</div>
+      <div class="help">Toggle (in Rent/Income) sets typical lender defaults: <b>Owner-occupant</b> → low down (20%/5%), DSCR 1.05 cushion, you live in one unit. <b>Investment</b> → 25%/20% down, DSCR 1.25, +0.625% rate, no PMI, all units rented. All editable. <b>Reno cash</b> is extra money you pay out of pocket to get the place rent-ready — it is <b>added to your cash invested</b> (down payment + closing + reno), <b>not</b> rolled into the mortgage. It lowers cash-on-cash and is counted as upfront cash in the sale/return tables.</div>
     </div>
 
     <!-- 4 OPERATING EXPENSES -->
@@ -217,10 +257,11 @@
         <div class="f"><label>Insurance $/yr</label><input id="ins" type="number" value="2400"></div>
         <div class="f"><label>Owner utilities $/yr</label><input id="util" type="number" value="1200"></div>
         <div class="f"><label>Vacancy %</label><input id="vac" type="number" value="5" step="0.5"></div>
-        <div class="f"><label>Repairs</label><div class="dual"><input id="rep" type="number" value="5"><select id="rep_u"><option value="pct">% rent</option><option value="usd">$/yr</option></select></div></div>
-        <div class="f"><label>CapEx %</label><input id="cap" type="number" value="5" step="0.5"></div>
+        <div class="f"><label>Repairs (routine upkeep)</label><div class="dual"><input id="rep" type="number" value="5"><select id="rep_u"><option value="pct">% rent</option><option value="usd">$/yr</option></select></div></div>
+        <div class="f"><label>CapEx — big replacements</label><div class="dual"><input id="cap" type="number" value="5" step="0.5"><select id="cap_u"><option value="pct">% rent</option><option value="usd">$/yr</option></select></div></div>
         <div class="f"><label>Management</label><div class="dual"><input id="pm" type="number" value="0"><select id="pm_u"><option value="pct">% rent</option><option value="usd">$/yr</option></select></div></div>
       </div>
+      <div class="help"><b>Repairs vs. CapEx</b> — two separate reserves you set aside monthly so a surprise bill doesn't wreck your returns. <b>Repairs</b> = routine, smaller upkeep (a leaky faucet, fresh paint, a broken fixture). <b>CapEx</b> (capital expenditures) = the big-ticket items that wear out over many years — roof, furnace, A/C, water heater, appliances, flooring. <b>Vacancy</b> sets money aside for the months a unit sits empty between tenants; <b>Management</b> is a property manager's fee (leave at 0 if you self-manage). Each percentage is taken on rent.</div>
     </div>
 
     <!-- 5 GROWTH & EXIT -->
@@ -229,14 +270,19 @@
       <div class="grid">
         <div class="f"><label>Appreciation %/yr</label><input id="appr" type="number" value="4.5" step="0.25"></div>
         <div class="f"><label>Selling cost (at exit)</label><div class="dual"><input id="sellcost" type="number" value="7"><select id="sellcost_u"><option value="pct">% sale</option><option value="usd">$</option></select></div></div>
+        <div class="f"><label>Rent growth %/yr</label><input id="rentG" type="number" value="0" step="0.25"></div>
+        <div class="f"><label>Expense growth %/yr</label><input id="expG" type="number" value="0" step="0.25"></div>
       </div>
+      <div class="help"><b>Growth</b> (optional) compounds rents and operating expenses each year. Leave at <b>0%</b> to hold today's figures flat. Growth affects only the long-term projections (appreciation, sale, cumulative cash flow, payback &amp; IRR) — your Year-1 cap rate, DSCR and cash-on-cash always use today's rents.</div>
     </div>
 
     <div class="btns">
       <button class="alt" data-act="print">Print / Save PDF</button>
+      <button class="alt" data-act="share">Copy share link</button>
       <span class="printtip">Tip: in the print dialog, turn on “Background graphics” to get the full-color memo.</span>
     </div>
     <div id="printMsg" class="printmsg" style="display:none"></div>
+    <div id="shareMsg" class="sharemsg" style="display:none"></div>
   </div>
 
   <aside class="sumcard" id="sumSide" aria-live="polite"></aside>
@@ -245,7 +291,7 @@
   <div class="sheet" id="out"></div>
 
   <footer class="legal">
-    <b>Disclaimer.</b> The Househack Deal Analyzer is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The “recommended offer,” break-even figures, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
+    <b>Disclaimer.</b> The Househack Deal Analyzer is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The “target offer,” break-even figures, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
   </footer>
 
   <footer class="skyline" aria-hidden="true">
@@ -311,6 +357,7 @@ document.addEventListener('click',e=>{
   else if(a==='fin')setFinancing(t.dataset.arg);
   else if(a==='jump'){e.preventDefault();const o=document.getElementById('out');if(o)o.scrollIntoView({behavior:'smooth'});}
   else if(a==='xall'){const any=document.querySelector('.panel .group.collapsed');document.querySelectorAll('.panel .group').forEach(g=>g.classList.toggle('collapsed',!any));xallLabel();}
+  else if(a==='share')doShare();
 });
 const num=id=>parseFloat($(id).value)||0;
 const uOf=id=>{const e=$(id+'_u');return e?e.value:'pct';};
@@ -322,6 +369,50 @@ function bal(P,ar,m){const r=ar/12,pm=pmt(P,ar);return P*Math.pow(1+r,m)-pm*((Ma
 const moneyOf=(id,base)=>uOf(id)==='usd'?num(id):base*num(id)/100;
 const dpFrac=(id,price)=>uOf(id)==='usd'?Math.min(0.95,num(id)/price):num(id)/100;
 const dpLabel=id=>uOf(id)==='usd'?usd(num(id))+' down':tnum(num(id))+'% down';
+
+/* ---------- SHARE LINK (encode inputs in URL hash) ---------- */
+const SHARE_FIELDS=[['addr','t'],['list','n'],['p3','n'],['lockP3','c'],['spread','n'],['units','n'],['rate','n'],['dpA','n'],['dpA_u','s'],['dpB','n'],['dpB_u','s'],['pmi','n'],['close','n'],['reno','n'],['tgt','n'],['tax','n'],['ins','n'],['util','n'],['vac','n'],['rep','n'],['rep_u','s'],['cap','n'],['cap_u','s'],['pm','n'],['pm_u','s'],['appr','n'],['sellcost','n'],['sellcost_u','s'],['rentG','n'],['expG','n']];
+function encodeState(){
+  const parts=['1',financing];
+  SHARE_FIELDS.forEach(([id,ty])=>{const el=$(id);if(!el){parts.push('');return;}
+    parts.push(ty==='c'?(el.checked?'1':'0'):ty==='s'?(el.value==='usd'?'1':'0'):el.value);});
+  const N=clampUnits();const rents=[];for(let i=0;i<N;i++){const e=$('r_'+i);rents.push(e?e.value:'');}
+  parts.push(rents.join(','));
+  return btoa(unescape(encodeURIComponent(parts.join('~')))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function applyState(tok){
+  let raw;try{raw=decodeURIComponent(escape(atob(tok.replace(/-/g,'+').replace(/_/g,'/'))));}catch(e){return false;}
+  const p=raw.split('~');if(p[0]!=='1')return false;
+  const mode=p[1];let i=2;
+  SHARE_FIELDS.forEach(([id,ty])=>{const v=p[i++];const el=$(id);if(!el||v===undefined)return;
+    if(ty==='c')el.checked=(v==='1');else if(ty==='s')el.value=(v==='1')?'usd':'pct';else el.value=v;});
+  const rents=(p[i]||'').split(',').filter(x=>x!=='');
+  financing=mode;ownerRate=(mode==='investment'?(num('rate')-INV_PREMIUM):num('rate'));
+  $('segOwner').classList.toggle('on',mode==='owner');$('segInv').classList.toggle('on',mode==='investment');
+  rentState.rents=rents.map(x=>parseFloat(x)||0);buildRentFields();
+  for(let k=0;k<rents.length;k++){const e=$('r_'+k);if(e)e.value=rents[k];}
+  return true;
+}
+function loadFromHash(){const m=(location.hash||'').match(/[#&]d=([^&]+)/);return m?applyState(m[1]):false;}
+async function shorten(url){
+  try{const r=await fetch('/api/shorten',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url})});if(r.ok){const j=await r.json();if(j&&j.short&&/^https?:\/\//i.test(j.short))return j.short;}}catch(e){}
+  try{const r=await fetch('https://is.gd/create.php?format=simple&logstats=0&url='+encodeURIComponent(url));if(r.ok){const t=(await r.text()).trim();if(/^https?:\/\//i.test(t))return t;}}catch(e){}
+  return url;
+}
+async function doShare(){
+  const full=location.origin+location.pathname+'#d='+encodeState();
+  const box=$('shareMsg');box.style.display='block';box.textContent='Preparing your share link…';
+  let link=full;try{link=await shorten(full);}catch(e){}
+  let ok=false;try{await navigator.clipboard.writeText(link);ok=true;}catch(e){}
+  box.innerHTML=(ok?'<b>Link copied to clipboard</b> — ':'<b>Copy this link</b> — ')+'<a href="'+link+'" target="_blank" rel="noopener">'+link+'</a>'+(link===full?' <span style="color:#6d6655">(full link — shortener unavailable in this browser)</span>':'');
+}
+function updateLookups(){
+  const el=$('lookups');if(!el)return;const a=($('addr').value||'').trim();
+  if(!a){el.innerHTML='<span style="color:#6d6655">Enter an address above to get one-tap look-up links for price, taxes &amp; rent comps.</span>';return;}
+  const q=encodeURIComponent(a);
+  el.innerHTML='Look it up: <a target="_blank" rel="noopener" href="https://www.zillow.com/homes/'+q+'_rb/">↗ Zillow (price &amp; value)</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+property+tax+assessor">↗ property taxes</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+rent+estimate">↗ rent estimate</a>';
+}
+function irr(cfs){const npv=r=>cfs.reduce((a,c,t)=>a+c/Math.pow(1+r,t),0);let lo=-0.95,hi=5;if(npv(lo)*npv(hi)>0)return null;for(let i=0;i<200;i++){const m=(lo+hi)/2;if(npv(m)>0)lo=m;else hi=m;}return (lo+hi)/2;}
 
 /* OWNER-OCCUPANT vs INVESTMENT (selector sits in Rent/Income) */
 let financing='owner', ownerRate=6.5; const INV_PREMIUM=0.625;
@@ -360,14 +451,15 @@ function buildRentFields(){
     : `All <b>${N}</b> units are rented (investment — you don’t occupy any).`;
 }
 
-/* ★ offer auto-tracks the recommended offer unless "lock" is checked */
+/* ★ offer auto-tracks the target offer unless "lock" is checked */
 const locked=()=>$('lockP3').checked;
 
 function run(){
   const list=num('list'),N=clampUnits();
+  updateLookups();
   if(!list || list<=0){
     $('p3').readOnly=!locked();
-    $('out').innerHTML=`<div class="verdict"><div class="lbl">Get started</div><p style="font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-bottom:4px">Enter a list / asking price to run the analysis.</p><p style="font-size:12px">Fill in the <b>List / asking price</b> in section 1 and the recommended offer, scenarios, appreciation &amp; exit returns will appear here.</p><div style="max-width:210px;margin:12px auto 0">${BUILDING}</div></div>`;
+    $('out').innerHTML=`<div class="verdict"><div class="lbl">Get started</div><p style="font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-bottom:4px">Enter a list / asking price to run the analysis.</p><p style="font-size:12px">Fill in the <b>List / asking price</b> in section 1 and your target offer, scenarios, appreciation &amp; exit returns will appear here.</p><div style="max-width:210px;margin:12px auto 0">${BUILDING}</div></div>`;
     $('printDoc').innerHTML=`<div class="pverdict">Enter a list / asking price on screen, then print to generate the deal memo.</div>`;
     $('sum1').textContent='awaiting list price';
     let rentsB=[];for(let i=0;i<N;i++){const el=$('r_'+i);rentsB.push(el?(parseFloat(el.value)||0):0);}
@@ -380,7 +472,7 @@ function run(){
     return;
   }
   const tax=num('tax'),ins=num('ins'),util=num('util'),reno=num('reno');
-  const vac=num('vac')/100,capP=num('cap')/100;
+  const vac=num('vac')/100;
   const rate=num('rate')/100,pmiR=num('pmi')/100,close=num('close')/100,appr=num('appr')/100;
   const tgt=num('tgt')||1.05;
   const spreadRaw=$('spread').value.trim(); const spread=(spreadRaw===''?3:(parseFloat(spreadRaw)||0))/100;
@@ -396,10 +488,13 @@ function run(){
   const g2=rentedMo*12, gAll=allMo*12;
   const egi2=g2*(1-vac), egiAll=gAll*(1-vac);
   const rep2=moneyOf('rep',g2), repAll=moneyOf('rep',gAll);
-  const cap2=g2*capP, capAll=gAll*capP;
+  const cap2=moneyOf('cap',g2), capAll=moneyOf('cap',gAll);
   const pm2=moneyOf('pm',egi2), pmAll=moneyOf('pm',egiAll);
   const res2=(g2*vac+rep2+cap2+pm2)/12;
   const NOI=egiAll-(tax+ins+util+repAll+capAll+pmAll);
+  const rentG=num('rentG')/100, expG=num('expG')/100;
+  const noiFixedPart=tax+ins+util, noiRentPart=egiAll-repAll-capAll-pmAll;
+  const noiYear=y=>noiRentPart*Math.pow(1+rentG,y-1)-noiFixedPart*Math.pow(1+expG,y-1);
 
   const dpAf0=dpFrac('dpA',list||1), dpBf0=dpFrac('dpB',list||1);
   function M(price,dpf){
@@ -427,8 +522,8 @@ function run(){
   function scen(id){
     const dpf=dpFrac(id,optimal), showBE=(Math.abs(dpf-beDpf)<1e-9);
     const hdr=p=>{const o=p===optimal,e=p===be&&showBE&&!o;
-      return `<th${o?' style="background:var(--gold)"':e?' style="background:var(--rust)"':''}>${usd(p)}${o?' ★':e?' BE':''}</th>`;};
-    const cell=(p,v)=>{const o=p===optimal,e=p===be&&showBE&&!o;return `<td${o?' class="tot"':e?' class="be"':''}>${v}</td>`;};
+      return `<th${o?' class="star" style="background:var(--gold)"':e?' style="background:var(--rust)"':''}>${usd(p)}${o?' ★':e?' BE':''}</th>`;};
+    const cell=(p,v)=>{const o=p===optimal,e=p===be&&showBE&&!o;return `<td${o?' class="tot star"':e?' class="be"':''}>${v}</td>`;};
     let h=`<table><thead><tr><th>Per month / metric</th>${cols.map(hdr).join('')}</tr></thead><tbody>`;
     const rows=[['Total fixed cost (before rent)',p=>usd(MM(p,id).totBeforeRent)],
       ['Total rent — all units rented /mo',()=>usd(allMo)]];
@@ -437,7 +532,7 @@ function run(){
       ['Cap rate',p=>pct(MM(p,id).cap)],['DSCR',p=>MM(p,id).dscr.toFixed(2)],
       ['Cash-on-cash',p=>pct(MM(p,id).coc)],['Cash to close',p=>usd(MM(p,id).cash)]);
     rows.forEach(r=>{h+=`<tr><td class="m">${r[0]}</td>${cols.map(p=>cell(p,r[1](p))).join('')}</tr>`;});
-    h+=`</tbody></table><div class="note"><b>★</b> recommended offer (target DSCR ${tgt.toFixed(2)})${showBE?` · <b>BE</b> = break-even ceiling <b>${usd(be)}</b> at ${dpLabel('dpA')} — at/above it the fully-rented deal stops making money.`:` · ${usd(be)} shown for comparison (it’s the ${dpLabel('dpA')} break-even, not break-even at ${dpLabel(id)}).`}</div>`;
+    h+=`</tbody></table><div class="note"><b>★ Target offer (${usd(optimal)})</b> — the most you can pay and still clear your ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')}. It’s shown at the same price in both down-payment tables so you can compare the financing side by side.${showBE?` <b>BE</b> = break-even ceiling <b>${usd(be)}</b> — at or above it the fully-rented deal stops making money (DSCR 1.0).`:` At ${dpLabel(id)} the smaller down payment means a bigger loan and higher payments, so the same price shows weaker coverage here — that’s expected, not a red flag. <b>${usd(be)}</b> is the ${dpLabel('dpA')} break-even, shown for reference.`}</div>`;
     return h;
   }
 
@@ -454,14 +549,30 @@ function run(){
     </tbody></table>`;
   const fc=`<h2>Monthly Fixed Cost — Before a Dollar of Rent</h2>`+fcTable;
   const repDesc=uOf('rep')==='usd'?usd(num('rep'))+'/yr repairs':tnum(num('rep'))+'% repairs';
+  const capDesc=uOf('cap')==='usd'?usd(num('cap'))+'/yr capex':tnum(num('cap'))+'% capex';
   const pmDesc=num('pm')?(uOf('pm')==='usd'?usd(num('pm'))+'/yr mgmt':tnum(num('pm'))+'% mgmt'):'self-managed';
-  let resNote=`<div class="note"><b>How reserves &amp; vacancy are figured:</b> set aside monthly on rental income — vacancy ${tnum(num('vac'))}% + ${repDesc} + ${tnum(num('cap'))}% capex + ${pmDesc}. The <b>${usd(res2)}/mo</b> above is on the ${owner?N-1:N} rented unit(s)`;
+  let resNote=`<div class="note"><b>How reserves &amp; vacancy are figured:</b> set aside monthly on rental income — vacancy ${tnum(num('vac'))}% + ${repDesc} + ${capDesc} + ${pmDesc}. The <b>${usd(res2)}/mo</b> above is on the ${owner?N-1:N} rented unit(s)`;
   if(owner){
     const ownerRes=ownerRentMo-(mA.cfAll-(-mA.livein));
     resNote+=` (your unit is owner-occupied in the live-in phase). When your unit also rents, reserves rise by ~${usd(ownerRes)}/mo, which is why <b>all-rented cash flow = live-in cash flow + your-unit rent − its reserves</b> (${usd(-mA.livein)} + ${usd(ownerRentMo)} − ${usd(ownerRes)} = ${usd(mA.cfAll)}).</div>`;
   } else { resNote+=` (all units rented).</div>`; }
 
   const loan0=optimal*(1-dpAf0);
+  const opexAnnual=tax+ins+util+repAll+capAll+pmAll;
+  const grossYield=optimal?gAll/optimal*100:0, oer=gAll?opexAnnual/gAll*100:0;
+  const debtYield=loan0?NOI/loan0*100:0, beOcc=gAll?(opexAnnual+(mA.pi+mA.pmi)*12)/gAll*100:0;
+  const qscreens=[
+    ['1% rule', mA.onepct.toFixed(2)+'%', '≥ 1% ideal', mA.onepct>=1],
+    ['Gross yield', grossYield.toFixed(1)+'%', 'higher better', null],
+    ['GRM', mA.grm.toFixed(1), 'lower cheaper', null],
+    ['Op-ex ratio', oer.toFixed(0)+'%', '~50% rule', null],
+    ['Debt yield', debtYield.toFixed(1)+'%', 'lenders ≥ 10%', debtYield>=10],
+    ['Break-even occ', beOcc.toFixed(0)+'%', 'lower safer', null],
+    ['Price / unit', usd(mA.ppu), 'per door', null]
+  ];
+  const qchip=q=>`<div class="qchip${q[3]===true?' good':q[3]===false?' meh':''}"><div class="qv">${q[1]}</div><div class="ql">${q[0]}</div><div class="qb">${q[2]}</div></div>`;
+  const quickCard=`<div class="verdict qcard"><div class="lbl">Quick Screens — sanity-check vs your own criteria</div><div class="qgrid">${qscreens.map(qchip).join('')}</div><div class="qnote">Common rules of thumb to gut-check a deal — reference points, not targets or advice.</div></div>`;
+  const qstrip=`<div class="qstrip">${qscreens.map(q=>`<span class="qs"><b>${q[1]}</b> ${q[0]}</span>`).join('')}</div>`;
   let appTable=`<table><thead><tr><th></th><th>Value</th><th>Loan balance</th><th>Equity</th><th>Cash-out @75%</th><th>HELOC @80%</th></tr></thead><tbody>`;
   [1,2,3,4,5].forEach(yr=>{const v=optimal*Math.pow(1+appr,yr),b=bal(loan0,rate,yr*12);
     appTable+=`<tr><td class="m">Year ${yr}</td><td>${usd(v)}</td><td>${usd(b)}</td><td>${usd(v-b)}</td><td>${usd(Math.max(0,.75*v-b))}</td><td>${usd(Math.max(0,.80*v-b))}</td></tr>`;});
@@ -469,16 +580,23 @@ function run(){
   const app=`<h2>Appreciation &amp; Equity <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">from ${usd(optimal)}, ${dpLabel('dpA')}, ${tnum(num('appr'))}%/yr</span></h2>`+appTable;
 
   const sellPct=num('sellcost'), sellUsd=uOf('sellcost')==='usd';
-  function saleTbl(id){
+  function saleData(id){
     const dpf=dpFrac(id,optimal), m=M(optimal,dpf), upfront=m.cash, l0=optimal*(1-dpf);
-    const noFeed=m.cfAll>=0;
+    const noFeed=m.cfAll>=0, debtAnnual=(m.pi+m.pmi)*12;
+    let runCF=0; const C=[1,2,3,4,5].map(yr=>{
+      runCF+=noiYear(yr)-debtAnnual;
+      const mo=yr*12,val=optimal*Math.pow(1+appr,yr),balN=bal(l0,rate,mo),
+        sc=sellUsd?sellPct:val*sellPct/100,net=val-sc-balN,cumCF=runCF,totPI=m.pi*mo,
+        principal=l0-balN,interest=totPI-principal,profit=net+cumCF-upfront,
+        feed=Math.max(0,-cumCF),totalIn=upfront+feed,
+        roi=profit/upfront,roiTot=profit/totalIn,ann=Math.pow((profit+upfront)/upfront,1/yr)-1;
+      return {yr,val,sc,balN,net,cumCF,totPI,interest,profit,feed,totalIn,roi,roiTot,ann};});
+    return {dpf,m,upfront,l0,noFeed,debtAnnual,C};
+  }
+  function paybackYr(C){if(C[0].profit>=0)return 1;for(let k=1;k<C.length;k++){if(C[k].profit>=0){const p0=C[k-1].profit,p1=C[k].profit;return k+(-p0)/(p1-p0);}}return null;}
+  function saleTbl(id){
+    const {m,upfront,noFeed,C}=saleData(id);
     const yrs=[1,2,3,4,5];
-    const C=yrs.map(yr=>{const mo=yr*12,val=optimal*Math.pow(1+appr,yr),balN=bal(l0,rate,mo),
-      sc=sellUsd?sellPct:val*sellPct/100,net=val-sc-balN,cumCF=m.cfAll*mo,totPI=m.pi*mo,
-      principal=l0-balN,interest=totPI-principal,profit=net+cumCF-upfront,
-      feed=Math.max(0,-cumCF), totalIn=upfront+feed,
-      roi=profit/upfront, roiTot=profit/totalIn,
-      ann=Math.pow((profit+upfront)/upfront,1/yr)-1;return {val,sc,balN,net,cumCF,totPI,interest,profit,feed,totalIn,roi,roiTot,ann};});
     const sg=v=>`<span class="${v>=0?'pos':'neg'}">${usd(v)}</span>`;
     const row=(lbl,f,bold)=>`<tr${bold?' class="tot"':''}><td class="m">${lbl}</td>${C.map(c=>`<td>${f(c)}</td>`).join('')}</tr>`;
     return `<table><thead><tr><th>${dpLabel(id)} — sell in…</th>${yrs.map(y=>`<th>Year ${y}</th>`).join('')}</tr></thead><tbody>
@@ -500,30 +618,44 @@ function run(){
       </tbody></table>`;
   }
   const saleA=saleTbl('dpA'), saleB=saleTbl('dpB');
-  const saleNote=`<div class="note">Sells at projected value, nets out selling cost &amp; remaining loan, adds cumulative cash flow, compares to cash invested. <b>Total cash in</b> = upfront (down + closing + reno) + any monthly cash you had to feed a negative-cash-flow property. <b>ROI — upfront only</b> divides profit by just the upfront cash (the leverage view); <b>ROI — incl. monthly feed</b> divides by all cash you actually committed (the conservative, true cash-on-cash view). They match when cash flow is positive and diverge when it’s negative. Annualized compounds the upfront-basis return. Rents held flat. Selling within ~1–2 yrs usually loses to transaction costs.</div>`;
-  const saleSection=`<h2>Return If Sold — at projected value <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">at ${usd(optimal)} ★, ${tnum(num('appr'))}%/yr, ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} selling cost</span></h2>`+saleA+saleB+saleNote;
+  const sdA=saleData('dpA'); const pbk=paybackYr(sdA.C);
+  const pbkText = pbk==null
+    ? `At these assumptions the deal isn't profitable on a sale within 5 years — upfront cash, selling costs and any negative cash flow outweigh the gains over this window.`
+    : (pbk<=1 ? `You'd likely be profitable selling after about <b>Year 1</b> — gains exceed your cash in and selling costs.`
+      : `You'd break even on a sale at about <b>Year ${pbk.toFixed(1)}</b> at ${dpLabel('dpA')} — selling earlier means transaction costs likely outweigh appreciation and cash flow.`);
+  const paybackCallout=`<div class="callout"><b>Payback (sell-to-profit):</b> ${pbkText}</div>`;
+  const growthNote=(rentG||expG)?` Rents grow ${tnum(num('rentG'))}%/yr and expenses ${tnum(num('expG'))}%/yr in these projections.`:` Rents and expenses held flat (set growth in section 5 to model increases).`;
+  const saleNote=`<div class="note">Sells at projected value, nets out selling cost &amp; remaining loan, adds cumulative cash flow, compares to cash invested. <b>Total cash in</b> = upfront (down + closing + reno) + any monthly cash you had to feed a negative-cash-flow property. <b>ROI — upfront only</b> divides profit by just the upfront cash (the leverage view); <b>ROI — incl. monthly feed</b> divides by all cash you actually committed (the conservative, true cash-on-cash view). They match when cash flow is positive and diverge when it’s negative. Annualized compounds the upfront-basis return.${growthNote} Selling within ~1–2 yrs usually loses to transaction costs.</div>`;
+  const saleSection=`<h2>Return If Sold — at projected value <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">at ${usd(optimal)} ★, ${tnum(num('appr'))}%/yr, ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} selling cost</span></h2>`+paybackCallout+saleA+saleB+saleNote;
+  function advRow(id){const sd=saleData(id);const cell=Y=>{const c=sd.C[Y-1];const cfs=[-sd.upfront];for(let y=1;y<=Y;y++){let cf=noiYear(y)-sd.debtAnnual;if(y===Y)cf+=c.net;cfs.push(cf);}return {ir:irr(cfs),em:1+c.roiTot};};return {dp:dpLabel(id),y3:cell(3),y5:cell(5)};}
+  const aA=advRow('dpA'),aB=advRow('dpB');const irrCell=x=>x==null?'—':pct(x);
+  const advTable=`<table><thead><tr><th>Metric</th><th>${aA.dp} · 3yr</th><th>${aA.dp} · 5yr</th><th>${aB.dp} · 3yr</th><th>${aB.dp} · 5yr</th></tr></thead><tbody>
+    <tr><td class="m">IRR — annualized, timing-aware</td><td>${irrCell(aA.y3.ir)}</td><td>${irrCell(aA.y5.ir)}</td><td>${irrCell(aB.y3.ir)}</td><td>${irrCell(aB.y5.ir)}</td></tr>
+    <tr><td class="m">Equity multiple — × cash in</td><td>${aA.y3.em.toFixed(2)}×</td><td>${aA.y5.em.toFixed(2)}×</td><td>${aB.y3.em.toFixed(2)}×</td><td>${aB.y5.em.toFixed(2)}×</td></tr>
+    </tbody></table>`;
+  const advBlock=`<details class="adv"><summary>Advanced metrics — IRR &amp; equity multiple <span class="muted">(for finance-minded investors)</span></summary><div class="note"><b>IRR</b> is your true annualized return that accounts for <i>when</i> every dollar moves in and out — including any monthly cash you feed a negative property. It deliberately differs from the simpler “Annualized return” row in the sale tables, which just spreads total profit over the years as one lump sum: with positive cash flow IRR runs a little higher than that row, and with negative cash flow (money fed in) it runs lower. <b>Equity multiple</b> = total dollars returned ÷ dollars in (2.0× = you doubled your money); it equals <b>1 + the “Total ROI — incl. monthly feed”</b> shown in the sale tables, so you can check it directly. Both include the sale and use your section-5 growth assumptions; “—” means there's no positive return to solve for.</div>${advTable}</details>`;
 
   const o=M(optimal,dpAf0);
   const modeLine = owner
     ? `Owner-occupant — the loan qualifies on your income, so the ${tgt.toFixed(2)} DSCR target is a personal cushion, not a lender rule.`
-    : `Investment — lenders typically want 20–25% down and ~1.20–1.25 DSCR; the recommended offer reflects that (rate set ${INV_PREMIUM}% above the owner-occ quote).`;
-  const recBox=`<div class="verdict"><div class="lbl">Recommended Offer — ${owner?'Owner-Occupant':'Investment'}</div>
+    : `Investment — lenders typically want 20–25% down and ~1.20–1.25 DSCR; the target offer reflects that (rate set ${INV_PREMIUM}% above the owner-occ quote).`;
+  const recBox=`<div class="verdict"><div class="lbl">Offer Guidance — ${owner?'Owner-Occupant':'Investment'}</div>
     <p style="font-family:'Fraunces',serif;font-size:21px;color:#fff;line-height:1.15;margin-bottom:6px">
       Offer up to ${usd(Math.round(recOffer/1000)*1000)} &nbsp;·&nbsp; Walk away above ${usd(Math.round(ceilA/1000)*1000)}</p>
-    <p><b>${usd(Math.round(recOffer/1000)*1000)}</b> is the most you should pay and still clear a ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')};
+    <p><b>${usd(Math.round(recOffer/1000)*1000)}</b> is the most the math supports paying while still clearing a ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')};
     <b>${usd(Math.round(ceilA/1000)*1000)}</b> is the break-even ceiling (DSCR 1.0).
     ${list?`List is ${usd(list)} — `:''}lower is better for your return.<br><span style="color:#e7cf94;font-size:11.5px">${modeLine}</span></p></div>
-    <div class="verdict" style="background:var(--green2)"><div class="lbl">At the ★ Offer (${usd(optimal)}, ${dpLabel('dpA')})</div>
+    <div class="verdict" style="background:var(--green2)"><div class="lbl">At your ★ target offer (${usd(optimal)}, ${dpLabel('dpA')})</div>
     <p><span class="hl">${$('addr').value.trim()||'This property'}</span> — ${owner?`live-in cash flow <b>${usd(-o.livein)}/mo</b>, `:''}all-rented cash flow <b>${usd(o.cfAll)}/mo</b>,
     cap <b>${pct(o.cap)}</b>, DSCR <b>${o.dscr.toFixed(2)}</b>, CoC <b>${pct(o.coc)}</b>.
     Quick screens: 1% rule ${o.onepct.toFixed(2)}% · GRM ${o.grm.toFixed(1)} · ${usd(o.ppu)}/unit.</p></div>`;
 
   const scenA=scen('dpA'), scenB=scen('dpB');
-  $('out').innerHTML = recBox + fc + resNote
+  $('out').innerHTML = recBox + quickCard + fc + resNote
     + `<div class="refbar"><span class="lbl">Calculations update live as you type. If anything looks stale, tap refresh to recompute with the latest inputs.</span><button class="refresh" data-act="run">↻ Refresh calculations</button></div>`
     + `<h2>Scenarios at ${dpLabel('dpA')}</h2>` + scenA
     + `<h2>Scenarios at ${dpLabel('dpB')}</h2>` + scenB
-    + app + saleSection
+    + app + saleSection + advBlock
     + `<div class="note">Only price changes across scenarios; all else held constant. Estimates only — verify taxes, insurance, the legality/CO of any extra unit, and loan terms with your lender, accountant &amp; township. Not financial advice.</div>`;
 
   const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
@@ -543,6 +675,7 @@ function run(){
     <div class="pverdict">Offer up to ${usd(Math.round(recOffer/1000)*1000)} · walk away above ${usd(Math.round(ceilA/1000)*1000)}</div>
     <div class="pvsub">${usd(Math.round(recOffer/1000)*1000)} clears a ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')}; ${usd(Math.round(ceilA/1000)*1000)} is the fully-rented break-even (DSCR 1.0).${list?` List price ${usd(list)}.`:''} ${modeLine}</div>
     ${pgrid}
+    ${qstrip}
     <h3>Monthly fixed cost — before a dollar of rent</h3>${fcTable}
     <h3>Scenarios at ${dpLabel('dpA')}</h3>${scenA}
     <h3>Scenarios at ${dpLabel('dpB')}</h3>${scenB}
@@ -550,7 +683,9 @@ function run(){
     <h3>The five-year story <span class="hsub">at ${usd(optimal)} ★ · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
     ${sb}
     <h3>Appreciation &amp; equity</h3>${appTable}
-    <h3>Return if sold — at projected value</h3>${saleA}${saleB}<div class="note"><b>ROI — upfront only</b> = profit ÷ upfront cash (down + closing + reno). <b>ROI — incl. monthly feed</b> also counts cash fed into negative-cash-flow months — the two match whenever cash flow is positive. Rents held flat; annualized compounds the upfront basis. Selling within ~1–2 years usually loses to transaction costs.</div>
+    <h3>Return if sold — at projected value</h3>${saleA}${saleB}
+    <div class="padv"><b>Payback (sell-to-profit):</b> ${pbk==null?'beyond Year 5 at these assumptions':'≈ Year '+pbk.toFixed(1)+' at '+dpLabel('dpA')} · <b>IRR 5-yr:</b> ${irrCell(aA.y5.ir)} (${aA.dp}) / ${irrCell(aB.y5.ir)} (${aB.dp}) · <b>Equity multiple 5-yr:</b> ${aA.y5.em.toFixed(2)}× / ${aB.y5.em.toFixed(2)}×</div>
+    <div class="note"><b>ROI — upfront only</b> = profit ÷ upfront cash (down + closing + reno). <b>ROI — incl. monthly feed</b> also counts cash fed into negative-cash-flow months — the two match whenever cash flow is positive.${(rentG||expG)?' Rents grow '+tnum(num('rentG'))+'%/yr, expenses '+tnum(num('expG'))+'%/yr.':' Rents held flat.'} Annualized compounds the upfront basis. Selling within ~1–2 years usually loses to transaction costs.</div>
     <div class="pfoot">Estimates only — verify taxes, insurance, unit legality/CO, and loan terms with your lender, accountant &amp; township. Not financial advice; use at your own risk. · Generated by the Househack deal analyzer.</div>`;
 
   $('sum1').textContent=`${usd(list)} list · ★ ${usd(optimal)}`;
@@ -565,6 +700,11 @@ function run(){
     <div class="row"><span class="k">All-rented CF /mo</span><span class="v">${sgg(o.cfAll)}</span></div>
     <div class="row"><span class="k">DSCR</span><span class="v">${o.dscr.toFixed(2)}</span></div>
     <div class="row"><span class="k">Cap rate</span><span class="v">${pct(o.cap)}</span></div>
+    <div class="qmini"><div class="qmh">Quick screens</div>
+      <div class="qmr"><span>1% rule</span><span>${mA.onepct.toFixed(2)}%</span></div>
+      <div class="qmr"><span>Op-ex ratio</span><span>${oer.toFixed(0)}%</span></div>
+      <div class="qmr"><span>Debt yield</span><span>${debtYield.toFixed(1)}%</span></div>
+      <div class="qmr"><span>Break-even occ</span><span>${beOcc.toFixed(0)}%</span></div></div>
     <a href="#" data-act="jump">Jump to full report ↓</a>`;
   $('sumBar').innerHTML=`<div class="sb"><span class="sbl">★ Offer</span><span class="sbv">${usd(optimal)}</span></div>
     ${owner?`<div class="sb"><span class="sbl">Live-in</span><span class="sbv">${sgg(-o.livein)}</span></div>`:''}
@@ -584,7 +724,7 @@ document.querySelectorAll('.subhead .num').forEach(el=>{el.innerHTML=GABLE(el.te
 document.querySelectorAll('.panel .subhead').forEach(sh=>{sh.addEventListener('click',e=>{if(e.target.closest('.seg'))return;sh.parentElement.classList.toggle('collapsed');xallLabel();});});
 document.querySelectorAll('.panel .group').forEach((g,i)=>{if(i>0)g.classList.add('collapsed');});
 xallLabel();
-buildRentFields();
+if(!loadFromHash()) buildRentFields();
 run();
 </script>
 </body>
