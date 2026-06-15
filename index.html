@@ -128,6 +128,13 @@
   .qchip .qb{font-size:8.5px;color:#cfe0d2;margin-top:2px}
   .qnote{font-size:9.5px;color:#cfe0d2;margin-top:8px;font-style:italic}
   .callout{background:#f3ead0;border:1px solid #d8b25e;border-radius:7px;padding:9px 12px;font-size:11.5px;color:#5a4a23;margin:2px 0 12px;line-height:1.45}
+  .payback{display:flex;align-items:stretch;border:1px solid #21402f;border-radius:10px;overflow:hidden;margin:4px 0 14px}
+  .pbk-chip{background:#f3ead0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px 16px;min-width:104px;border-right:1px solid #21402f}
+  .pbk-chip-l{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#9a6f1f;font-weight:700}
+  .pbk-chip-y{font-family:'Fraunces',Georgia,serif;font-size:25px;line-height:1.05;color:#21402f;font-weight:600;white-space:nowrap}
+  .pbk-body{background:#21402f;color:#fff;padding:11px 15px;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .pbk-cap{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:#d8b25e;font-weight:700;margin-bottom:3px}
+  .pbk-txt{font-size:11.5px;color:#dfe8e1;line-height:1.45}
   .callout b{color:#3a2f12}
   .adv{margin:6px 0 16px;border:1px solid var(--line);border-radius:8px;background:#fcfaf4;overflow:hidden}
   .adv summary{cursor:pointer;padding:10px 13px;font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:600;color:var(--green2);list-style:none}
@@ -183,7 +190,7 @@
     #printDoc{display:block!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#1b211c}
     #printDoc table{width:100%;border-collapse:collapse;font-size:9px;margin:0 0 4px;table-layout:fixed}
     #printDoc th:first-child,#printDoc td:first-child{width:34%}
-    #printDoc th,#printDoc td{padding:2.3px 5px;border-bottom:1px solid #d8cfba;text-align:right}
+    #printDoc th,#printDoc td{padding:1.9px 5px;border-bottom:1px solid #d8cfba;text-align:right}
     #printDoc th:first-child,#printDoc td:first-child{text-align:left}
     #printDoc thead th{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.04em;font-size:8.5px;color:#fff;background:#2f5a40;font-weight:600}
     #printDoc thead th:first-child{background:#21402f}
@@ -205,7 +212,21 @@
     .qstrip .qsv{font-family:'Fraunces',serif;font-size:12.5px;color:#21402f;line-height:1.05}
     .qstrip .qsl{font-size:7px;text-transform:uppercase;letter-spacing:.05em;color:#9a6f1f;font-weight:600;margin-top:1px}
     .qstrip .qsb{font-size:6.6px;color:#6d6655;margin-top:1px}
-    .padv{font-size:8.6px;color:#444036;margin:2px 0 5px;line-height:1.45}
+    .padv{font-size:8.6px;color:#444036;margin:1px 0 3px;line-height:1.4}
+    .ppayback{display:flex;align-items:stretch;border:1.2px solid #21402f;border-radius:7px;overflow:hidden;margin:2px 0 5px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .ppbk-chip{background:#f3ead0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:4px 11px;min-width:72px;border-right:1.2px solid #21402f}
+    .ppbk-chip-l{font-size:6.5px;text-transform:uppercase;letter-spacing:.09em;color:#9a6f1f;font-weight:700}
+    .ppbk-chip-y{font-family:'Fraunces',serif;font-size:15px;line-height:1.05;color:#21402f;font-weight:600;white-space:nowrap}
+    .ppbk-body{background:#21402f;color:#fff;padding:4px 10px;flex:1;display:flex;flex-direction:column;justify-content:center}
+    .ppbk-cap{font-size:6.5px;text-transform:uppercase;letter-spacing:.07em;color:#d8b25e;font-weight:700;margin-bottom:1px}
+    .ppbk-txt{font-size:8.4px;color:#dfe8e1;line-height:1.4}
+    .psnap{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0 5px}
+    .psnap-cell{border:1.2px solid #d8cfba;border-radius:6px;padding:6px 9px;background:#fbf8f1}
+    .psnap-l{font-size:6.8px;text-transform:uppercase;letter-spacing:.07em;color:#9a6f1f;font-weight:700}
+    .psnap-v{font-family:'Fraunces',serif;font-size:14px;line-height:1.12;color:#21402f;margin:1px 0 0}
+    .psnap-s{font-size:7px;color:#6d6655;margin-top:1px}
+    .psnaptake{font-size:8.4px;color:#3a3a36;background:#f3ead0;border-left:2.5px solid #9a6f1f;border-radius:0 5px 5px 0;padding:5px 9px;margin:1px 0 6px;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .psnaptake b{color:#21402f}
     .padv b{color:#21402f}
     .pmast{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#21402f;color:#f4efe4;border-radius:8px;padding:11px 14px}
     .pl{display:flex;align-items:center;gap:10px}
@@ -221,7 +242,7 @@
     .pstat{border:1.4px solid #21402f;border-radius:6px;padding:5px 8px}
     .pstat .l{font-size:7.8px;text-transform:uppercase;letter-spacing:.07em;color:#6d6655;font-weight:600}
     .pstat .v{font-family:'Fraunces',serif;font-size:13.5px;color:#21402f;margin-top:1px}
-    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:2px;margin:6px 0 4px;font-weight:600}
+    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:2px;margin:4px 0 3px;font-weight:600}
     #printDoc h3 .hsub{color:#9a6f1f;letter-spacing:0;text-transform:none;font-family:'Archivo';font-size:9px;font-weight:600}
     .pbreak{break-before:page;page-break-before:always}
     .pfoot{font-size:7.6px;color:#6d6655;margin-top:3px;border-top:1px solid #d8cfba;padding-top:3px}
@@ -486,7 +507,7 @@ function updateLookups(){
   const el=$('lookups');if(!el)return;const a=($('addr').value||'').trim();
   if(!a){el.innerHTML='<span style="color:#6d6655">Enter an address above to get one-tap look-up links for price, taxes &amp; rent comps.</span>';return;}
   const q=encodeURIComponent(a);
-  el.innerHTML='Look it up: <a target="_blank" rel="noopener" href="https://www.zillow.com/homes/'+q+'_rb/">↗ Zillow (price &amp; value)</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+property+tax+assessor">↗ property taxes</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+rent+estimate+AI">↗ rent estimate</a>';
+  el.innerHTML='Look it up: <a target="_blank" rel="noopener" href="https://www.zillow.com/homes/'+q+'_rb/">↗ Zillow (price &amp; value)</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+property+tax+assessor+AI">↗ property taxes</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+rent+estimate+AI">↗ rent estimate</a>';
 }
 function irr(cfs){const npv=r=>cfs.reduce((a,c,t)=>a+c/Math.pow(1+r,t),0);let lo=-0.95,hi=5;if(npv(lo)*npv(hi)>0)return null;for(let i=0;i<200;i++){const m=(lo+hi)/2;if(npv(m)>0)lo=m;else hi=m;}return (lo+hi)/2;}
 
@@ -739,11 +760,13 @@ function run(){
   }
   const saleA=saleTbl('dpA'), saleB=saleTbl('dpB');
   const sdA=saleData('dpA'); const pbk=paybackYr(sdA.C);
-  const pbkText = pbk==null
-    ? `At these assumptions the deal isn't profitable on a sale within 5 years — upfront cash, selling costs and any negative cash flow outweigh the gains over this window.`
-    : (pbk<=1 ? `You'd likely be profitable selling after about <b>Year 1</b> — gains exceed your cash in and selling costs.`
-      : `You'd break even on a sale at about <b>Year ${pbk.toFixed(1)}</b> at ${dpLabel('dpA')} — selling earlier means transaction costs likely outweigh appreciation and cash flow.`);
-  const paybackCallout=`<div class="callout"><b>Payback (sell-to-profit):</b> ${pbkText}</div>`;
+  const pbkYr = pbk==null ? '5+ yrs' : (pbk<=1 ? '≈ Yr 1' : '≈ Yr '+pbk.toFixed(1));
+  const pbkBody = pbk==null
+    ? `Not profitable on a sale within 5 years at these assumptions — your upfront cash, selling costs and any negative cash flow outweigh the gains over this window.`
+    : (pbk<=1 ? `At ${dpLabel('dpA')}, a sale after roughly a year already clears your cash invested and selling costs.`
+      : `At ${dpLabel('dpA')}, this is when a sale first clears your cash invested plus selling costs. Selling earlier likely loses to transaction costs.`);
+  const paybackCallout=`<div class="payback"><div class="pbk-chip"><div class="pbk-chip-l">payback</div><div class="pbk-chip-y">${pbkYr}</div></div><div class="pbk-body"><div class="pbk-cap">Sell-to-profit point</div><div class="pbk-txt">${pbkBody}</div></div></div>`;
+  const pPayback=`<div class="ppayback"><div class="ppbk-chip"><div class="ppbk-chip-l">payback</div><div class="ppbk-chip-y">${pbkYr}</div></div><div class="ppbk-body"><div class="ppbk-cap">Sell-to-profit point · ${dpLabel('dpA')}</div><div class="ppbk-txt">${pbkBody}</div></div></div>`;
   const growthNote=(rentG||expG)?` Rents grow ${tnum(num('rentG'))}%/yr and expenses ${tnum(num('expG'))}%/yr in these projections.`:` Rents and expenses held flat (set growth in section 5 to model increases).`;
   const saleNote=`<div class="note">Sells at projected value, nets out selling cost &amp; remaining loan, adds cumulative cash flow, compares to cash invested. <b>Total cash in</b> = upfront (down + closing + reno) + any monthly cash you had to feed a negative-cash-flow property. <b>ROI — upfront only</b> divides profit by just the upfront cash (the leverage view); <b>ROI — incl. monthly feed</b> divides by all cash you actually committed (the conservative, true cash-on-cash view). They match when cash flow is positive and diverge when it’s negative. Annualized compounds the upfront-basis return.${growthNote} Selling within ~1–2 yrs usually loses to transaction costs.</div>`;
   const saleSection=`<h2>Return If Sold — at projected value <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">at ${usd(optimal)} ★, ${tnum(num('appr'))}%/yr, ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} selling cost</span></h2>`+paybackCallout+saleA+saleB+saleNote;
@@ -774,12 +797,22 @@ function run(){
   if(owner) stats.push(['Live-in cash flow /mo',usd(-o.livein)]);
   stats.push(['All-rented cash flow /mo',usd(o.cfAll)],['Cap rate',pct(o.cap)],['DSCR',o.dscr.toFixed(2)],['Cash-on-cash',pct(o.coc)],['Cash to close',usd(o.cash)]);
   const pgrid=`<div class="pgrid">${stats.map(s=>`<div class="pstat"><div class="l">${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}</div>`;
-  let sb='<svg viewBox="0 0 760 174" width="100%" style="display:block;margin:2px 0 6px">';
-  sb+='<line x1="24" y1="118" x2="728" y2="118" stroke="#21402f" stroke-width="2"/><polygon points="744,118 727,111 727,125" fill="#21402f"/>';
-  [1,2,3,4,5].forEach((yr,i)=>{const cx=76+152*i,s=34+12*i,bh=Math.round(s*0.52),bx=cx-s/2,by=116-bh,apex=by-Math.round(s*0.42);
-    const v=optimal*Math.pow(1+appr,yr), eqy=v-bal(loan0,rate,yr*12);
-    sb+=`<polygon points="${bx-4},${by} ${cx},${apex} ${bx+s+4},${by}" fill="#21402f"/><rect x="${bx}" y="${by}" width="${s}" height="${bh}" fill="#fbf8f1" stroke="#21402f" stroke-width="2"/><rect x="${cx-4}" y="${by+5}" width="8" height="6" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1"/><circle cx="${cx}" cy="118" r="3.4" fill="#9a6f1f"/><text x="${cx}" y="139" text-anchor="middle" font-size="12" font-weight="600" fill="#2f5a40" font-family="Archivo,sans-serif">Year ${yr}</text><text x="${cx}" y="154" text-anchor="middle" font-size="11" fill="#1b211c" font-family="Archivo,sans-serif">${usd(v)}</text><text x="${cx}" y="167" text-anchor="middle" font-size="9.5" fill="#6d6655" font-family="Archivo,sans-serif">equity ${usd(eqy)}</text>`;});
-  sb+='</svg>';
+  const sdB=saleData('dpB'); const c5=sdA.C[4], cB5=sdB.C[4];
+  const v5=c5.val, eq5=v5-c5.balN, gain5=v5-optimal, down5=optimal*sdA.dpf, eqBuilt=eq5-down5;
+  const sgnUsd=v=>(v>=0?'+':'\u2212')+usd(Math.abs(v));
+  const cpc=v=>`<span class="${v>=0?'pos':'neg'}">${Math.round(v*100)}%</span>`;
+  const cir=x=>x==null?'<span class="tagmuted">\u2014</span>':`<span class="${x>=0?'pos':'neg'}">${Math.round(x*100)}%</span>`;
+  const cem=v=>`<span class="${v>=1?'pos':'neg'}">${v.toFixed(2)}\u00d7</span>`;
+  const pane=(l,v,sub)=>`<div class="psnap-cell"><div class="psnap-l">${l}</div><div class="psnap-v">${v}</div><div class="psnap-s">${sub}</div></div>`;
+  const snap=`<div class="psnap">`
+    +pane('Yr-5 value', usd(v5), '+'+usd(gain5)+' appreciation')
+    +pane('Yr-5 equity', usd(eq5), sgnUsd(eqBuilt)+' past your down')
+    +pane('5-yr cash flow', `<span class="${c5.cumCF>=0?'pos':'neg'}">${sgnUsd(c5.cumCF)}</span>`, 'cumulative \u00b7 all rented')
+    +pane('5-yr total ROI', cpc(c5.roiTot)+' / '+cpc(cB5.roiTot), aA.dp+' / '+aB.dp)
+    +pane('5-yr IRR', cir(aA.y5.ir)+' / '+cir(aB.y5.ir), aA.dp+' / '+aB.dp)
+    +pane('Equity multiple', cem(aA.y5.em)+' / '+cem(aB.y5.em), aA.dp+' / '+aB.dp)
+    +`</div>`;
+  const bottomLine=`<div class="psnaptake"><b>Bottom line \u2014</b> over 5 years at ${aA.dp}, this deal builds about <b>${usd(eq5)}</b> of equity (${sgnUsd(gain5)} from appreciation) and a cumulative <b>${sgnUsd(c5.cumCF)}</b> in cash flow \u2014 a 5-yr return near <b>${pct(c5.roiTot)}</b> (${aA.y5.em.toFixed(2)}\u00d7 your cash). ${pbk==null?'It does not reach the sell-to-profit point within 5 years at these assumptions.':'Sell-to-profit lands around '+pbkYr.replace('\u2248 ','')+'.'}</div>`;
   $('printDoc').innerHTML=
     `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">Househack</div><div class="psub">Deal analyzer</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
     <div class="pgold"></div>
@@ -791,11 +824,11 @@ function run(){
     <h3>Scenarios at ${dpLabel('dpA')}</h3>${scenA}
     <h3>Scenarios at ${dpLabel('dpB')}</h3>${scenB}
     <div class="pbreak"></div>
-    <h3>The five-year story <span class="hsub">at ${usd(optimal)} · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
-    ${sb}
+    <h3>5-year returns at a glance <span class="hsub">at ${usd(optimal)} · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
+    ${pPayback}${snap}${bottomLine}
     <h3>Appreciation &amp; equity</h3>${appTable}
     <h3>Return if sold — at projected value</h3>${saleA}${saleB}
-    <div class="padv"><b>Payback (sell-to-profit):</b> ${pbk==null?'beyond Year 5 at these assumptions':'≈ Year '+pbk.toFixed(1)+' at '+dpLabel('dpA')} · <b>IRR 5-yr:</b> ${irrCell(aA.y5.ir)} (${aA.dp}) / ${irrCell(aB.y5.ir)} (${aB.dp}) · <b>Equity multiple 5-yr:</b> ${aA.y5.em.toFixed(2)}× / ${aB.y5.em.toFixed(2)}×</div>
+    <div class="padv"><b>IRR 5-yr:</b> ${irrCell(aA.y5.ir)} (${aA.dp}) / ${irrCell(aB.y5.ir)} (${aB.dp}) · <b>Equity multiple 5-yr:</b> ${aA.y5.em.toFixed(2)}× / ${aB.y5.em.toFixed(2)}×</div>
     <div class="note"><b>ROI — upfront only</b> = profit ÷ upfront cash (down + closing + reno). <b>ROI — incl. monthly feed</b> also counts cash fed into negative-cash-flow months — the two match whenever cash flow is positive.${(rentG||expG)?' Rents grow '+tnum(num('rentG'))+'%/yr, expenses '+tnum(num('expG'))+'%/yr.':' Rents held flat.'} Annualized compounds the upfront basis. Selling within ~1–2 years usually loses to transaction costs.</div>
     <div class="pfoot">Estimates only — verify taxes, insurance, unit legality/CO, and loan terms with your lender, accountant &amp; township. Not financial advice; use at your own risk. · Generated by the Househack deal analyzer.</div>`;
 
