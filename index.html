@@ -141,6 +141,40 @@
   .qmh{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.16em;font-size:8.5px;color:#d8b25e;margin-bottom:5px}
   .qmr{display:flex;justify-content:space-between;font-size:10.5px;color:#cfe0d2;margin:3px 0}
   .qmr span:last-child{font-family:'Fraunces',serif;color:#fff}
+  .specbody{margin-top:8px}
+  .group.collapsed .specbody{display:none}
+  .specPlace{font-size:12px;color:var(--muted);padding:10px 2px;line-height:1.5}
+  .specTiles{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+  .specTile{background:var(--paper);border:1px solid #e5dcc7;border-radius:8px;padding:9px 12px;min-height:60px}
+  .specTile.dim{opacity:.45}
+  .stl{font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+  .stgloss{text-transform:none;letter-spacing:0;font-weight:400;color:#8a8377}
+  .stv{font-family:'Fraunces',Georgia,serif;font-size:20px;line-height:1.1;color:var(--green);margin-top:2px}
+  .stn{font-size:9.5px;color:var(--muted);margin-top:1px}
+  .specSlider{position:relative;padding-top:26px;margin-bottom:4px}
+  .spFlag{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;text-align:center;transition:left .04s linear}
+  .spFlag span{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+  .spTrack{position:relative;height:18px;border-radius:9px;background:linear-gradient(90deg,#3b6d4e 0%,#c99a3a 46%,#9c4a2b 100%)}
+  .spTick{position:absolute;top:-5px;width:2px;height:28px;background:var(--ink);opacity:.4}
+  #priceSlider{position:absolute;left:0;right:0;top:24px;width:100%;margin:0;background:transparent;-webkit-appearance:none;appearance:none;height:22px;cursor:pointer}
+  #priceSlider:focus{outline:none}
+  #priceSlider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin-top:0;border-radius:50%;background:var(--green);border:3px solid var(--card);box-shadow:0 0 0 1px var(--green),0 1px 3px rgba(0,0,0,.3);cursor:pointer}
+  #priceSlider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green);border:3px solid var(--card);box-shadow:0 0 0 1px var(--green);cursor:pointer}
+  #priceSlider::-webkit-slider-runnable-track{background:transparent;height:22px}
+  #priceSlider::-moz-range-track{background:transparent;height:22px}
+  .spTickLabels{position:relative;height:30px;margin-top:30px}
+  .spTL{position:absolute;transform:translateX(-50%);text-align:center}
+  .spTL .nm{font-size:9px;text-transform:uppercase;letter-spacing:.04em;font-weight:600;display:block}
+  .spTL .pr{font-family:'Fraunces',serif;font-size:12px;color:var(--muted)}
+  .spTL.lf .nm{color:#2f5a40}.spTL.pc .nm{color:#9a6f1f}.spTL.be .nm{color:#9c4a2b}
+  .specSum{border-top:1px solid #e5dcc7;margin-top:8px;padding-top:11px}
+  .specSumHd{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);font-weight:600;margin-bottom:7px}
+  .spSumRow{display:flex;align-items:baseline;gap:8px;font-size:11.5px;margin:5px 0}
+  .spSumRow .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto;position:relative;top:1px}
+  .spSumRow .snm{font-weight:600;min-width:92px}
+  .spSumRow .spr{font-family:'Fraunces',serif;color:var(--ink);min-width:66px}
+  .spSumRow .sds{color:var(--muted)}
+  .specSumNote{font-size:10.5px;color:var(--muted);line-height:1.55;margin-top:10px}
   @media print{
     @page{size:letter;margin:0.45in}
     body{background:#fff;padding:0;font-size:10.5px}
@@ -165,9 +199,12 @@
     #printDoc .tagmuted{font-size:8px}
     #printDoc .note{font-size:8.1px;color:#6d6655;margin:1px 0 3px;line-height:1.4}
     #printDoc .pos{color:#2f5a40;font-weight:700}#printDoc .neg{color:#9c4a2b;font-weight:700}
-    .qstrip{display:flex;flex-wrap:wrap;gap:3px 10px;margin:0 0 6px;padding:5px 8px;background:#f3ead0;border-radius:5px}
-    .qstrip .qs{font-size:8.4px;color:#5a4a23}
-    .qstrip .qs b{color:#21402f}
+    .qstrip{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px}
+    .qstrip .qs{flex:1 1 auto;min-width:82px;border:1.3px solid #21402f;border-radius:6px;padding:4px 8px}
+    .qstrip .qs.good{border-color:#2f7a4f;background:#eef5ef}
+    .qstrip .qsv{font-family:'Fraunces',serif;font-size:12.5px;color:#21402f;line-height:1.05}
+    .qstrip .qsl{font-size:7px;text-transform:uppercase;letter-spacing:.05em;color:#9a6f1f;font-weight:600;margin-top:1px}
+    .qstrip .qsb{font-size:6.6px;color:#6d6655;margin-top:1px}
     .padv{font-size:8.6px;color:#444036;margin:2px 0 5px;line-height:1.45}
     .padv b{color:#21402f}
     .pmast{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#21402f;color:#f4efe4;border-radius:8px;padding:11px 14px}
@@ -213,12 +250,11 @@
       <div class="subhead"><span class="shl"><span class="num">1</span>Property &amp; Price</span><span class="shr"><span class="gsum" id="sum1"></span><span class="chev">▾</span></span></div>
       <div class="grid">
         <div class="f wide"><label>Property address / label</label><input id="addr" type="text" placeholder="e.g. 350 Fifth Avenue, New York, NY 10118"></div>
-        <div class="f"><label>List / asking price $</label><input id="list" type="number" placeholder="e.g. 1000000"></div>
-        <div class="f"><label style="display:flex;justify-content:space-between;align-items:center">★ Offer price <span class="lock"><input type="checkbox" id="lockP3"> lock</span></label><input id="p3" type="number" placeholder="auto"></div>
+        <div class="f"><label>List / offer price $</label><input id="list" type="number" placeholder="e.g. 1000000" inputmode="numeric"></div>
         <div class="f"><label>Scenario range ± %</label><input id="spread" type="number" placeholder="3" step="0.5"></div>
       </div>
       <div class="lookups" id="lookups"></div>
-      <div class="help"><b>Scenario range ±%</b> sets how wide the comparison columns spread around list price (e.g. 3 → list −3%, list, your ★ offer, list +3%, plus the break-even). <b>★ Offer</b> auto-fills with the target offer (the most you can pay and still keep your DSCR cushion); tick <b>lock</b> to type your own price, untick it to snap back.</div>
+      <div class="help"><b>List / offer price</b> is the single price that drives everything — start with the asking price, then change it (here or with the price-spectrum slider below) to test any offer. <b>Scenario range ±%</b> sets how wide the comparison tables spread around it.</div>
     </div>
 
     <!-- 2 RENT / INCOME  (owner/investment toggle lives here) -->
@@ -276,6 +312,37 @@
       <div class="help"><b>Growth</b> (optional) compounds rents and operating expenses each year. Leave at <b>0%</b> to hold today's figures flat. Growth affects only the long-term projections (appreciation, sale, cumulative cash flow, payback &amp; IRR) — your Year-1 cap rate, DSCR and cash-on-cash always use today's rents.</div>
     </div>
 
+    <!-- PRICE SPECTRUM -->
+    <div class="group" id="specSection">
+      <div class="subhead"><span class="shl"><span class="num">$</span>Price Spectrum</span><span class="shr"><span class="gsum" id="sumSpec"></span><span class="chev">▾</span></span></div>
+      <div class="specbody">
+        <div class="specPlace" id="specPlace">Enter a <b>list / offer price</b> in section 1 to explore how the price changes your monthly cash flow and where the key levels sit.</div>
+        <div id="specMain" style="display:none">
+          <div class="specTiles">
+            <div class="specTile"><div class="stl">List / offer price</div><div class="stv" id="spPrice">—</div><div class="stn" id="spPriceNote"></div></div>
+            <div class="specTile" id="spLiveTile"><div class="stl">Live-in cash flow / mo</div><div class="stv" id="spLive">—</div><div class="stn" id="spLiveNote"></div></div>
+            <div class="specTile"><div class="stl">DSCR <span class="stgloss">· rents ÷ mortgage</span></div><div class="stv" id="spDscr">—</div><div class="stn" id="spDscrNote"></div></div>
+            <div class="specTile"><div class="stl">All-rented cash flow / mo</div><div class="stv" id="spRent">—</div><div class="stn" id="spRentNote"></div></div>
+          </div>
+          <div class="specSlider">
+            <div class="spFlag" id="spFlag"><span>Your offer</span></div>
+            <div class="spTrack"><div class="spTick" id="tickLF"></div><div class="spTick" id="tickPC"></div><div class="spTick" id="tickBE"></div></div>
+            <input type="range" id="priceSlider" min="0" max="100" value="50" step="1000">
+            <div class="spTickLabels">
+              <div class="spTL lf" id="lblLF"><span class="nm">live-free</span><span class="pr"></span></div>
+              <div class="spTL pc" id="lblPC"><span class="nm">ceiling</span><span class="pr"></span></div>
+              <div class="spTL be" id="lblBE"><span class="nm">break-even</span><span class="pr"></span></div>
+            </div>
+          </div>
+          <div class="specSum">
+            <div class="specSumHd">Pricing levels &amp; tradeoffs</div>
+            <div id="spSumRows"></div>
+            <div class="specSumNote" id="spDscrExplain"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="btns">
       <button class="alt" data-act="print">Print / Save PDF</button>
       <button class="alt" data-act="share">Copy share link</button>
@@ -291,7 +358,7 @@
   <div class="sheet" id="out"></div>
 
   <footer class="legal">
-    <b>Disclaimer.</b> The Househack Deal Analyzer is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The “target offer,” break-even figures, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
+    <b>Disclaimer.</b> The Househack Deal Analyzer is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The break-even figures, price-ceiling levels, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
   </footer>
 
   <footer class="skyline" aria-hidden="true">
@@ -371,17 +438,19 @@ const dpFrac=(id,price)=>uOf(id)==='usd'?Math.min(0.95,num(id)/price):num(id)/10
 const dpLabel=id=>uOf(id)==='usd'?usd(num(id))+' down':tnum(num(id))+'% down';
 
 /* ---------- SHARE LINK (encode inputs in URL hash) ---------- */
-const SHARE_FIELDS=[['addr','t'],['list','n'],['p3','n'],['lockP3','c'],['spread','n'],['units','n'],['rate','n'],['dpA','n'],['dpA_u','s'],['dpB','n'],['dpB_u','s'],['pmi','n'],['close','n'],['reno','n'],['tgt','n'],['tax','n'],['ins','n'],['util','n'],['vac','n'],['rep','n'],['rep_u','s'],['cap','n'],['cap_u','s'],['pm','n'],['pm_u','s'],['appr','n'],['sellcost','n'],['sellcost_u','s'],['rentG','n'],['expG','n']];
+/* LZString (compress/decompress, URL-safe) — shrinks the share link, no dependency */
+var LZString=(function(){var f=String.fromCharCode;var ks="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-$";var rd={};function gv(a,c){if(!rd[a]){rd[a]={};for(var i=0;i<a.length;i++){rd[a][a.charAt(i)]=i;}}return rd[a][c];}var L={compressToEncodedURIComponent:function(input){if(input==null)return"";return L._c(input,6,function(a){return ks.charAt(a);});},decompressFromEncodedURIComponent:function(input){if(input==null)return"";if(input=="")return null;input=input.replace(/ /g,"+");return L._d(input.length,32,function(index){return gv(ks,input.charAt(index));});},_c:function(uncompressed,bitsPerChar,getCharFromInt){if(uncompressed==null)return"";var i,value,cd={},cdtc={},cc="",cwc="",cw="",cei=2,cds=3,cnb=2,cda=[],cdv=0,cdp=0,ii;for(ii=0;ii<uncompressed.length;ii+=1){cc=uncompressed.charAt(ii);if(!Object.prototype.hasOwnProperty.call(cd,cc)){cd[cc]=cds++;cdtc[cc]=true;}cwc=cw+cc;if(Object.prototype.hasOwnProperty.call(cd,cwc)){cw=cwc;}else{if(Object.prototype.hasOwnProperty.call(cdtc,cw)){if(cw.charCodeAt(0)<256){for(i=0;i<cnb;i++){cdv=(cdv<<1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}}value=cw.charCodeAt(0);for(i=0;i<8;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}}else{value=1;for(i=0;i<cnb;i++){cdv=(cdv<<1)|value;if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=0;}value=cw.charCodeAt(0);for(i=0;i<16;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}}cei--;if(cei==0){cei=Math.pow(2,cnb);cnb++;}delete cdtc[cw];}else{value=cd[cw];for(i=0;i<cnb;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}}cei--;if(cei==0){cei=Math.pow(2,cnb);cnb++;}cd[cwc]=cds++;cw=String(cc);}}if(cw!==""){if(Object.prototype.hasOwnProperty.call(cdtc,cw)){if(cw.charCodeAt(0)<256){for(i=0;i<cnb;i++){cdv=(cdv<<1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}}value=cw.charCodeAt(0);for(i=0;i<8;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}}else{value=1;for(i=0;i<cnb;i++){cdv=(cdv<<1)|value;if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=0;}value=cw.charCodeAt(0);for(i=0;i<16;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}}cei--;if(cei==0){cei=Math.pow(2,cnb);cnb++;}delete cdtc[cw];}else{value=cd[cw];for(i=0;i<cnb;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}}cei--;if(cei==0){cei=Math.pow(2,cnb);cnb++;}}value=2;for(i=0;i<cnb;i++){cdv=(cdv<<1)|(value&1);if(cdp==bitsPerChar-1){cdp=0;cda.push(getCharFromInt(cdv));cdv=0;}else{cdp++;}value=value>>1;}while(true){cdv=(cdv<<1);if(cdp==bitsPerChar-1){cda.push(getCharFromInt(cdv));break;}else cdp++;}return cda.join('');},_d:function(length,resetValue,getNextValue){var dictionary=[],enlargeIn=4,dictSize=4,numBits=3,entry="",result=[],i,w,bits,resb,maxpower,power,c,data={val:getNextValue(0),position:resetValue,index:1};for(i=0;i<3;i+=1){dictionary[i]=i;}bits=0;maxpower=Math.pow(2,2);power=1;while(power!=maxpower){resb=data.val&data.position;data.position>>=1;if(data.position==0){data.position=resetValue;data.val=getNextValue(data.index++);}bits|=(resb>0?1:0)*power;power<<=1;}switch(bits){case 0:bits=0;maxpower=Math.pow(2,8);power=1;while(power!=maxpower){resb=data.val&data.position;data.position>>=1;if(data.position==0){data.position=resetValue;data.val=getNextValue(data.index++);}bits|=(resb>0?1:0)*power;power<<=1;}c=f(bits);break;case 1:bits=0;maxpower=Math.pow(2,16);power=1;while(power!=maxpower){resb=data.val&data.position;data.position>>=1;if(data.position==0){data.position=resetValue;data.val=getNextValue(data.index++);}bits|=(resb>0?1:0)*power;power<<=1;}c=f(bits);break;case 2:return"";}dictionary[3]=c;w=c;result.push(c);while(true){if(data.index>length){return"";}bits=0;maxpower=Math.pow(2,numBits);power=1;while(power!=maxpower){resb=data.val&data.position;data.position>>=1;if(data.position==0){data.position=resetValue;data.val=getNextValue(data.index++);}bits|=(resb>0?1:0)*power;power<<=1;}switch(c=bits){case 0:bits=0;maxpower=Math.pow(2,8);power=1;while(power!=maxpower){resb=data.val&data.position;data.position>>=1;if(data.position==0){data.position=resetValue;data.val=getNextValue(data.index++);}bits|=(resb>0?1:0)*power;power<<=1;}dictionary[dictSize++]=f(bits);c=dictSize-1;enlargeIn--;break;case 1:bits=0;maxpower=Math.pow(2,16);power=1;while(power!=maxpower){resb=data.val&data.position;data.position>>=1;if(data.position==0){data.position=resetValue;data.val=getNextValue(data.index++);}bits|=(resb>0?1:0)*power;power<<=1;}dictionary[dictSize++]=f(bits);c=dictSize-1;enlargeIn--;break;case 2:return result.join('');}if(enlargeIn==0){enlargeIn=Math.pow(2,numBits);numBits++;}if(dictionary[c]){entry=dictionary[c];}else{if(c===dictSize){entry=w+w.charAt(0);}else{return null;}}result.push(entry);dictionary[dictSize++]=w+entry.charAt(0);enlargeIn--;w=entry;if(enlargeIn==0){enlargeIn=Math.pow(2,numBits);numBits++;}}}};return L;})();
+const SHARE_FIELDS=[['addr','t'],['list','n'],['spread','n'],['units','n'],['rate','n'],['dpA','n'],['dpA_u','s'],['dpB','n'],['dpB_u','s'],['pmi','n'],['close','n'],['reno','n'],['tgt','n'],['tax','n'],['ins','n'],['util','n'],['vac','n'],['rep','n'],['rep_u','s'],['cap','n'],['cap_u','s'],['pm','n'],['pm_u','s'],['appr','n'],['sellcost','n'],['sellcost_u','s'],['rentG','n'],['expG','n']];
 function encodeState(){
   const parts=['1',financing];
   SHARE_FIELDS.forEach(([id,ty])=>{const el=$(id);if(!el){parts.push('');return;}
     parts.push(ty==='c'?(el.checked?'1':'0'):ty==='s'?(el.value==='usd'?'1':'0'):el.value);});
   const N=clampUnits();const rents=[];for(let i=0;i<N;i++){const e=$('r_'+i);rents.push(e?e.value:'');}
   parts.push(rents.join(','));
-  return btoa(unescape(encodeURIComponent(parts.join('~')))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  return LZString.compressToEncodedURIComponent(parts.join('~'));
 }
-function applyState(tok){
-  let raw;try{raw=decodeURIComponent(escape(atob(tok.replace(/-/g,'+').replace(/_/g,'/'))));}catch(e){return false;}
+function applyState(raw){
+  if(!raw)return false;
   const p=raw.split('~');if(p[0]!=='1')return false;
   const mode=p[1];let i=2;
   SHARE_FIELDS.forEach(([id,ty])=>{const v=p[i++];const el=$(id);if(!el||v===undefined)return;
@@ -393,14 +462,21 @@ function applyState(tok){
   for(let k=0;k<rents.length;k++){const e=$('r_'+k);if(e)e.value=rents[k];}
   return true;
 }
-function loadFromHash(){const m=(location.hash||'').match(/[#&]d=([^&]+)/);return m?applyState(m[1]):false;}
+function loadFromHash(){
+  const h=location.hash||'';
+  let m=h.match(/[#&]c=([^&]+)/);
+  if(m){const raw=LZString.decompressFromEncodedURIComponent(m[1]);return raw?applyState(raw):false;}
+  m=h.match(/[#&]d=([^&]+)/);
+  if(m){let raw;try{raw=decodeURIComponent(escape(atob(m[1].replace(/-/g,'+').replace(/_/g,'/'))));}catch(e){return false;}return applyState(raw);}
+  return false;
+}
 async function shorten(url){
   try{const r=await fetch('/api/shorten',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url})});if(r.ok){const j=await r.json();if(j&&j.short&&/^https?:\/\//i.test(j.short))return j.short;}}catch(e){}
   try{const r=await fetch('https://is.gd/create.php?format=simple&logstats=0&url='+encodeURIComponent(url));if(r.ok){const t=(await r.text()).trim();if(/^https?:\/\//i.test(t))return t;}}catch(e){}
   return url;
 }
 async function doShare(){
-  const full=location.origin+location.pathname+'#d='+encodeState();
+  const full=location.origin+location.pathname+'#c='+encodeState();
   const box=$('shareMsg');box.style.display='block';box.textContent='Preparing your share link…';
   let link=full;try{link=await shorten(full);}catch(e){}
   let ok=false;try{await navigator.clipboard.writeText(link);ok=true;}catch(e){}
@@ -410,7 +486,7 @@ function updateLookups(){
   const el=$('lookups');if(!el)return;const a=($('addr').value||'').trim();
   if(!a){el.innerHTML='<span style="color:#6d6655">Enter an address above to get one-tap look-up links for price, taxes &amp; rent comps.</span>';return;}
   const q=encodeURIComponent(a);
-  el.innerHTML='Look it up: <a target="_blank" rel="noopener" href="https://www.zillow.com/homes/'+q+'_rb/">↗ Zillow (price &amp; value)</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+property+tax+assessor">↗ property taxes</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+rent+estimate">↗ rent estimate</a>';
+  el.innerHTML='Look it up: <a target="_blank" rel="noopener" href="https://www.zillow.com/homes/'+q+'_rb/">↗ Zillow (price &amp; value)</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+property+tax+assessor">↗ property taxes</a> · <a target="_blank" rel="noopener" href="https://www.google.com/search?q='+q+'+rent+estimate+AI">↗ rent estimate</a>';
 }
 function irr(cfs){const npv=r=>cfs.reduce((a,c,t)=>a+c/Math.pow(1+r,t),0);let lo=-0.95,hi=5;if(npv(lo)*npv(hi)>0)return null;for(let i=0;i<200;i++){const m=(lo+hi)/2;if(npv(m)>0)lo=m;else hi=m;}return (lo+hi)/2;}
 
@@ -451,15 +527,59 @@ function buildRentFields(){
     : `All <b>${N}</b> units are rented (investment — you don’t occupy any).`;
 }
 
-/* ★ offer auto-tracks the target offer unless "lock" is checked */
-const locked=()=>$('lockP3').checked;
+function setSpectrum(price,owner,liveFree,priceCeiling,breakEven,live,cfAll,dscr,tgt){
+  $('specPlace').style.display='none'; $('specMain').style.display='';
+  const fmtK=p=>p>=1e6?('$'+(p/1e6).toFixed(2).replace(/\.?0+$/,'')+'M'):('$'+Math.round(p/1000)+'k');
+  const sgn=v=>(v>=0?'+':'\u2212')+'$'+Math.round(Math.abs(v)).toLocaleString();
+  const GREEN='#2f5a40',GOLD='#9a6f1f',RUST='#9c4a2b';
+  $('spPrice').textContent='$'+Math.round(price).toLocaleString();
+  $('spPriceNote').textContent = owner ? (price<=liveFree?'you live free or better':(price>=breakEven?'above break-even':'drag the slider or type a price'))
+                                       : (price>=breakEven?'above break-even':'drag the slider or type a price');
+  const lt=$('spLiveTile'), lv=$('spLive'), ln=$('spLiveNote');
+  if(owner){ lt.classList.remove('dim');
+    lv.textContent=sgn(live); lv.style.color=live>=0?GREEN:RUST;
+    ln.textContent=live>=0?'you profit while living here':'costs you to live here';
+  } else { lt.classList.add('dim'); lv.textContent='n/a'; lv.style.color='var(--muted)'; ln.textContent='owner-occupant scenario only'; }
+  const d=$('spDscr'), dn=$('spDscrNote');
+  d.textContent=isFinite(dscr)?dscr.toFixed(2):'\u2014';
+  if(dscr>=1.2){d.style.color=GREEN;dn.textContent='comfortable cushion';}
+  else if(dscr>=1.0){d.style.color=GOLD;dn.textContent='thin cushion';}
+  else{d.style.color=RUST;dn.textContent='below break-even';}
+  const rt=$('spRent'), rn=$('spRentNote');
+  rt.textContent=sgn(cfAll); rt.style.color=cfAll>=0?GREEN:RUST;
+  rn.textContent = owner ? 'after you move out, all units rented' : 'all units rented';
+  const f100=p=>Math.floor(p/1e5)*1e5, c100=p=>Math.ceil(p/1e5)*1e5;
+  let lo = owner ? f100(liveFree) : f100(priceCeiling*0.85);
+  let hi = c100(breakEven);
+  lo = Math.min(lo, f100(price)); hi = Math.max(hi, c100(price));
+  if(lo<50000)lo=50000; if(hi<=lo)hi=lo+1e5;
+  const pos=p=>Math.max(0,Math.min(100,(p-lo)/(hi-lo)*100));
+  const sl=$('priceSlider'); sl.min=lo; sl.max=hi; sl.value=price;
+  $('spFlag').style.left=pos(price).toFixed(2)+'%';
+  const tickDefs=[['tickLF','lblLF',liveFree,owner],['tickPC','lblPC',priceCeiling,true],['tickBE','lblBE',breakEven,true]];
+  const vis=[];
+  tickDefs.forEach(td=>{const T=$(td[0]),L=$(td[1]);
+    if(!td[3]){T.style.display='none';L.style.display='none';return;}
+    T.style.display='';L.style.display='';const x=pos(td[2]);T.style.left=x.toFixed(2)+'%';L.style.left=x.toFixed(2)+'%';L.querySelector('.pr').textContent=fmtK(td[2]);vis.push([x,L]);});
+  vis.sort((a,b)=>a[0]-b[0]);
+  const trackW=$('priceSlider').clientWidth||340, minGap=72, rowH=27, rowsAt=[]; let maxRow=0;
+  vis.forEach(v=>{let r=0; while(rowsAt[r]!=null && (v[0]-rowsAt[r])/100*trackW<minGap) r++; rowsAt[r]=v[0]; if(r>maxRow)maxRow=r; v[1].style.top=(r*rowH)+'px';});
+  const tl=document.querySelector('.spTickLabels'); if(tl) tl.style.height=((maxRow+1)*rowH+4)+'px';
+  const rows=[]; if(owner)rows.push(['Live-free',liveFree,GREEN,'live here for $0/mo']);
+  rows.push(['Price ceiling',priceCeiling,GOLD,'DSCR hits your '+tgt.toFixed(2)+' cushion']);
+  rows.push(['Break-even',breakEven,RUST,'DSCR 1.0 \u2014 rents just cover the loan']);
+  rows.sort((a,b)=>a[1]-b[1]);
+  $('spSumRows').innerHTML=rows.map(r=>'<div class="spSumRow"><span class="dot" style="background:'+r[2]+'"></span><span class="snm" style="color:'+r[2]+'">'+r[0]+'</span><span class="spr">$'+(Math.round(r[1]/1000)*1000).toLocaleString()+'</span><span class="sds">'+r[3]+'</span></div>').join('');
+  $('spDscrExplain').innerHTML='<b>DSCR</b> (Debt Service Coverage Ratio) = net rental income \u00f7 the mortgage payment. 1.0 means rents exactly cover the loan; above 1.0 is a cushion. '+(owner?'As an owner-occupant the loan qualifies on your income, so this is a personal safety cushion \u2014 not a lender rule.':'Lenders use it to size investment loans and typically want about 1.20\u20131.25.')+' These prices are reference points, not suggestions \u2014 you decide where to bid.';
+  $('sumSpec').textContent='$'+Math.round(price).toLocaleString()+(owner?' \u00b7 live-in '+sgn(live):' \u00b7 rented '+sgn(cfAll));
+}
 
 function run(){
   const list=num('list'),N=clampUnits();
   updateLookups();
   if(!list || list<=0){
-    $('p3').readOnly=!locked();
-    $('out').innerHTML=`<div class="verdict"><div class="lbl">Get started</div><p style="font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-bottom:4px">Enter a list / asking price to run the analysis.</p><p style="font-size:12px">Fill in the <b>List / asking price</b> in section 1 and your target offer, scenarios, appreciation &amp; exit returns will appear here.</p><div style="max-width:210px;margin:12px auto 0">${BUILDING}</div></div>`;
+    $('specPlace').style.display='block'; $('specMain').style.display='none'; $('sumSpec').textContent='awaiting price';
+    $('out').innerHTML=`<div class="verdict"><div class="lbl">Get started</div><p style="font-family:'Fraunces',serif;font-size:16px;color:#fff;margin-bottom:4px">Enter a list / offer price to run the analysis.</p><p style="font-size:12px">Fill in the <b>List / offer price</b> in section 1 and your scenarios, price spectrum, appreciation &amp; exit returns will appear here.</p><div style="max-width:210px;margin:12px auto 0">${BUILDING}</div></div>`;
     $('printDoc').innerHTML=`<div class="pverdict">Enter a list / asking price on screen, then print to generate the deal memo.</div>`;
     $('sum1').textContent='awaiting list price';
     let rentsB=[];for(let i=0;i<N;i++){const el=$('r_'+i);rentsB.push(el?(parseFloat(el.value)||0):0);}
@@ -508,15 +628,15 @@ function run(){
   const MM=(price,id)=>M(price,dpFrac(id,price));
 
   const k=pmt(1,rate);
-  const recOffer=(NOI/(12*tgt)/k)/(1-dpAf0);
+  const priceCeiling=(NOI/(12*tgt)/k)/(1-dpAf0);
   function ceiling(dpf){let lo=50000,hi=9e6;for(let i=0;i<90;i++){const mid=(lo+hi)/2,loan=mid*(1-dpf),
       c=pmt(loan,rate)+(dpf<0.20?loan*pmiR/12:0);if(c>NOI/12)hi=mid;else lo=mid;}return (lo+hi)/2;}
-  const ceilA=ceiling(dpAf0);
-  if(!locked() && isFinite(recOffer) && recOffer>0){$('p3').value=Math.round(recOffer/1000)*1000;}
-  $('p3').readOnly=!locked();
-  const optimal=num('p3');
-  const beDpf=dpAf0, be=Math.round(ceiling(beDpf)/1000)*1000;
-  const basePrices=[Math.round(list*(1-spread)/1000)*1000, list, optimal, Math.round(list*(1+spread)/1000)*1000];
+  const breakEven=ceiling(dpAf0);
+  function liveFreeSolve(){let lo=50000,hi=9e6;for(let i=0;i<90;i++){const mid=(lo+hi)/2;if(M(mid,dpFrac('dpA',mid)).livein>0)hi=mid;else lo=mid;}return (lo+hi)/2;}
+  const liveFree=liveFreeSolve();
+  const optimal=list;
+  const beDpf=dpAf0, be=Math.round(breakEven/1000)*1000;
+  const basePrices=[Math.round(list*(1-spread)/1000)*1000, list, Math.round(list*(1+spread)/1000)*1000];
   const cols=[...new Set([...basePrices, be])].sort((a,b)=>a-b);
 
   function scen(id){
@@ -532,7 +652,7 @@ function run(){
       ['Cap rate',p=>pct(MM(p,id).cap)],['DSCR',p=>MM(p,id).dscr.toFixed(2)],
       ['Cash-on-cash',p=>pct(MM(p,id).coc)],['Cash to close',p=>usd(MM(p,id).cash)]);
     rows.forEach(r=>{h+=`<tr><td class="m">${r[0]}</td>${cols.map(p=>cell(p,r[1](p))).join('')}</tr>`;});
-    h+=`</tbody></table><div class="note"><b>★ Target offer (${usd(optimal)})</b> — the most you can pay and still clear your ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')}. It’s shown at the same price in both down-payment tables so you can compare the financing side by side.${showBE?` <b>BE</b> = break-even ceiling <b>${usd(be)}</b> — at or above it the fully-rented deal stops making money (DSCR 1.0).`:` At ${dpLabel(id)} the smaller down payment means a bigger loan and higher payments, so the same price shows weaker coverage here — that’s expected, not a red flag. <b>${usd(be)}</b> is the ${dpLabel('dpA')} break-even, shown for reference.`}</div>`;
+    h+=`</tbody></table><div class="note"><b>★ Your offer (${usd(optimal)})</b> — the list / offer price you set, shown at the same price in both down-payment tables so you can compare the financing side by side.${showBE?` <b>BE</b> = break-even ceiling <b>${usd(be)}</b> — at or above it the fully-rented deal stops making money (DSCR 1.0).`:` At ${dpLabel(id)} the smaller down payment means a bigger loan and higher payments, so the same price shows weaker coverage here — that’s expected, not a red flag. <b>${usd(be)}</b> is the ${dpLabel('dpA')} break-even, shown for reference.`}</div>`;
     return h;
   }
 
@@ -572,7 +692,7 @@ function run(){
   ];
   const qchip=q=>`<div class="qchip${q[3]===true?' good':q[3]===false?' meh':''}"><div class="qv">${q[1]}</div><div class="ql">${q[0]}</div><div class="qb">${q[2]}</div></div>`;
   const quickCard=`<div class="verdict qcard"><div class="lbl">Quick Screens — sanity-check vs your own criteria</div><div class="qgrid">${qscreens.map(qchip).join('')}</div><div class="qnote">Common rules of thumb to gut-check a deal — reference points, not targets or advice.</div></div>`;
-  const qstrip=`<div class="qstrip">${qscreens.map(q=>`<span class="qs"><b>${q[1]}</b> ${q[0]}</span>`).join('')}</div>`;
+  const qstrip=`<div class="qstrip">${qscreens.map(q=>`<div class="qs${q[3]===true?' good':''}"><div class="qsv">${q[1]}</div><div class="qsl">${q[0]}</div>${q[2]?`<div class="qsb">${q[2]}</div>`:''}</div>`).join('')}</div>`;
   let appTable=`<table><thead><tr><th></th><th>Value</th><th>Loan balance</th><th>Equity</th><th>Cash-out @75%</th><th>HELOC @80%</th></tr></thead><tbody>`;
   [1,2,3,4,5].forEach(yr=>{const v=optimal*Math.pow(1+appr,yr),b=bal(loan0,rate,yr*12);
     appTable+=`<tr><td class="m">Year ${yr}</td><td>${usd(v)}</td><td>${usd(b)}</td><td>${usd(v-b)}</td><td>${usd(Math.max(0,.75*v-b))}</td><td>${usd(Math.max(0,.80*v-b))}</td></tr>`;});
@@ -637,21 +757,12 @@ function run(){
 
   const o=M(optimal,dpAf0);
   const modeLine = owner
-    ? `Owner-occupant — the loan qualifies on your income, so the ${tgt.toFixed(2)} DSCR target is a personal cushion, not a lender rule.`
-    : `Investment — lenders typically want 20–25% down and ~1.20–1.25 DSCR; the target offer reflects that (rate set ${INV_PREMIUM}% above the owner-occ quote).`;
-  const recBox=`<div class="verdict"><div class="lbl">Offer Guidance — ${owner?'Owner-Occupant':'Investment'}</div>
-    <p style="font-family:'Fraunces',serif;font-size:21px;color:#fff;line-height:1.15;margin-bottom:6px">
-      Offer up to ${usd(Math.round(recOffer/1000)*1000)} &nbsp;·&nbsp; Walk away above ${usd(Math.round(ceilA/1000)*1000)}</p>
-    <p><b>${usd(Math.round(recOffer/1000)*1000)}</b> is the most the math supports paying while still clearing a ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')};
-    <b>${usd(Math.round(ceilA/1000)*1000)}</b> is the break-even ceiling (DSCR 1.0).
-    ${list?`List is ${usd(list)} — `:''}lower is better for your return.<br><span style="color:#e7cf94;font-size:11.5px">${modeLine}</span></p></div>
-    <div class="verdict" style="background:var(--green2)"><div class="lbl">At your ★ target offer (${usd(optimal)}, ${dpLabel('dpA')})</div>
-    <p><span class="hl">${$('addr').value.trim()||'This property'}</span> — ${owner?`live-in cash flow <b>${usd(-o.livein)}/mo</b>, `:''}all-rented cash flow <b>${usd(o.cfAll)}/mo</b>,
-    cap <b>${pct(o.cap)}</b>, DSCR <b>${o.dscr.toFixed(2)}</b>, CoC <b>${pct(o.coc)}</b>.
-    Quick screens: 1% rule ${o.onepct.toFixed(2)}% · GRM ${o.grm.toFixed(1)} · ${usd(o.ppu)}/unit.</p></div>`;
+    ? `Owner-occupant — the loan qualifies on your income, so the ${tgt.toFixed(2)} DSCR figure is a personal cushion, not a lender rule.`
+    : `Investment — lenders typically want 20–25% down and ~1.20–1.25 DSCR (rate set ${INV_PREMIUM}% above the owner-occ quote).`;
+  setSpectrum(optimal,owner,liveFree,priceCeiling,breakEven,-o.livein,o.cfAll,o.dscr,tgt);
 
   const scenA=scen('dpA'), scenB=scen('dpB');
-  $('out').innerHTML = recBox + quickCard + fc + resNote
+  $('out').innerHTML = quickCard + fc + resNote
     + `<div class="refbar"><span class="lbl">Calculations update live as you type. If anything looks stale, tap refresh to recompute with the latest inputs.</span><button class="refresh" data-act="run">↻ Refresh calculations</button></div>`
     + `<h2>Scenarios at ${dpLabel('dpA')}</h2>` + scenA
     + `<h2>Scenarios at ${dpLabel('dpB')}</h2>` + scenB
@@ -670,17 +781,17 @@ function run(){
     sb+=`<polygon points="${bx-4},${by} ${cx},${apex} ${bx+s+4},${by}" fill="#21402f"/><rect x="${bx}" y="${by}" width="${s}" height="${bh}" fill="#fbf8f1" stroke="#21402f" stroke-width="2"/><rect x="${cx-4}" y="${by+5}" width="8" height="6" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1"/><circle cx="${cx}" cy="118" r="3.4" fill="#9a6f1f"/><text x="${cx}" y="139" text-anchor="middle" font-size="12" font-weight="600" fill="#2f5a40" font-family="Archivo,sans-serif">Year ${yr}</text><text x="${cx}" y="154" text-anchor="middle" font-size="11" fill="#1b211c" font-family="Archivo,sans-serif">${usd(v)}</text><text x="${cx}" y="167" text-anchor="middle" font-size="9.5" fill="#6d6655" font-family="Archivo,sans-serif">equity ${usd(eqy)}</text>`;});
   sb+='</svg>';
   $('printDoc').innerHTML=
-    `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">Househack</div><div class="psub">Deal analyzer</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ★ ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
+    `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">Househack</div><div class="psub">Deal analyzer</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
     <div class="pgold"></div>
-    <div class="pverdict">Offer up to ${usd(Math.round(recOffer/1000)*1000)} · walk away above ${usd(Math.round(ceilA/1000)*1000)}</div>
-    <div class="pvsub">${usd(Math.round(recOffer/1000)*1000)} clears a ${tgt.toFixed(2)} DSCR cushion at ${dpLabel('dpA')}; ${usd(Math.round(ceilA/1000)*1000)} is the fully-rented break-even (DSCR 1.0).${list?` List price ${usd(list)}.`:''} ${modeLine}</div>
+    <div class="pverdict">${usd(optimal)} list / offer price${owner?` · live-in cash flow ${usd(-o.livein)}/mo`:''} · all-rented ${usd(o.cfAll)}/mo</div>
+    <div class="pvsub">Reference levels — ${owner?`live-free ${usd(Math.round(liveFree/1000)*1000)}, `:''}price ceiling ${usd(Math.round(priceCeiling/1000)*1000)} (clears a ${tgt.toFixed(2)} DSCR cushion), break-even ${usd(Math.round(breakEven/1000)*1000)} (DSCR 1.0). These are reference points, not suggestions. ${modeLine}</div>
     ${pgrid}
     ${qstrip}
     <h3>Monthly fixed cost — before a dollar of rent</h3>${fcTable}
     <h3>Scenarios at ${dpLabel('dpA')}</h3>${scenA}
     <h3>Scenarios at ${dpLabel('dpB')}</h3>${scenB}
     <div class="pbreak"></div>
-    <h3>The five-year story <span class="hsub">at ${usd(optimal)} ★ · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
+    <h3>The five-year story <span class="hsub">at ${usd(optimal)} · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
     ${sb}
     <h3>Appreciation &amp; equity</h3>${appTable}
     <h3>Return if sold — at projected value</h3>${saleA}${saleB}
@@ -688,14 +799,14 @@ function run(){
     <div class="note"><b>ROI — upfront only</b> = profit ÷ upfront cash (down + closing + reno). <b>ROI — incl. monthly feed</b> also counts cash fed into negative-cash-flow months — the two match whenever cash flow is positive.${(rentG||expG)?' Rents grow '+tnum(num('rentG'))+'%/yr, expenses '+tnum(num('expG'))+'%/yr.':' Rents held flat.'} Annualized compounds the upfront basis. Selling within ~1–2 years usually loses to transaction costs.</div>
     <div class="pfoot">Estimates only — verify taxes, insurance, unit legality/CO, and loan terms with your lender, accountant &amp; township. Not financial advice; use at your own risk. · Generated by the Househack deal analyzer.</div>`;
 
-  $('sum1').textContent=`${usd(list)} list · ★ ${usd(optimal)}`;
+  $('sum1').textContent=`${usd(optimal)} list / offer`;
   $('sum2').textContent=`${N} unit${N>1?'s':''} · ${usd(allMo)}/mo gross`;
   $('sum3').textContent=`${tnum(num('rate'))}% · ${dpLabel('dpA')} / ${dpLabel('dpB')}`;
   $('sum4').textContent=`${usd(tax)} tax · ${tnum(num('vac'))}% vac`;
   $('sum5').textContent=`${tnum(num('appr'))}%/yr · ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} sell`;
   const sgg=v=>`<span class="${v>=0?'sgood':'sbad'}">${usd(v)}</span>`;
   $('sumSide').innerHTML=`<div class="lbl">Live deal summary</div>
-    <div class="row"><span class="k">★ Offer</span><span class="v big">${usd(optimal)}</span></div>
+    <div class="row"><span class="k">List / offer</span><span class="v big">${usd(optimal)}</span></div>
     ${owner?`<div class="row"><span class="k">Live-in CF /mo</span><span class="v">${sgg(-o.livein)}</span></div>`:''}
     <div class="row"><span class="k">All-rented CF /mo</span><span class="v">${sgg(o.cfAll)}</span></div>
     <div class="row"><span class="k">DSCR</span><span class="v">${o.dscr.toFixed(2)}</span></div>
@@ -706,23 +817,25 @@ function run(){
       <div class="qmr"><span>Debt yield</span><span>${debtYield.toFixed(1)}%</span></div>
       <div class="qmr"><span>Break-even occ</span><span>${beOcc.toFixed(0)}%</span></div></div>
     <a href="#" data-act="jump">Jump to full report ↓</a>`;
-  $('sumBar').innerHTML=`<div class="sb"><span class="sbl">★ Offer</span><span class="sbv">${usd(optimal)}</span></div>
+  $('sumBar').innerHTML=`<div class="sb"><span class="sbl">Offer</span><span class="sbv">${usd(optimal)}</span></div>
     ${owner?`<div class="sb"><span class="sbl">Live-in</span><span class="sbv">${sgg(-o.livein)}</span></div>`:''}
     <div class="sb"><span class="sbl">All-rented</span><span class="sbv">${sgg(o.cfAll)}</span></div>
     <div class="sb"><span class="sbl">DSCR</span><span class="sbv">${o.dscr.toFixed(2)}</span></div>`;
 }
 
 document.querySelectorAll('.panel input, .panel select').forEach(el=>{
-  if(el.id==='p3'||el.id==='units'||el.id.startsWith('r_'))return;
+  if(el.id==='units'||el.id==='priceSlider'||el.id.startsWith('r_'))return;
   el.addEventListener('input',run); el.addEventListener('change',run);
 });
 $('units').addEventListener('input',()=>{captureRents();buildRentFields();run();});
-$('p3').addEventListener('input',run);
+let _specRaf=false;
+$('priceSlider').addEventListener('input',e=>{const v=Math.round(+e.target.value);$('list').value=v;if(!_specRaf){_specRaf=true;requestAnimationFrame(()=>{_specRaf=false;run();});}});
 function xallLabel(){const any=document.querySelector('.panel .group.collapsed');const b=$('xallBtn');if(b)b.textContent=any?'Expand all ▾':'Collapse all ◂';}
 $('heroArt').innerHTML=HERO;
 document.querySelectorAll('.subhead .num').forEach(el=>{el.innerHTML=GABLE(el.textContent.trim());});
 document.querySelectorAll('.panel .subhead').forEach(sh=>{sh.addEventListener('click',e=>{if(e.target.closest('.seg'))return;sh.parentElement.classList.toggle('collapsed');xallLabel();});});
 document.querySelectorAll('.panel .group').forEach((g,i)=>{if(i>0)g.classList.add('collapsed');});
+document.getElementById('specSection').classList.remove('collapsed');
 xallLabel();
 if(!loadFromHash()) buildRentFields();
 run();
