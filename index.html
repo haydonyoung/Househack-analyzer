@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Househack — Deal Analyzer</title>
+<title>House Hacking Calculator — househackingcalc.com</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2048%2048'%3E%3Crect%20x='9'%20y='7'%20width='30'%20height='36'%20fill='%23f4efe4'%20stroke='%2321402f'%20stroke-width='3'/%3E%3Crect%20x='9'%20y='10'%20width='30'%20height='4'%20fill='%2321402f'/%3E%3Crect%20x='14'%20y='18'%20width='7'%20height='6'%20fill='none'%20stroke='%2321402f'%20stroke-width='2'/%3E%3Crect%20x='27'%20y='18'%20width='7'%20height='6'%20fill='%23d8b25e'%20stroke='%239a6f1f'%20stroke-width='2'/%3E%3Crect%20x='14'%20y='27'%20width='7'%20height='6'%20fill='none'%20stroke='%2321402f'%20stroke-width='2'/%3E%3Crect%20x='27'%20y='27'%20width='7'%20height='6'%20fill='none'%20stroke='%2321402f'%20stroke-width='2'/%3E%3Crect%20x='21'%20y='34'%20width='6'%20height='9'%20fill='%2321402f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
   .brand{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
   .lockup{display:flex;align-items:center;gap:11px}
   .lockup svg{flex:0 0 auto}
-  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:27px;letter-spacing:-.01em;line-height:1;margin:0}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:23px;letter-spacing:-.01em;line-height:1.05;margin:0}
   .wsub{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.34em;font-size:10.5px;color:var(--gold);font-weight:600;margin-top:3px}
   .hero{width:194px;max-width:44vw;line-height:0}
   .tag{color:var(--muted);font-size:12px;margin:3px 0 16px}
@@ -183,6 +183,10 @@
   .spSumRow .sds{color:var(--muted)}
   .specSumNote{font-size:10.5px;color:var(--muted);line-height:1.55;margin-top:10px}
   @media print{
+    #gradeTopBar,#sumBar,#gradeMobile,.rail{display:none!important}
+    .swipehint{display:none!important}
+    .tscroll{overflow:visible!important}
+    .tw::after{display:none!important}
     @page{size:letter;margin:0.45in}
     body{background:#fff;padding:0;font-size:10.5px}
     .wrap{max-width:100%}
@@ -230,7 +234,7 @@
     .padv b{color:#21402f}
     .pmast{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#21402f;color:#f4efe4;border-radius:8px;padding:11px 14px}
     .pl{display:flex;align-items:center;gap:10px}
-    .pname{font-family:'Fraunces',serif;font-size:19px;line-height:1}
+    .pname{font-family:'Fraunces',serif;font-size:16px;line-height:1.05}
     .psub{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.3em;font-size:8px;color:#d8b25e;margin-top:3px}
     .pr{text-align:right}
     .paddr{font-family:'Fraunces',serif;font-size:13.5px}
@@ -250,6 +254,68 @@
     #printDoc h3{break-after:avoid}
   }
   @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.f.wide{grid-column:span 2}}
+  @media(max-width:760px){
+    .tw{position:relative;margin-bottom:6px}
+    .tw::after{content:"";position:absolute;top:0;bottom:0;right:0;width:26px;pointer-events:none;background:linear-gradient(90deg,rgba(251,248,241,0),var(--card));transition:opacity .18s;z-index:4}
+    .tw.atend::after{opacity:0}
+    .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+    .tscroll>table{table-layout:auto;width:max-content;min-width:100%;margin:0}
+    .tscroll th,.tscroll td{white-space:nowrap}
+    .tscroll th:first-child,.tscroll td:first-child{position:sticky;left:0;z-index:2;white-space:normal;min-width:126px;max-width:150px;box-shadow:2px 0 5px rgba(27,33,28,.06)}
+    .tscroll thead th:first-child{z-index:3;background:var(--green)}
+    .tscroll tbody td:first-child{background:var(--card)}
+    .tscroll tbody tr.subr td:first-child{background:#f1f0e8}
+    .tscroll tbody tr.tot td:first-child{background:var(--opt)}
+    .swipehint{font-size:10px;color:var(--gold);font-weight:600;margin:-2px 0 10px;display:flex;align-items:center;gap:5px}
+    .swipehint span{border:1px solid var(--line);border-radius:20px;padding:1px 8px}
+  }
+  @media(min-width:761px){.swipehint{display:none}}
+  /* ===== DEAL STRENGTH GRADE ===== */
+  .gradecard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+  .gckick{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.18em;font-size:9.5px;color:#9a6f1f;font-weight:700;margin-bottom:10px}
+  .ghead{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .ghouses{display:inline-flex;gap:1px;line-height:0}
+  .gmeta{display:flex;align-items:baseline;gap:9px}
+  .gpill{font-weight:700;font-size:12.5px;padding:4px 12px;border-radius:20px;white-space:nowrap}
+  .gscore{font-family:'Fraunces',serif;color:#9a8f74;font-size:12px}
+  .gscore b{color:#5f5e4f;font-size:20px;font-weight:600}
+  .gwhy{font-family:'Fraunces',serif;font-size:14px;color:#2c2a20;line-height:1.42;margin:11px 0 2px}
+  .gempty{padding:6px 0 2px}
+  .gemptyt{font-family:'Fraunces',serif;font-size:14.5px;color:#3a382e}
+  .gemptys{font-size:11px;color:#8a8377;margin-top:4px;line-height:1.4}
+  .gbars{margin-top:13px;border-top:1px solid #e6ddc9;padding-top:11px}
+  .gbkick{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.16em;font-size:9.5px;color:#a89c80;font-weight:700;margin-bottom:9px}
+  .gbar{margin:9px 0}
+  .gbrow{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:4px}
+  .gbk{font-size:11.5px;color:#4a443a}
+  .gbv{font-size:11px;color:#6d6655;font-variant-numeric:tabular-nums}
+  .gbt{height:6px;background:#e6ddc9;border-radius:4px;overflow:hidden}
+  .gbf{display:block;height:100%;background:var(--green)}
+  .gmini{display:inline-flex;align-items:center;gap:6px}
+  .gmtier{font-family:'Fraunces',serif;font-size:13px;color:#d8b25e;white-space:nowrap}
+  .gminiEmpty{font-size:10.5px;color:#d8b25e;font-style:italic}
+  #gradeRail{margin-top:14px}
+  #gradeMobile{display:none;margin-bottom:14px}
+  #gradeTopBar{display:none}
+  .rail{display:none}
+  #sumBar .sbgrade{display:flex;align-items:center;gap:6px;padding-right:9px;border-right:1px solid rgba(216,178,94,.35)}
+  @media(min-width:980px){
+    .rail{display:block}
+    .sumcard{position:static}
+    #gradeTopBar{display:flex;position:fixed;top:0;left:0;right:0;z-index:60;align-items:center;gap:15px;background:var(--green);color:#f4efe4;border-bottom:1.5px solid #d8b25e;padding:8px 22px;transform:translateY(-105%);transition:transform .22s ease;box-shadow:0 3px 12px rgba(27,33,28,.22)}
+    #gradeTopBar.show{transform:translateY(0)}
+    .gtbsep{width:1px;height:22px;background:rgba(216,178,94,.4);flex:0 0 auto}
+    .gtbst{display:flex;flex-direction:column;line-height:1.15;flex:0 0 auto}
+    .gtl{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.1em;font-size:8.5px;color:#d8b25e}
+    .gtv{font-family:'Fraunces',serif;font-size:14px;white-space:nowrap}
+    .gtbjump{margin-left:auto;font-size:11px;color:#d8b25e;text-decoration:none;font-weight:600;white-space:nowrap}
+    .gtbjump:hover{text-decoration:underline}
+  }
+  @media(max-width:979px){
+    #gradeRail{display:none}
+    #gradeMobile{display:block}
+  }
+
 </style>
 </head>
 <body>
@@ -257,7 +323,7 @@
   <header class="brand">
     <div class="lockup">
       <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="9" y="7" width="30" height="36" fill="#fbf8f1" stroke="#21402f" stroke-width="2.6"/><rect x="9" y="10" width="30" height="4" fill="#21402f"/><rect x="14" y="18" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="27" y="18" width="7" height="6" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1.8"/><rect x="14" y="27" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="27" y="27" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="21" y="34" width="6" height="9" fill="#21402f"/></svg>
-      <div><h1>Househack</h1><div class="wsub">Deal Analyzer</div></div>
+      <div><h1>House Hacking Calculator</h1><div class="wsub">househackingcalc.com</div></div>
     </div>
     <div class="hero" id="heroArt" aria-hidden="true"></div>
   </header>
@@ -339,6 +405,7 @@
       <div class="specbody">
         <div class="specPlace" id="specPlace">Enter a <b>list / offer price</b> in section 1 to explore how the price changes your monthly cash flow and where the key levels sit.</div>
         <div id="specMain" style="display:none">
+          <div id="gradeMobile" aria-live="polite"></div>
           <div class="specTiles">
             <div class="specTile"><div class="stl">List / offer price</div><div class="stv" id="spPrice">—</div><div class="stn" id="spPriceNote"></div></div>
             <div class="specTile" id="spLiveTile"><div class="stl">Live-in cash flow / mo</div><div class="stv" id="spLive">—</div><div class="stn" id="spLiveNote"></div></div>
@@ -373,13 +440,16 @@
     <div id="shareMsg" class="sharemsg" style="display:none"></div>
   </div>
 
+  <div class="rail">
   <aside class="sumcard" id="sumSide" aria-live="polite"></aside>
+  <div id="gradeRail" aria-live="polite"></div>
+  </div>
   </div>
 
   <div class="sheet" id="out"></div>
 
   <footer class="legal">
-    <b>Disclaimer.</b> The Househack Deal Analyzer is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The break-even figures, price-ceiling levels, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
+    <b>Disclaimer.</b> The House Hacking Calculator is provided for informational and educational purposes only and does not constitute financial, investment, legal, tax, lending, or real-estate advice, nor an appraisal or valuation of any property. The break-even figures, price-ceiling levels, cash-flow projections, and all other outputs are mathematical illustrations generated solely from the numbers you enter and from simplified assumptions; they are estimates, not guarantees of performance, and may not reflect actual market conditions, costs, or lending terms. We are not licensed real-estate brokers, mortgage lenders, attorneys, or accountants, and no professional or advisory relationship is created by your use of this tool. Real-estate investing involves substantial risk, including the possible loss of capital. Always verify all figures independently and consult qualified professionals — your lender, real-estate agent, attorney, accountant, inspector, and local officials — before making any offer or investment decision. This tool is provided “as is,” without warranties of any kind, and by using it you agree that its creators and operators are not liable for any losses or damages arising from its use or from decisions made in reliance on its outputs.
   </footer>
 
   <footer class="skyline" aria-hidden="true">
@@ -410,6 +480,8 @@
       </g>
     </svg>
   </footer>
+
+  <div id="gradeTopBar" aria-live="polite"></div>
 
   <div id="sumBar" role="button" tabindex="0" data-act="jump"></div>
 
@@ -444,6 +516,7 @@ document.addEventListener('click',e=>{
   else if(a==='run')run();
   else if(a==='fin')setFinancing(t.dataset.arg);
   else if(a==='jump'){e.preventDefault();const o=document.getElementById('out');if(o)o.scrollIntoView({behavior:'smooth'});}
+  else if(a==='adjust'){e.preventDefault();const sp=document.getElementById('specSection');if(sp)sp.scrollIntoView({behavior:'smooth',block:'start'});}
   else if(a==='xall'){const any=document.querySelector('.panel .group.collapsed');document.querySelectorAll('.panel .group').forEach(g=>g.classList.toggle('collapsed',!any));xallLabel();}
   else if(a==='share')doShare();
 });
@@ -548,6 +621,146 @@ function buildRentFields(){
     : `All <b>${N}</b> units are rented (investment — you don’t occupy any).`;
 }
 
+// ===== DEAL STRENGTH GRADE ENGINE (locked, signed-off) =====
+function interp(x, pts){
+  if (x <= pts[0][0]) return pts[0][1];
+  if (x >= pts[pts.length-1][0]) return pts[pts.length-1][1];
+  for (let i=0;i<pts.length-1;i++){
+    const [x0,y0]=pts[i], [x1,y1]=pts[i+1];
+    if (x <= x1) return y0 + (x-x0)/(x1-x0)*(y1-y0);
+  }
+  return pts[pts.length-1][1];
+}
+const CURVES = {
+  livein:    [[-0.25,100],[0,90],[0.5,75],[1.0,50],[1.5,25],[2.0,0]],
+  cfu:       [[-400,0],[-150,25],[0,50],[100,75],[200,90],[300,100]],
+  coc:       [[-10,0],[-4,25],[0,50],[8,75],[12,90],[15,100]],
+  dscr:      [[0.75,0],[0.90,25],[1.0,50],[1.15,75],[1.25,90],[1.40,100]],
+  capspread: [[-3,0],[-1.5,25],[0,50],[1.5,75],[3,90],[4,100]],
+};
+const GLABELS = ['', 'Poor', 'Weak', 'Fair', 'Strong', 'Excellent'];
+function houseCount(comp){
+  if (comp >= 86) return 5;
+  if (comp >= 66) return 4;
+  if (comp >= 41) return 3;
+  if (comp >= 16) return 2;
+  return 1;
+}
+function gradeDeal(m, mode){
+  const s = {
+    'All-rented Cash Flow': interp(m.cfu,  CURVES.cfu),
+    'Cash-on-cash return':  interp(m.coc,  CURVES.coc),
+    'DSCR':                 interp(m.dscr, CURVES.dscr),
+  };
+  let w;
+  if (mode === 'owner'){
+    s['Live-in Cash Flow'] = interp(m.ratio, CURVES.livein);
+    w = { 'Live-in Cash Flow':0.40, 'Cash-on-cash return':0.30, 'All-rented Cash Flow':0.15, 'DSCR':0.15 };
+  } else {
+    s['Cap rate vs. your rate'] = interp(m.capRate - m.mortgageRate, CURVES.capspread);
+    w = { 'Cash-on-cash return':0.25, 'Cap rate vs. your rate':0.25, 'DSCR':0.25, 'All-rented Cash Flow':0.25 };
+  }
+  let composite = 0;
+  for (const k in w) composite += s[k] * w[k];
+  composite = Math.round(composite);
+  let houses = houseCount(composite);
+  const capped = (m.cfu < 0) || (m.dscr < 1.0);
+  if (capped) houses = Math.min(houses, 3);
+  const label = GLABELS[houses];
+  const why = whyLine(label, s, w, capped, m, mode);
+  return { composite, houses, label, why, subscores: s, weights: w, capped };
+}
+const GPHRASE = {
+  'Live-in Cash Flow': {
+    paid:  "the units pay you to live here",
+    free:  "you'd live here essentially for free",
+    frac:  "you'd live here for a fraction of market rent",
+    under: "you'd live here for less than market rent",
+    full:  "you'd pay roughly full market rent to live here",
+    over:  "you'd pay more to live here than to simply rent",
+  },
+  'All-rented Cash Flow': {
+    up:   "it cash-flows with room to spare once rented",
+    down: "it barely breaks even once every unit's rented",
+    neg:  "it slips into the red once every unit's rented",
+  },
+  'Cash-on-cash return': { up: "your cash earns a strong return", down: "the return on your cash is thin" },
+  'DSCR':                { up: "rents clear the mortgage with a healthy cushion", down: "rents don't quite cover the mortgage" },
+  'Cap rate vs. your rate': { up: "the cap rate runs above your loan rate", down: "the cap rate sits below your loan rate" },
+};
+function cap1(str){ return str.charAt(0).toUpperCase() + str.slice(1) + "."; }
+function phraseFor(metric, score, m){
+  const p = GPHRASE[metric];
+  if (metric === 'Live-in Cash Flow'){
+    const r = m.ratio;
+    if (r <= -0.05) return p.paid;
+    if (r <=  0.15) return p.free;
+    if (r <=  0.55) return p.frac;
+    if (r <=  0.85) return p.under;
+    if (r <=  1.20) return p.full;
+    return p.over;
+  }
+  if (metric === 'All-rented Cash Flow') return (m.cfu < 0) ? p.neg : (score >= 50 ? p.up : p.down);
+  return score >= 50 ? p.up : p.down;
+}
+function whyLine(label, s, w, capped, m, mode){
+  const dev = {};
+  for (const k in w) dev[k] = w[k] * (s[k] - 50);
+  const up   = Object.keys(dev).reduce((a,b)=> dev[b] > dev[a] ? b : a);
+  const down = Object.keys(dev).reduce((a,b)=> dev[b] < dev[a] ? b : a);
+  if (capped){
+    const reason = (m.cfu < 0) ? GPHRASE['All-rented Cash Flow'].neg : GPHRASE['DSCR'].down;
+    return (dev[up] > 3) ? cap1(phraseFor(up, s[up], m) + ", but " + reason)
+                         : cap1("capped here \u2014 " + reason);
+  }
+  if (label === 'Strong' || label === 'Excellent') return cap1(phraseFor(up, s[up], m));
+  if (label === 'Weak'   || label === 'Poor')      return cap1(phraseFor(down, s[down], m));
+  return cap1(phraseFor(up, s[up], m) + ", but " + phraseFor(down, s[down], m));
+}
+// ===== GRADE RENDERERS =====
+function gHouse(filled,size,onGreen){
+  const fc = onGreen ? '#f4efe4' : '#21402f';
+  const dc = onGreen ? '#21402f' : '#f4efe4';
+  if(filled) return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><path d="M12 3 L21 10.5 L21 21 L3 21 L3 10.5 Z" fill="${fc}"/><text x="12" y="18.3" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="8.8" fill="${dc}">$</text></svg>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><path d="M12 3 L21 10.5 L21 21 L3 21 L3 10.5 Z" fill="none" stroke="${fc}" stroke-width="1.3" opacity="0.3"/>${onGreen?'':`<text x="12" y="18.3" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="8.8" fill="${fc}" opacity="0.3">$</text>`}</svg>`;
+}
+function gHouses(n,size,onGreen){let h='';for(let i=1;i<=5;i++)h+=gHouse(i<=n,size,onGreen);return `<span class="ghouses">${h}</span>`;}
+function gPill(houses,label){
+  let bg,tx; if(houses>=4){bg='#dde8d1';tx='#21402f';} else if(houses===3){bg='#efe1c4';tx='#6f4e0f';} else {bg='#efd9cf';tx='#7a2f17';}
+  return `<span class="gpill" style="background:${bg};color:${tx}">${label}</span>`;
+}
+function gBarsHTML(subs, mode, hasRent){
+  const order = mode==='owner'
+    ? ['Live-in Cash Flow','Cash-on-cash return','All-rented Cash Flow','DSCR']
+    : ['Cash-on-cash return','Cap rate vs. your rate','DSCR','All-rented Cash Flow'];
+  let rows='';
+  order.forEach(k=>{
+    let sc = subs[k];
+    if(mode==='owner' && !hasRent && k==='Live-in Cash Flow') sc=null;
+    const w = sc==null?0:Math.max(0,Math.min(100,Math.round(sc)));
+    const val = sc==null?'\u2014':Math.round(sc);
+    rows += `<div class="gbar"><div class="gbrow"><span class="gbk">${k}</span><span class="gbv">${val}</span></div><div class="gbt"><span class="gbf" style="width:${w}%"></span></div></div>`;
+  });
+  return `<div class="gbars"><div class="gbkick">Behind the grade</div>${rows}</div>`;
+}
+function gradeCardHTML(g, subs, mode, hasRent){
+  let verdict;
+  if(!g){
+    verdict = `<div class="gempty"><div class="gemptyt">Add your unit\u2019s rent to grade this deal</div><div class="gemptys">Enter what your unit would rent for \u2014 even though you\u2019ll live in it.</div></div>`;
+  } else {
+    verdict = `<div class="ghead">${gHouses(g.houses,34,false)}<span class="gmeta">${gPill(g.houses,g.label)}<span class="gscore"><b>${g.composite}</b>/100</span></span></div><div class="gwhy">${g.why}</div>`;
+  }
+  return `<div class="gradecard"><div class="gckick">Deal strength</div>${verdict}${gBarsHTML(subs,mode,hasRent)}</div>`;
+}
+function gradeMiniHTML(g, hasRent, onGreen){
+  if(!g) return `<span class="gmini gminiEmpty">Add unit rent</span>`;
+  return `<span class="gmini">${gHouses(g.houses,onGreen?15:17,onGreen)}<span class="gmtier">${g.label}</span></span>`;
+}
+
+function TW(t){return '<div class="tw"><div class="tscroll">'+t+'</div></div><div class="swipehint"><span>swipe \u2192</span> more columns</div>';}
+
+function wireTables(){document.querySelectorAll('#out .tscroll').forEach(function(sc){var tw=sc.closest('.tw');function upd(){var end=sc.scrollLeft+sc.clientWidth>=sc.scrollWidth-2;if(tw)tw.classList.toggle('atend',end||sc.scrollWidth<=sc.clientWidth+2);}sc.addEventListener('scroll',upd,{passive:true});upd();});}
+
 function setSpectrum(price,owner,liveFree,priceCeiling,breakEven,live,cfAll,dscr,tgt){
   $('specPlace').style.display='none'; $('specMain').style.display='';
   const fmtK=p=>p>=1e6?('$'+(p/1e6).toFixed(2).replace(/\.?0+$/,'')+'M'):('$'+Math.round(p/1000)+'k');
@@ -610,6 +823,7 @@ function run(){
     $('sum5').textContent=`${tnum(num('appr'))}%/yr appr`;
     $('sumSide').innerHTML=`<div class="lbl">Live deal summary</div><div class="row"><span class="k">Enter a list price to see the deal here.</span></div>`;
     $('sumBar').innerHTML=`<div class="sb"><span class="sbl">Get started</span><span class="sbv">Enter a list price above</span></div>`;
+    $('gradeRail').innerHTML='';$('gradeMobile').innerHTML='';$('gradeTopBar').innerHTML='';
     return;
   }
   const tax=num('tax'),ins=num('ins'),util=num('util'),reno=num('reno');
@@ -665,20 +879,20 @@ function run(){
     const hdr=p=>{const o=p===optimal,e=p===be&&showBE&&!o;
       return `<th${o?' class="star" style="background:var(--gold)"':e?' style="background:var(--rust)"':''}>${usd(p)}${o?' ★':e?' BE':''}</th>`;};
     const cell=(p,v)=>{const o=p===optimal,e=p===be&&showBE&&!o;return `<td${o?' class="tot star"':e?' class="be"':''}>${v}</td>`;};
-    let h=`<table><thead><tr><th>Per month / metric</th>${cols.map(hdr).join('')}</tr></thead><tbody>`;
+    let tbl=`<table><thead><tr><th>Per month / metric</th>${cols.map(hdr).join('')}</tr></thead><tbody>`;
     const rows=[['Total fixed cost (before rent)',p=>usd(MM(p,id).totBeforeRent)],
       ['Total rent — all units rented /mo',()=>usd(allMo)]];
     if(owner) rows.push(['Cash flow — live in one unit /mo',p=>{const v=-MM(p,id).livein;return `<span class="${v>=0?'pos':'neg'}">${usd(v)}</span>`;}]);
     rows.push(['Cash flow — all rented /mo',p=>{const v=MM(p,id).cfAll;return `<span class="${v>=0?'pos':'neg'}">${usd(v)}</span>`;}],
       ['Cap rate',p=>pct(MM(p,id).cap)],['DSCR',p=>MM(p,id).dscr.toFixed(2)],
       ['Cash-on-cash',p=>pct(MM(p,id).coc)],['Cash to close',p=>usd(MM(p,id).cash)]);
-    rows.forEach(r=>{h+=`<tr><td class="m">${r[0]}</td>${cols.map(p=>cell(p,r[1](p))).join('')}</tr>`;});
-    h+=`</tbody></table><div class="note"><b>★ Your offer (${usd(optimal)})</b> — the list / offer price you set, shown at the same price in both down-payment tables so you can compare the financing side by side.${showBE?` <b>BE</b> = break-even ceiling <b>${usd(be)}</b> — at or above it the fully-rented deal stops making money (DSCR 1.0).`:` At ${dpLabel(id)} the smaller down payment means a bigger loan and higher payments, so the same price shows weaker coverage here — that’s expected, not a red flag. <b>${usd(be)}</b> is the ${dpLabel('dpA')} break-even, shown for reference.`}</div>`;
+    rows.forEach(r=>{tbl+=`<tr><td class="m">${r[0]}</td>${cols.map(p=>cell(p,r[1](p))).join('')}</tr>`;});
+    tbl+=`</tbody></table>`; const h=TW(tbl)+`<div class="note"><b>★ Your offer (${usd(optimal)})</b> — the list / offer price you set, shown at the same price in both down-payment tables so you can compare the financing side by side.${showBE?` <b>BE</b> = break-even ceiling <b>${usd(be)}</b> — at or above it the fully-rented deal stops making money (DSCR 1.0).`:` At ${dpLabel(id)} the smaller down payment means a bigger loan and higher payments, so the same price shows weaker coverage here — that’s expected, not a red flag. <b>${usd(be)}</b> is the ${dpLabel('dpA')} break-even, shown for reference.`}</div>`;
     return h;
   }
 
   const mA=M(optimal,dpAf0), mB=M(optimal,dpBf0);
-  const fcTable=`<table><thead><tr><th>Component (at ${usd(optimal)} ★)</th><th>${dpLabel('dpA')}</th><th>${dpLabel('dpB')}</th></tr></thead><tbody>
+  const fcTable=TW(`<table><thead><tr><th>Component (at ${usd(optimal)} ★)</th><th>${dpLabel('dpA')}</th><th>${dpLabel('dpB')}</th></tr></thead><tbody>
     <tr><td class="m">Principal &amp; interest</td><td>${usd(mA.pi)}</td><td>${usd(mB.pi)}</td></tr>
     <tr><td class="m">PMI</td><td>${usd(mA.pmi)}</td><td>${usd(mB.pmi)}</td></tr>
     <tr><td class="m">Property taxes</td><td>${usd(tax/12)}</td><td>${usd(tax/12)}</td></tr>
@@ -687,7 +901,7 @@ function run(){
     <tr class="subr"><td class="m">= Fixed carrying cost (must-pay)</td><td>${usd(mA.fixedCarry)}</td><td>${usd(mB.fixedCarry)}</td></tr>
     <tr><td class="m">Reserves — vacancy/repairs/capex/mgmt</td><td>${usd(res2)}</td><td>${usd(res2)}</td></tr>
     <tr class="tot"><td class="m">Total monthly outlay before rent</td><td>${usd(mA.totBeforeRent)}</td><td>${usd(mB.totBeforeRent)}</td></tr>
-    </tbody></table>`;
+    </tbody></table>`);
   const fc=`<h2>Monthly Fixed Cost — Before a Dollar of Rent</h2>`+fcTable;
   const repDesc=uOf('rep')==='usd'?usd(num('rep'))+'/yr repairs':tnum(num('rep'))+'% repairs';
   const capDesc=uOf('cap')==='usd'?usd(num('cap'))+'/yr capex':tnum(num('cap'))+'% capex';
@@ -717,7 +931,7 @@ function run(){
   let appTable=`<table><thead><tr><th></th><th>Value</th><th>Loan balance</th><th>Equity</th><th>Cash-out @75%</th><th>HELOC @80%</th></tr></thead><tbody>`;
   [1,2,3,4,5].forEach(yr=>{const v=optimal*Math.pow(1+appr,yr),b=bal(loan0,rate,yr*12);
     appTable+=`<tr><td class="m">Year ${yr}</td><td>${usd(v)}</td><td>${usd(b)}</td><td>${usd(v-b)}</td><td>${usd(Math.max(0,.75*v-b))}</td><td>${usd(Math.max(0,.80*v-b))}</td></tr>`;});
-  appTable+=`</tbody></table>`;
+  appTable+=`</tbody></table>`; appTable=TW(appTable);
   const app=`<h2>Appreciation &amp; Equity <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">from ${usd(optimal)}, ${dpLabel('dpA')}, ${tnum(num('appr'))}%/yr</span></h2>`+appTable;
 
   const sellPct=num('sellcost'), sellUsd=uOf('sellcost')==='usd';
@@ -740,7 +954,7 @@ function run(){
     const yrs=[1,2,3,4,5];
     const sg=v=>`<span class="${v>=0?'pos':'neg'}">${usd(v)}</span>`;
     const row=(lbl,f,bold)=>`<tr${bold?' class="tot"':''}><td class="m">${lbl}</td>${C.map(c=>`<td>${f(c)}</td>`).join('')}</tr>`;
-    return `<table><thead><tr><th>${dpLabel(id)} — sell in…</th>${yrs.map(y=>`<th>Year ${y}</th>`).join('')}</tr></thead><tbody>
+    return TW(`<table><thead><tr><th>${dpLabel(id)} — sell in…</th>${yrs.map(y=>`<th>Year ${y}</th>`).join('')}</tr></thead><tbody>
       ${row('Projected sale price',c=>usd(c.val))}
       ${row('− Selling costs',c=>usd(-c.sc))}
       ${row('− Loan payoff',c=>usd(-c.balN))}
@@ -756,7 +970,7 @@ function run(){
         ? `<tr class="muted"><td class="m">Total ROI — incl. monthly feed <span class="tagmuted">= same; positive cash flow, nothing fed in</span></td>${C.map(c=>`<td>${pct(c.roiTot)}</td>`).join('')}</tr>`
         : `<tr class="tot"><td class="m">Total ROI — incl. monthly feed</td>${C.map(c=>`<td><span class="${c.roiTot>=0?'pos':'neg'}">${pct(c.roiTot)}</span></td>`).join('')}</tr>` }
       ${row('Annualized return (on upfront)',c=>`<span class="${c.ann>=0?'pos':'neg'}">${pct(c.ann)}</span>`)}
-      </tbody></table>`;
+      </tbody></table>`);
   }
   const saleA=saleTbl('dpA'), saleB=saleTbl('dpB');
   const sdA=saleData('dpA'); const pbk=paybackYr(sdA.C);
@@ -772,13 +986,23 @@ function run(){
   const saleSection=`<h2>Return If Sold — at projected value <span style="color:var(--gold);font-family:Archivo;font-size:10.5px;font-weight:600;letter-spacing:0">at ${usd(optimal)} ★, ${tnum(num('appr'))}%/yr, ${sellUsd?usd(sellPct):tnum(sellPct)+'%'} selling cost</span></h2>`+paybackCallout+saleA+saleB+saleNote;
   function advRow(id){const sd=saleData(id);const cell=Y=>{const c=sd.C[Y-1];const cfs=[-sd.upfront];for(let y=1;y<=Y;y++){let cf=noiYear(y)-sd.debtAnnual;if(y===Y)cf+=c.net;cfs.push(cf);}return {ir:irr(cfs),em:1+c.roiTot};};return {dp:dpLabel(id),y3:cell(3),y5:cell(5)};}
   const aA=advRow('dpA'),aB=advRow('dpB');const irrCell=x=>x==null?'—':pct(x);
-  const advTable=`<table><thead><tr><th>Metric</th><th>${aA.dp} · 3yr</th><th>${aA.dp} · 5yr</th><th>${aB.dp} · 3yr</th><th>${aB.dp} · 5yr</th></tr></thead><tbody>
+  const advTable=TW(`<table><thead><tr><th>Metric</th><th>${aA.dp} · 3yr</th><th>${aA.dp} · 5yr</th><th>${aB.dp} · 3yr</th><th>${aB.dp} · 5yr</th></tr></thead><tbody>
     <tr><td class="m">IRR — annualized, timing-aware</td><td>${irrCell(aA.y3.ir)}</td><td>${irrCell(aA.y5.ir)}</td><td>${irrCell(aB.y3.ir)}</td><td>${irrCell(aB.y5.ir)}</td></tr>
     <tr><td class="m">Equity multiple — × cash in</td><td>${aA.y3.em.toFixed(2)}×</td><td>${aA.y5.em.toFixed(2)}×</td><td>${aB.y3.em.toFixed(2)}×</td><td>${aB.y5.em.toFixed(2)}×</td></tr>
-    </tbody></table>`;
+    </tbody></table>`);
   const advBlock=`<details class="adv"><summary>Advanced metrics — IRR &amp; equity multiple <span class="muted">(for finance-minded investors)</span></summary><div class="note"><b>IRR</b> is your true annualized return that accounts for <i>when</i> every dollar moves in and out — including any monthly cash you feed a negative property. It deliberately differs from the simpler “Annualized return” row in the sale tables, which just spreads total profit over the years as one lump sum: with positive cash flow IRR runs a little higher than that row, and with negative cash flow (money fed in) it runs lower. <b>Equity multiple</b> = total dollars returned ÷ dollars in (2.0× = you doubled your money); it equals <b>1 + the “Total ROI — incl. monthly feed”</b> shown in the sale tables, so you can check it directly. Both include the sale and use your section-5 growth assumptions; “—” means there's no positive return to solve for.</div>${advTable}</details>`;
 
   const o=M(optimal,dpAf0);
+  // ===== Deal Strength grade inputs (o.coc & o.cap are fractions -> *100) =====
+  const gHasRent = !owner || ownerRentMo>0;
+  const gMode = owner ? 'owner' : 'investor';
+  const gm = {cfu:o.cfAll/N, dscr:o.dscr, coc:o.coc*100, ratio: owner?(o.livein/(ownerRentMo||1)):0, capRate:o.cap*100, mortgageRate:rate*100};
+  let gGrade=null, gSubs;
+  if(owner && !gHasRent){
+    gSubs={'All-rented Cash Flow':interp(gm.cfu,CURVES.cfu),'Cash-on-cash return':interp(gm.coc,CURVES.coc),'DSCR':interp(gm.dscr,CURVES.dscr),'Live-in Cash Flow':null};
+  } else {
+    gGrade=gradeDeal(gm,gMode); gSubs=gGrade.subscores;
+  }
   const modeLine = owner
     ? `Owner-occupant — the loan qualifies on your income, so the ${tgt.toFixed(2)} DSCR figure is a personal cushion, not a lender rule.`
     : `Investment — lenders typically want 20–25% down and ~1.20–1.25 DSCR (rate set ${INV_PREMIUM}% above the owner-occ quote).`;
@@ -791,6 +1015,7 @@ function run(){
     + `<h2>Scenarios at ${dpLabel('dpB')}</h2>` + scenB
     + app + saleSection + advBlock
     + `<div class="note">Only price changes across scenarios; all else held constant. Estimates only — verify taxes, insurance, the legality/CO of any extra unit, and loan terms with your lender, accountant &amp; township. Not financial advice.</div>`;
+  wireTables();
 
   const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   const stats=[];
@@ -814,7 +1039,7 @@ function run(){
     +`</div>`;
   const bottomLine=`<div class="psnaptake"><b>Bottom line \u2014</b> over 5 years at ${aA.dp}, this deal builds about <b>${usd(eq5)}</b> of equity (${sgnUsd(gain5)} from appreciation) and a cumulative <b>${sgnUsd(c5.cumCF)}</b> in cash flow \u2014 a 5-yr return near <b>${pct(c5.roiTot)}</b> (${aA.y5.em.toFixed(2)}\u00d7 your cash). ${pbk==null?'It does not reach the sell-to-profit point within 5 years at these assumptions.':'Sell-to-profit lands around '+pbkYr.replace('\u2248 ','')+'.'}</div>`;
   $('printDoc').innerHTML=
-    `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">Househack</div><div class="psub">Deal analyzer</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
+    `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">House Hacking Calculator</div><div class="psub">househackingcalc.com</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
     <div class="pgold"></div>
     <div class="pverdict">${usd(optimal)} list / offer price${owner?` · live-in cash flow ${usd(-o.livein)}/mo`:''} · all-rented ${usd(o.cfAll)}/mo</div>
     <div class="pvsub">Reference levels — ${owner?`live-free ${usd(Math.round(liveFree/1000)*1000)}, `:''}price ceiling ${usd(Math.round(priceCeiling/1000)*1000)} (clears a ${tgt.toFixed(2)} DSCR cushion), break-even ${usd(Math.round(breakEven/1000)*1000)} (DSCR 1.0). These are reference points, not suggestions. ${modeLine}</div>
@@ -830,7 +1055,7 @@ function run(){
     <h3>Return if sold — at projected value</h3>${saleA}${saleB}
     <div class="padv"><b>IRR 5-yr:</b> ${irrCell(aA.y5.ir)} (${aA.dp}) / ${irrCell(aB.y5.ir)} (${aB.dp}) · <b>Equity multiple 5-yr:</b> ${aA.y5.em.toFixed(2)}× / ${aB.y5.em.toFixed(2)}×</div>
     <div class="note"><b>ROI — upfront only</b> = profit ÷ upfront cash (down + closing + reno). <b>ROI — incl. monthly feed</b> also counts cash fed into negative-cash-flow months — the two match whenever cash flow is positive.${(rentG||expG)?' Rents grow '+tnum(num('rentG'))+'%/yr, expenses '+tnum(num('expG'))+'%/yr.':' Rents held flat.'} Annualized compounds the upfront basis. Selling within ~1–2 years usually loses to transaction costs.</div>
-    <div class="pfoot">Estimates only — verify taxes, insurance, unit legality/CO, and loan terms with your lender, accountant &amp; township. Not financial advice; use at your own risk. · Generated by the Househack deal analyzer.</div>`;
+    <div class="pfoot">Estimates only — verify taxes, insurance, unit legality/CO, and loan terms with your lender, accountant &amp; township. Not financial advice; use at your own risk. · Generated by House Hacking Calculator · househackingcalc.com</div>`;
 
   $('sum1').textContent=`${usd(optimal)} list / offer`;
   $('sum2').textContent=`${N} unit${N>1?'s':''} · ${usd(allMo)}/mo gross`;
@@ -854,6 +1079,17 @@ function run(){
     ${owner?`<div class="sb"><span class="sbl">Live-in</span><span class="sbv">${sgg(-o.livein)}</span></div>`:''}
     <div class="sb"><span class="sbl">All-rented</span><span class="sbv">${sgg(o.cfAll)}</span></div>
     <div class="sb"><span class="sbl">DSCR</span><span class="sbv">${o.dscr.toFixed(2)}</span></div>`;
+  // ===== render Deal Strength grade =====
+  const gCardHTML = gradeCardHTML(gGrade,gSubs,gMode,gHasRent);
+  $('gradeRail').innerHTML = gCardHTML;
+  $('gradeMobile').innerHTML = gCardHTML;
+  $('gradeTopBar').innerHTML = `${gradeMiniHTML(gGrade,gHasRent,true)}<span class="gtbsep"></span>`
+    + `<span class="gtbst"><span class="gtl">Offer</span><span class="gtv">${usd(optimal)}</span></span>`
+    + (owner?`<span class="gtbst"><span class="gtl">Live-in</span><span class="gtv">${sgg(-o.livein)}</span></span>`:'')
+    + `<span class="gtbst"><span class="gtl">All-rented</span><span class="gtv">${sgg(o.cfAll)}</span></span>`
+    + `<span class="gtbst"><span class="gtl">DSCR</span><span class="gtv">${o.dscr.toFixed(2)}</span></span>`
+    + `<a href="#" class="gtbjump" data-act="adjust">\u2191 Adjust price</a>`;
+  $('sumBar').innerHTML = `<span class="sbgrade">${gradeMiniHTML(gGrade,gHasRent,true)}</span>` + $('sumBar').innerHTML;
 }
 
 document.querySelectorAll('.panel input, .panel select').forEach(el=>{
@@ -872,6 +1108,19 @@ document.getElementById('specSection').classList.remove('collapsed');
 xallLabel();
 if(!loadFromHash()) buildRentFields();
 run();
+// Desktop only: reveal the persistent top bar once the summary+grade rail scrolls out of view
+(function(){
+  const rail=document.querySelector('.rail'), bar=document.getElementById('gradeTopBar');
+  if(!rail||!bar||!('IntersectionObserver' in window))return;
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      const desktop=window.matchMedia('(min-width:980px)').matches;
+      if(desktop && !e.isIntersecting) bar.classList.add('show');
+      else bar.classList.remove('show');
+    });
+  },{threshold:0});
+  io.observe(rail);
+})();
 </script>
 </body>
 </html>
