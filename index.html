@@ -20,6 +20,38 @@
   .wsub{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.34em;font-size:10.5px;color:var(--gold);font-weight:600;margin-top:3px}
   .hero{width:194px;max-width:44vw;line-height:0}
   .tag{color:var(--muted);font-size:12px;margin:3px 0 16px}
+  /* ===== HERO ===== */
+  .herobox{position:relative;display:grid;grid-template-columns:1fr 348px;gap:36px;align-items:center;margin:14px 0 18px;padding:40px 42px;border:1px solid #e3ddca;border-radius:22px;overflow:hidden;background:radial-gradient(125% 130% at 90% 8%,rgba(47,90,64,.12),transparent 52%),linear-gradient(152deg,#edf2e8 0%,#f4efe4 48%,#f1e9d7 100%);box-shadow:0 16px 46px rgba(33,64,47,.10)}
+  .hero-wm{position:absolute;right:-46px;bottom:-58px;width:340px;height:auto;opacity:.055;pointer-events:none;z-index:0}
+  .hero-copy{position:relative;z-index:1}
+  .hero-visual{position:relative;z-index:1}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.2em;font-size:10px;font-weight:700;color:var(--gold);margin-bottom:13px}
+  .hero-eyebrow::before{content:"";width:20px;height:2px;background:var(--gold);border-radius:2px}
+  .hero-h{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:29px;line-height:1.18;letter-spacing:-.01em;color:var(--ink);margin:0 0 13px}
+  .hero-sub{font-size:14.5px;color:#3a382e;line-height:1.5;margin:0 0 17px;max-width:560px}
+  .hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .hchip{font-size:11.5px;color:#2f4a3a;background:rgba(255,255,255,.74);border:1px solid #d7e0d2;border-radius:20px;padding:4px 11px;font-weight:500;white-space:nowrap}
+  .hpeek-frame{background:#fff;border-radius:13px;border:1px solid #ddd6c2;overflow:hidden;box-shadow:0 26px 64px rgba(33,64,47,.22),0 6px 16px rgba(33,64,47,.10)}
+  .hpeek-chrome{display:flex;align-items:center;gap:7px;background:#efeadf;padding:9px 13px;border-bottom:1px solid #e0d9c6}
+  .hpeek-dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .hpeek-dot.r{background:#d98b6a}.hpeek-dot.y{background:#d8b25e}.hpeek-dot.g{background:#84ab8b}
+  .hpeek-addr{flex:1;text-align:center;font-size:9.5px;color:#8a8470;background:#f6f2e9;border:1px solid #e7e0cf;border-radius:5px;padding:3px 9px;letter-spacing:.01em;margin-left:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hpeek-body{padding:15px 17px}
+  .hpeek-k{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.16em;font-size:9px;color:var(--gold);font-weight:700;margin-bottom:6px}
+  .hpeek-price{font-family:'Fraunces',serif;font-size:15.5px;color:#21402f;margin-bottom:9px}
+  .hpeek-grade{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .hpeek-why{font-family:'Fraunces',serif;font-size:13px;color:#2c2a20;line-height:1.35;margin:10px 0 0}
+  .hpeek-metrics{display:grid;gap:8px;margin-top:11px;border-top:1px solid #e6ddc9;padding-top:10px}
+  .hpm-l{font-size:7.5px;text-transform:uppercase;letter-spacing:.04em;color:#9a8f74;font-weight:700}
+  .hpm-v{font-family:'Fraunces',serif;font-size:13px;color:#21402f;margin-top:1px;white-space:nowrap}
+  .tostartrow{cursor:pointer;border-radius:6px;transition:color .15s}
+  .tostartrow:hover{color:var(--green2)}
+  @media(max-width:760px){
+    .herobox{grid-template-columns:1fr;gap:20px;padding:24px 20px;margin:8px 0 14px;border-radius:16px}
+    .hero-h{font-size:24px}
+    .hero-sub{font-size:14px}
+    .hero-wm{width:230px;right:-40px;bottom:-46px}
+  }
   .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 18px 16px;margin-bottom:16px}
   .group{padding:10px 0;border-bottom:none}
   .group:last-of-type{border-bottom:none}
@@ -76,6 +108,7 @@
   td.m{text-align:left;font-weight:500}
   .subr{background:var(--shade);font-weight:700}
   .tot{background:var(--opt);font-family:'Fraunces',serif;font-weight:600}
+  .optc{background:var(--opt)}
   td.be{background:#f6e9e1}
   td.star{border-left:2.5px solid var(--gold);border-right:2.5px solid var(--gold)}
   thead th.star{border-top:2.5px solid var(--gold);border-left:2.5px solid var(--gold);border-right:2.5px solid var(--gold)}
@@ -192,9 +225,9 @@
     .wrap{max-width:100%}
     .wrap > :not(#printDoc){display:none!important}
     #printDoc{display:block!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#1b211c}
-    #printDoc table{width:100%;border-collapse:collapse;font-size:9px;margin:0 0 4px;table-layout:fixed}
+    #printDoc table{width:100%;border-collapse:collapse;font-size:9px;margin:0 0 3px;table-layout:fixed}
     #printDoc th:first-child,#printDoc td:first-child{width:34%}
-    #printDoc th,#printDoc td{padding:1.9px 5px;border-bottom:1px solid #d8cfba;text-align:right}
+    #printDoc th,#printDoc td{padding:1.35px 5px;border-bottom:1px solid #d8cfba;text-align:right}
     #printDoc th:first-child,#printDoc td:first-child{text-align:left}
     #printDoc thead th{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.04em;font-size:8.5px;color:#fff;background:#2f5a40;font-weight:600}
     #printDoc thead th:first-child{background:#21402f}
@@ -202,6 +235,7 @@
     #printDoc td.m{text-align:left;font-weight:500}
     #printDoc .subr{background:#efe9d6;font-weight:700}
     #printDoc .tot{background:#f3ead0;font-family:'Fraunces',serif;font-weight:600}
+    #printDoc .optc{background:#f3ead0}
     #printDoc td.be{background:#f6e9e1}
     #printDoc th.star{border-top:2px solid #9a6f1f;border-left:2px solid #9a6f1f;border-right:2px solid #9a6f1f}
     #printDoc td.star{border-left:2px solid #9a6f1f;border-right:2px solid #9a6f1f}
@@ -224,8 +258,10 @@
     .ppbk-body{background:#21402f;color:#fff;padding:4px 10px;flex:1;display:flex;flex-direction:column;justify-content:center}
     .ppbk-cap{font-size:6.5px;text-transform:uppercase;letter-spacing:.07em;color:#d8b25e;font-weight:700;margin-bottom:1px}
     .ppbk-txt{font-size:8.4px;color:#dfe8e1;line-height:1.4}
-    .psnap{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0 5px}
-    .psnap-cell{border:1.2px solid #d8cfba;border-radius:6px;padding:6px 9px;background:#fbf8f1}
+    .psnap{display:grid;grid-template-columns:repeat(3,1fr);border:1.2px solid #d8cfba;border-radius:6px;overflow:hidden;margin:3px 0 4px;background:#fff}
+    .psnap-cell{padding:5px 9px;border-right:1px solid #ece4d2;border-bottom:1px solid #ece4d2}
+    .psnap-cell:nth-child(3n){border-right:none}
+    .psnap-cell:nth-child(n+4){border-bottom:none}
     .psnap-l{font-size:6.8px;text-transform:uppercase;letter-spacing:.07em;color:#9a6f1f;font-weight:700}
     .psnap-v{font-family:'Fraunces',serif;font-size:14px;line-height:1.12;color:#21402f;margin:1px 0 0}
     .psnap-s{font-size:7px;color:#6d6655;margin-top:1px}
@@ -246,12 +282,48 @@
     .pstat{border:1.4px solid #21402f;border-radius:6px;padding:5px 8px}
     .pstat .l{font-size:7.8px;text-transform:uppercase;letter-spacing:.07em;color:#6d6655;font-weight:600}
     .pstat .v{font-family:'Fraunces',serif;font-size:13.5px;color:#21402f;margin-top:1px}
-    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:2px;margin:4px 0 3px;font-weight:600}
+    #printDoc h3{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#2f5a40;border-bottom:1.4px solid #d8cfba;padding-bottom:2px;margin:3px 0 2px;font-weight:600}
     #printDoc h3 .hsub{color:#9a6f1f;letter-spacing:0;text-transform:none;font-family:'Archivo';font-size:9px;font-weight:600}
     .pbreak{break-before:page;page-break-before:always}
     .pfoot{font-size:7.6px;color:#6d6655;margin-top:3px;border-top:1px solid #d8cfba;padding-top:3px}
     #printDoc table,#printDoc tr{break-inside:avoid}
     #printDoc h3{break-after:avoid}
+    .pscore{border:1.4px solid #21402f;border-radius:7px;overflow:hidden;margin:1px 0 6px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .pscore-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 11px;background:#f3ead0}
+    .pscore-head{flex:1 1 auto;min-width:0}
+    .pscore-price{font-family:'Fraunces',serif;font-size:13px;color:#21402f;line-height:1.15}
+    .pscore-why{font-family:'Fraunces',serif;font-size:10.5px;color:#3a3a36;margin-top:2px;line-height:1.3}
+    .pscore-grade{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+    .pscore-houses{display:flex;gap:1px;line-height:0}
+    .pscore-meta{display:flex;align-items:baseline;gap:5px}
+    .pscore-pill{font-weight:700;font-size:9.5px;padding:2px 8px;border-radius:10px;white-space:nowrap}
+    .pscore-num{font-family:'Fraunces',serif;font-size:14px;color:#21402f}
+    .pscore-num small{font-size:8.5px;color:#6d6655}
+    .pscore-noscore{font-size:9px;color:#6d6655;font-style:italic;white-space:nowrap}
+    .pscore-metrics{display:grid;background:#fff}
+    .pscore-metrics .psm{padding:5px 9px;border-right:1px solid #e6ddc9;border-top:1.4px solid #21402f}
+    .pscore-metrics .psm:last-child{border-right:none}
+    .psm-l{font-size:7px;text-transform:uppercase;letter-spacing:.05em;color:#9a6f1f;font-weight:700}
+    .psm-v{font-family:'Fraunces',serif;font-size:12.5px;color:#21402f;margin-top:1px;white-space:nowrap}
+    .pqs{display:grid;grid-template-columns:repeat(7,1fr);border:1.2px solid #d8cfba;border-radius:6px;overflow:hidden;margin:0 0 8px;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .pqs-cell{padding:4px 7px;border-right:1px solid #ece4d2}
+    .pqs-cell:last-child{border-right:none}
+    .pqs-cell.good{background:#eef5ef}
+    .pqs-v{font-family:'Fraunces',serif;font-size:11.5px;color:#21402f;line-height:1.05}
+    .pqs-l{font-size:6.6px;text-transform:uppercase;letter-spacing:.04em;color:#9a6f1f;font-weight:700;margin-top:1px}
+    .pqs-b{font-size:6px;color:#6d6655;margin-top:.5px}
+    .pgstrip{display:flex;align-items:center;gap:8px;border:1.2px solid #21402f;border-radius:6px;padding:5px 10px;margin:1px 0 6px;background:#f3ead0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .pgstrip-k{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.12em;font-size:7.5px;color:#9a6f1f;font-weight:700;flex:0 0 auto}
+    .pgstrip-h{display:flex;gap:1px;line-height:0;flex:0 0 auto}
+    .pgstrip-pill{font-weight:700;font-size:8.5px;padding:1.5px 7px;border-radius:9px;white-space:nowrap;flex:0 0 auto}
+    .pgstrip-num{font-family:'Fraunces',serif;font-size:11px;color:#21402f;flex:0 0 auto}
+    .pgstrip-why{font-family:'Fraunces',serif;font-size:9.5px;color:#3a3a36;line-height:1.25;border-left:1px solid #d8b25e;padding-left:8px}
+    .pmast-slim{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#21402f;color:#f4efe4;border-radius:6px;padding:5px 12px;margin-bottom:5px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .pmast-slim .pl{display:flex;align-items:center;gap:8px}
+    .pmast-slim svg{width:22px;height:22px}
+    .pmast-slim .pname{font-family:'Fraunces',serif;font-size:12px;line-height:1}
+    .pmast-slim .psub{font-family:'Archivo Narrow';text-transform:uppercase;letter-spacing:.25em;font-size:7px;color:#d8b25e;margin-top:2px}
+    .pmast-slim .pr{font-size:8.5px;color:#cfe0d2;text-align:right;white-space:nowrap}
   }
   @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.f.wide{grid-column:span 2}}
   @media(max-width:760px){
@@ -299,8 +371,12 @@
   #gradeTopBar{display:none}
   .rail{display:none}
   #sumBar .sbgrade{display:flex;align-items:center;gap:6px;padding-right:9px;border-right:1px solid rgba(216,178,94,.35)}
+  #sumBar .sbstats{display:flex;align-items:center;gap:13px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none}
+  #sumBar .sbstats::-webkit-scrollbar{display:none}
+  #sumBar .sbstats .sb{flex:0 0 auto}
+  #sumBar .sbup{flex:0 0 auto;display:flex;align-items:center;gap:3px;font-size:11px;color:#d8b25e;font-weight:700;white-space:nowrap;padding-left:10px;border-left:1px solid rgba(216,178,94,.35);cursor:pointer}
   @media(min-width:980px){
-    .rail{display:block}
+    .rail{display:block;position:sticky;top:14px}
     .sumcard{position:static}
     #gradeTopBar{display:flex;position:fixed;top:0;left:0;right:0;z-index:60;align-items:center;gap:15px;background:var(--green);color:#f4efe4;border-bottom:1.5px solid #d8b25e;padding:8px 22px;transform:translateY(-105%);transition:transform .22s ease;box-shadow:0 3px 12px rgba(27,33,28,.22)}
     #gradeTopBar.show{transform:translateY(0)}
@@ -325,15 +401,29 @@
       <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="9" y="7" width="30" height="36" fill="#fbf8f1" stroke="#21402f" stroke-width="2.6"/><rect x="9" y="10" width="30" height="4" fill="#21402f"/><rect x="14" y="18" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="27" y="18" width="7" height="6" fill="#d8b25e" stroke="#9a6f1f" stroke-width="1.8"/><rect x="14" y="27" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="27" y="27" width="7" height="6" fill="none" stroke="#21402f" stroke-width="1.8"/><rect x="21" y="34" width="6" height="9" fill="#21402f"/></svg>
       <div><h1>House Hacking Calculator</h1><div class="wsub">househackingcalc.com</div></div>
     </div>
-    <div class="hero" id="heroArt" aria-hidden="true"></div>
   </header>
-  <div class="tag">Fill in the groups below — everything recalculates live, and you can tap any section header to collapse or expand it. <b>Print / Save PDF</b> exports a polished two-page deal memo. All math runs in your browser; nothing is sent anywhere.</div>
+  <section class="herobox">
+    <svg class="hero-wm" viewBox="0 0 200 200" aria-hidden="true"><path d="M30 95 L100 38 L170 95" fill="none" stroke="#21402f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><rect x="48" y="92" width="104" height="86" fill="none" stroke="#21402f" stroke-width="6"/><rect x="64" y="110" width="28" height="28" fill="none" stroke="#21402f" stroke-width="5"/><rect x="110" y="110" width="28" height="28" fill="none" stroke="#21402f" stroke-width="5"/><rect x="86" y="146" width="28" height="32" fill="none" stroke="#21402f" stroke-width="5"/></svg>
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Know your numbers before you offer</div>
+      <h2 class="hero-h">Take the guesswork out of your next purchase. Get the full picture before you buy, and build wealth with confidence.</h2>
+      <p class="hero-sub">See what you’d really pay to live there, how high you can bid before it stops cash-flowing, and a strength grade on every price.</p>
+      <div class="hero-chips"><span class="hchip">No more guesswork</span><span class="hchip">See your true cost to live there</span><span class="hchip">Know your ceiling — how high you can still cash-flow</span><span class="hchip">Spot winning deals faster</span><span class="hchip">Build cash flow with confidence</span><span class="hchip">Stress-test before you commit</span><span class="hchip">Walk in prepared — a clean PDF to share</span></div>
+    </div>
+    <div class="hero-visual">
+      <div class="hpeek-frame">
+        <div class="hpeek-chrome"><span class="hpeek-dot r"></span><span class="hpeek-dot y"></span><span class="hpeek-dot g"></span><span class="hpeek-addr">househackingcalc.com</span></div>
+        <div class="hpeek-body" id="gradeHero" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+  <div class="tag">Fill in the groups below — everything recalculates live, and you can tap any section header to collapse or expand it. <b>Print / Save PDF</b> exports a polished two-page deal memo.</div>
 
   <div class="main">
   <div class="panel">
     <div class="xall"><button id="xallBtn" data-act="xall">Expand all ▾</button></div>
     <!-- 1 PROPERTY -->
-    <div class="group">
+    <div class="group" id="sec1">
       <div class="subhead"><span class="shl"><span class="num">1</span>Property &amp; Price</span><span class="shr"><span class="gsum" id="sum1"></span><span class="chev">▾</span></span></div>
       <div class="grid">
         <div class="f wide"><label>Property address / label</label><input id="addr" type="text" placeholder="e.g. 350 Fifth Avenue, New York, NY 10118"></div>
@@ -517,6 +607,7 @@ document.addEventListener('click',e=>{
   else if(a==='fin')setFinancing(t.dataset.arg);
   else if(a==='jump'){e.preventDefault();const o=document.getElementById('out');if(o)o.scrollIntoView({behavior:'smooth'});}
   else if(a==='adjust'){e.preventDefault();const sp=document.getElementById('specSection');if(sp)sp.scrollIntoView({behavior:'smooth',block:'start'});}
+  else if(a==='tostart'){e.preventDefault();const s1=document.getElementById('sec1');if(s1)s1.scrollIntoView({behavior:'smooth',block:'start'});const li=document.getElementById('list');if(li)setTimeout(function(){li.focus({preventScroll:true});},430);}
   else if(a==='xall'){const any=document.querySelector('.panel .group.collapsed');document.querySelectorAll('.panel .group').forEach(g=>g.classList.toggle('collapsed',!any));xallLabel();}
   else if(a==='share')doShare();
 });
@@ -759,7 +850,7 @@ function gradeMiniHTML(g, hasRent, onGreen){
 
 function TW(t){return '<div class="tw"><div class="tscroll">'+t+'</div></div><div class="swipehint"><span>swipe \u2192</span> more columns</div>';}
 
-function wireTables(){document.querySelectorAll('#out .tscroll').forEach(function(sc){var tw=sc.closest('.tw');function upd(){var end=sc.scrollLeft+sc.clientWidth>=sc.scrollWidth-2;if(tw)tw.classList.toggle('atend',end||sc.scrollWidth<=sc.clientWidth+2);}sc.addEventListener('scroll',upd,{passive:true});upd();});}
+function wireTables(){var scs=document.querySelectorAll('#out .tscroll');scs.forEach(function(sc){var tw=sc.closest('.tw');var hint=tw?tw.nextElementSibling:null;if(hint&&!hint.classList.contains('swipehint'))hint=null;function upd(){var noov=sc.scrollWidth<=sc.clientWidth+2;var end=sc.scrollLeft+sc.clientWidth>=sc.scrollWidth-2;if(tw)tw.classList.toggle('atend',end||noov);if(hint)hint.style.display=noov?'none':'';}sc._updFade=upd;sc.addEventListener('scroll',upd,{passive:true});upd();});requestAnimationFrame(function(){scs.forEach(function(sc){sc._updFade&&sc._updFade();});});if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){scs.forEach(function(sc){sc._updFade&&sc._updFade();});});}}
 
 function setSpectrum(price,owner,liveFree,priceCeiling,breakEven,live,cfAll,dscr,tgt){
   $('specPlace').style.display='none'; $('specMain').style.display='';
@@ -808,6 +899,13 @@ function setSpectrum(price,owner,liveFree,priceCeiling,breakEven,live,cfAll,dscr
   $('sumSpec').textContent='$'+Math.round(price).toLocaleString()+(owner?' \u00b7 live-in '+sgn(live):' \u00b7 rented '+sgn(cfAll));
 }
 
+function heroCard(kicker,price,n,label,score,why,metrics){
+  var mh=metrics.map(function(m){return '<div><div class="hpm-l">'+m[0]+'</div><div class="hpm-v">'+m[1]+'</div></div>';}).join('');
+  return '<div class="hpeek-k">'+kicker+'</div><div class="hpeek-price">'+price+'</div><div class="hpeek-grade">'+gHouses(n,16,false)+'<span class="gmeta">'+gPill(n,label)+'<span class="gscore"><b>'+score+'</b>/100</span></span></div><div class="hpeek-why">'+why+'</div><div class="hpeek-metrics" style="grid-template-columns:repeat('+metrics.length+',1fr)">'+mh+'</div>';
+}
+function heroSample(){
+  return heroCard('Sample deal','$725,000 list / offer',4,'Strong',78,'You\u2019d live here for a fraction of market rent.',[['Live-in','<span class="neg">\u2212$210</span>'],['All-rented','<span class="pos">+$340</span>'],['Cap','6.9%'],['DSCR','1.24']]);
+}
 function run(){
   const list=num('list'),N=clampUnits();
   updateLookups();
@@ -821,9 +919,9 @@ function run(){
     $('sum3').textContent=`${tnum(num('rate'))}% · ${dpLabel('dpA')} / ${dpLabel('dpB')}`;
     $('sum4').textContent=`${usd(num('tax'))} tax · ${tnum(num('vac'))}% vac`;
     $('sum5').textContent=`${tnum(num('appr'))}%/yr appr`;
-    $('sumSide').innerHTML=`<div class="lbl">Live deal summary</div><div class="row"><span class="k">Enter a list price to see the deal here.</span></div>`;
-    $('sumBar').innerHTML=`<div class="sb"><span class="sbl">Get started</span><span class="sbv">Enter a list price above</span></div>`;
-    $('gradeRail').innerHTML='';$('gradeMobile').innerHTML='';$('gradeTopBar').innerHTML='';
+    $('sumSide').innerHTML=`<div class="lbl">Live deal summary</div><div class="row tostartrow" data-act="tostart" role="button" tabindex="0"><span class="k">Enter a list price to see your deal — <b>start here →</b></span></div>`;
+    $('sumBar').innerHTML=`<div class="sb"><span class="sbl">Get started</span><span class="sbv">Enter a list price →</span></div>`; $('sumBar').dataset.act='tostart';
+    $('gradeRail').innerHTML='';$('gradeMobile').innerHTML='';$('gradeTopBar').innerHTML='';$('gradeHero').innerHTML=heroSample();
     return;
   }
   const tax=num('tax'),ins=num('ins'),util=num('util'),reno=num('reno');
@@ -878,7 +976,7 @@ function run(){
     const dpf=dpFrac(id,optimal), showBE=(Math.abs(dpf-beDpf)<1e-9);
     const hdr=p=>{const o=p===optimal,e=p===be&&showBE&&!o;
       return `<th${o?' class="star" style="background:var(--gold)"':e?' style="background:var(--rust)"':''}>${usd(p)}${o?' ★':e?' BE':''}</th>`;};
-    const cell=(p,v)=>{const o=p===optimal,e=p===be&&showBE&&!o;return `<td${o?' class="tot star"':e?' class="be"':''}>${v}</td>`;};
+    const cell=(p,v)=>{const o=p===optimal,e=p===be&&showBE&&!o;return `<td${o?' class="optc star"':e?' class="be"':''}>${v}</td>`;};
     let tbl=`<table><thead><tr><th>Per month / metric</th>${cols.map(hdr).join('')}</tr></thead><tbody>`;
     const rows=[['Total fixed cost (before rent)',p=>usd(MM(p,id).totBeforeRent)],
       ['Total rent — all units rented /mo',()=>usd(allMo)]];
@@ -1038,17 +1136,32 @@ function run(){
     +pane('Equity multiple', cem(aA.y5.em)+' / '+cem(aB.y5.em), aA.dp+' / '+aB.dp)
     +`</div>`;
   const bottomLine=`<div class="psnaptake"><b>Bottom line \u2014</b> over 5 years at ${aA.dp}, this deal builds about <b>${usd(eq5)}</b> of equity (${sgnUsd(gain5)} from appreciation) and a cumulative <b>${sgnUsd(c5.cumCF)}</b> in cash flow \u2014 a 5-yr return near <b>${pct(c5.roiTot)}</b> (${aA.y5.em.toFixed(2)}\u00d7 your cash). ${pbk==null?'It does not reach the sell-to-profit point within 5 years at these assumptions.':'Sell-to-profit lands around '+pbkYr.replace('\u2248 ','')+'.'}</div>`;
+  // ===== redesigned PDF building blocks =====
+  const pMast=`<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">House Hacking Calculator</div><div class="psub">househackingcalc.com</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} \u00b7 ${owner?'Owner-occupant':'Investment'} \u00b7 ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>`;
+  const gPillC=(h)=>({bg:h>=4?'#dde8d1':h===3?'#efe1c4':'#efd9cf', tx:h>=4?'#21402f':h===3?'#6f4e0f':'#7a2f17'});
+  const pHousesH=(n)=>{let h='';for(let i=1;i<=5;i++)h+=gHouse(i<=n,15,false);return h;};
+  const pmRows=[owner?['Live-in /mo',usd(-o.livein)]:null,['All-rented /mo',usd(o.cfAll)],['Cap rate',pct(o.cap)],['DSCR',o.dscr.toFixed(2)],['Cash-on-cash',pct(o.coc)],['Cash to close',usd(o.cash)]].filter(Boolean);
+  const pmHTML=pmRows.map(m=>`<div class="psm"><div class="psm-l">${m[0]}</div><div class="psm-v">${m[1]}</div></div>`).join('');
+  let pGradeTop;
+  if(gGrade){const pc=gPillC(gGrade.houses);pGradeTop=`<div class="pscore-grade"><div class="pscore-houses">${pHousesH(gGrade.houses)}</div><div class="pscore-meta"><span class="pscore-pill" style="background:${pc.bg};color:${pc.tx}">${gGrade.label}</span><span class="pscore-num">${gGrade.composite}<small>/100</small></span></div></div>`;}
+  else pGradeTop=`<div class="pscore-noscore">Add unit rent to grade</div>`;
+  const pGradeCard=`<div class="pscore"><div class="pscore-top"><div class="pscore-head"><div class="pscore-price">${usd(optimal)} list / offer \u00b7 ${owner?'owner-occupant':'investment'}</div>${gGrade?`<div class="pscore-why">${gGrade.why}</div>`:''}</div>${pGradeTop}</div><div class="pscore-metrics" style="grid-template-columns:repeat(${pmRows.length},1fr)">${pmHTML}</div></div>`;
+  const pqs=`<div class="pqs">${qscreens.map(q=>`<div class="pqs-cell${q[3]===true?' good':''}"><div class="pqs-v">${q[1]}</div><div class="pqs-l">${q[0]}</div>${q[2]?`<div class="pqs-b">${q[2]}</div>`:''}</div>`).join('')}</div>`;
+  const pMastSlim=`<div class="pmast-slim"><div class="pl">${MARKP}<div><div class="pname">House Hacking Calculator</div><div class="psub">househackingcalc.com</div></div></div><div class="pr">${$('addr').value.trim()||'Property analysis'} \u00b7 ${usd(optimal)} at ${dpLabel('dpA')}</div></div>`;
+  let pGStrip='';
+  if(gGrade){const pc=gPillC(gGrade.houses);pGStrip=`<div class="pgstrip"><span class="pgstrip-k">Deal strength</span><span class="pgstrip-h">${pHousesH(gGrade.houses)}</span><span class="pgstrip-pill" style="background:${pc.bg};color:${pc.tx}">${gGrade.label}</span><span class="pgstrip-num">${gGrade.composite}/100</span><span class="pgstrip-why">${gGrade.why}</span></div>`;}
   $('printDoc').innerHTML=
-    `<div class="pmast"><div class="pl">${MARKP}<div><div class="pname">House Hacking Calculator</div><div class="psub">househackingcalc.com</div></div></div><div class="pr"><div class="paddr">${$('addr').value.trim()||'Property analysis'}</div><div class="pdate">${today} · ${owner?'Owner-occupant':'Investment'} · ${usd(optimal)} at ${dpLabel('dpA')}</div></div></div>
+    `${pMast}
     <div class="pgold"></div>
-    <div class="pverdict">${usd(optimal)} list / offer price${owner?` · live-in cash flow ${usd(-o.livein)}/mo`:''} · all-rented ${usd(o.cfAll)}/mo</div>
+    ${pGradeCard}
     <div class="pvsub">Reference levels — ${owner?`live-free ${usd(Math.round(liveFree/1000)*1000)}, `:''}price ceiling ${usd(Math.round(priceCeiling/1000)*1000)} (clears a ${tgt.toFixed(2)} DSCR cushion), break-even ${usd(Math.round(breakEven/1000)*1000)} (DSCR 1.0). These are reference points, not suggestions. ${modeLine}</div>
-    ${pgrid}
-    ${qstrip}
+    ${pqs}
     <h3>Monthly fixed cost — before a dollar of rent</h3>${fcTable}
     <h3>Scenarios at ${dpLabel('dpA')}</h3>${scenA}
     <h3>Scenarios at ${dpLabel('dpB')}</h3>${scenB}
     <div class="pbreak"></div>
+    ${pMastSlim}
+    ${pGStrip}
     <h3>5-year returns at a glance <span class="hsub">at ${usd(optimal)} · ${dpLabel('dpA')} · ${tnum(num('appr'))}%/yr appreciation</span></h3>
     ${pPayback}${snap}${bottomLine}
     <h3>Appreciation &amp; equity</h3>${appTable}
@@ -1075,10 +1188,7 @@ function run(){
       <div class="qmr"><span>Debt yield</span><span>${debtYield.toFixed(1)}%</span></div>
       <div class="qmr"><span>Break-even occ</span><span>${beOcc.toFixed(0)}%</span></div></div>
     <a href="#" data-act="jump">Jump to full report ↓</a>`;
-  $('sumBar').innerHTML=`<div class="sb"><span class="sbl">Offer</span><span class="sbv">${usd(optimal)}</span></div>
-    ${owner?`<div class="sb"><span class="sbl">Live-in</span><span class="sbv">${sgg(-o.livein)}</span></div>`:''}
-    <div class="sb"><span class="sbl">All-rented</span><span class="sbv">${sgg(o.cfAll)}</span></div>
-    <div class="sb"><span class="sbl">DSCR</span><span class="sbv">${o.dscr.toFixed(2)}</span></div>`;
+  $('sumBar').innerHTML=`<span class="sbgrade">${gradeMiniHTML(gGrade,gHasRent,true)}</span><div class="sbstats"><div class="sb"><span class="sbl">Offer</span><span class="sbv">${usd(optimal)}</span></div>${owner?`<div class="sb"><span class="sbl">Live-in</span><span class="sbv">${sgg(-o.livein)}</span></div>`:''}<div class="sb"><span class="sbl">All-rented</span><span class="sbv">${sgg(o.cfAll)}</span></div><div class="sb"><span class="sbl">DSCR</span><span class="sbv">${o.dscr.toFixed(2)}</span></div><div class="sb"><span class="sbl">Cap</span><span class="sbv">${pct(o.cap)}</span></div></div><span class="sbup" data-act="adjust" role="button" tabindex="0" aria-label="Jump to price slider">\u2191 slider</span>`; $('sumBar').dataset.act='jump';
   // ===== render Deal Strength grade =====
   const gCardHTML = gradeCardHTML(gGrade,gSubs,gMode,gHasRent);
   $('gradeRail').innerHTML = gCardHTML;
@@ -1088,8 +1198,14 @@ function run(){
     + (owner?`<span class="gtbst"><span class="gtl">Live-in</span><span class="gtv">${sgg(-o.livein)}</span></span>`:'')
     + `<span class="gtbst"><span class="gtl">All-rented</span><span class="gtv">${sgg(o.cfAll)}</span></span>`
     + `<span class="gtbst"><span class="gtl">DSCR</span><span class="gtv">${o.dscr.toFixed(2)}</span></span>`
+    + `<span class="gtbst"><span class="gtl">Cap</span><span class="gtv">${pct(o.cap)}</span></span>`
     + `<a href="#" class="gtbjump" data-act="adjust">\u2191 Adjust price</a>`;
-  $('sumBar').innerHTML = `<span class="sbgrade">${gradeMiniHTML(gGrade,gHasRent,true)}</span>` + $('sumBar').innerHTML;
+  if(gGrade){
+    const hpm=[owner?['Live-in',sgg(-o.livein)]:null,['All-rented',sgg(o.cfAll)],['Cap',pct(o.cap)],['DSCR',o.dscr.toFixed(2)]].filter(Boolean);
+    $('gradeHero').innerHTML=heroCard('Your deal \u00b7 live',usd(optimal)+' list / offer',gGrade.houses,gGrade.label,gGrade.composite,gGrade.why,hpm);
+  } else {
+    $('gradeHero').innerHTML=heroSample();
+  }
 }
 
 document.querySelectorAll('.panel input, .panel select').forEach(el=>{
@@ -1100,7 +1216,6 @@ $('units').addEventListener('input',()=>{captureRents();buildRentFields();run();
 let _specRaf=false;
 $('priceSlider').addEventListener('input',e=>{const v=Math.round(+e.target.value);$('list').value=v;if(!_specRaf){_specRaf=true;requestAnimationFrame(()=>{_specRaf=false;run();});}});
 function xallLabel(){const any=document.querySelector('.panel .group.collapsed');const b=$('xallBtn');if(b)b.textContent=any?'Expand all ▾':'Collapse all ◂';}
-$('heroArt').innerHTML=HERO;
 document.querySelectorAll('.subhead .num').forEach(el=>{el.innerHTML=GABLE(el.textContent.trim());});
 document.querySelectorAll('.panel .subhead').forEach(sh=>{sh.addEventListener('click',e=>{if(e.target.closest('.seg'))return;sh.parentElement.classList.toggle('collapsed');xallLabel();});});
 document.querySelectorAll('.panel .group').forEach((g,i)=>{if(i>0)g.classList.add('collapsed');});
@@ -1121,6 +1236,7 @@ run();
   },{threshold:0});
   io.observe(rail);
 })();
+window.addEventListener('resize',function(){document.querySelectorAll('#out .tscroll').forEach(function(sc){sc._updFade&&sc._updFade();});});
 </script>
 </body>
 </html>
